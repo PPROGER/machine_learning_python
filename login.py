@@ -6,6 +6,7 @@ from PyQt4 import QtGui, QtCore
 
 
 
+
 class Qlogin(QtGui.QWidget):
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
@@ -28,31 +29,25 @@ class Qlogin(QtGui.QWidget):
         login.setPixmap(pixmap1)
         login.setGeometry(20,200,64,64)
 
-        loginEdit = QtGui.QLineEdit(self)
-<<<<<<< HEAD
-        loginEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
-=======
-        loginEdit.setStyleSheet("QLineEdit {color:orange; font: 16px;}")
->>>>>>> login forms
-        loginEdit.setGeometry(80,222,240,30)
+        self.loginEdit = QtGui.QLineEdit(self)
+        self.loginEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
+        self.loginEdit.setStyleSheet("QLineEdit {color:orange; font: 16px;}")
+        self.loginEdit.setGeometry(80,222,240,30)
 
         password = QtGui.QLabel(self)
         pixmap2 = QtGui.QPixmap('image/password.png')
         password.setPixmap(pixmap2)
         password.setGeometry(20,300,64,64)
 
-        passwordEdit = QtGui.QLineEdit(self)
-<<<<<<< HEAD
-        passwordEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray;}")
-=======
-        passwordEdit.setStyleSheet("QLineEdit {color:orange; font: 16px;}")
->>>>>>> login forms
-        passwordEdit.setGeometry(80,322,240,30)
+        self.passwordEdit = QtGui.QLineEdit(self)
+        self.passwordEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray;}")
+        self.passwordEdit.setStyleSheet("QLineEdit {color:orange; font: 16px;}")
+        self.passwordEdit.setGeometry(80,322,240,30)
         
         #Кнопка входа
-        log_button = QtGui.QPushButton('Login', self)
-        #log_button.setStyleSheet("QPushButton {background:#FF4500; color: black}")
-        log_button.setGeometry(170,420,160,30)
+        self.log_button = QtGui.QPushButton('Login', self)
+        self.log_button.setStyleSheet("QPushButton {background:#088A08}")
+        self.log_button.setGeometry(170,420,160,50)
 
         
         label_registration = QtGui.QLabel("Registration",self)
@@ -68,15 +63,6 @@ class Qlogin(QtGui.QWidget):
        
 
 
-        
-        
-
-        #self.connect(quit, QtCore.SIGNAL('clicked()'),
-            #QtGui.qApp, QtCore.SLOT('quit()'))
 
 
-app = QtGui.QApplication(sys.argv)
-qb = Qlogin()
-
-qb.show()
-sys.exit(app.exec_())
+ 
