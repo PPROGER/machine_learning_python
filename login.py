@@ -33,6 +33,7 @@ class Qlogin(QtGui.QWidget):
         self.loginEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
         self.loginEdit.setStyleSheet("QLineEdit {color:orange; font: 16px;}")
         self.loginEdit.setGeometry(80,222,240,30)
+        self.loginEdit.setAlignment(QtCore.Qt.AlignCenter)
 
         password = QtGui.QLabel(self)
         pixmap2 = QtGui.QPixmap('image/password.png')
@@ -43,11 +44,19 @@ class Qlogin(QtGui.QWidget):
         self.passwordEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray;}")
         self.passwordEdit.setStyleSheet("QLineEdit {color:orange; font: 16px;}")
         self.passwordEdit.setGeometry(80,322,240,30)
+        self.passwordEdit.setAlignment(QtCore.Qt.AlignCenter)
         
         #Кнопка входа
         self.log_button = QtGui.QPushButton('Login', self)
         self.log_button.setStyleSheet("QPushButton {background:#088A08}")
         self.log_button.setGeometry(170,420,160,50)
+
+        #Кнопка face id
+        self.face_button = QtGui.QPushButton(self)
+        #self.face_button.setStyleSheet("QPushButton {background:#088A08}")
+        self.face_button.setIcon(QtGui.QIcon('image/face.png'))
+        self.face_button.setIconSize(QtCore.QSize(64,64))
+        self.face_button.setGeometry(20,415,64,64)
 
         
         label_registration = QtGui.QLabel("Registration",self)
