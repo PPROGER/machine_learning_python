@@ -58,20 +58,18 @@ class Qlogin(QtGui.QWidget):
         self.face_button.setIconSize(QtCore.QSize(64,64))
         self.face_button.setGeometry(20,415,64,64)
 
+        self.registration_button = QtGui.QPushButton('Registration', self)
+        self.registration_button.setStyleSheet("QPushButton {color:#00FF00; font: 16px;}")
+        self.registration_button.setGeometry(10,550,120,30)
+
+        self.vostanovlenie_button = QtGui.QPushButton("Forgot your password?",self)
+        self.vostanovlenie_button.setStyleSheet("QPushButton  {color:#00FF00; font: 16px;}")
+        self.vostanovlenie_button.setGeometry(140,550,200,30)
+
+
+
+
         
-        label_registration = QtGui.QLabel("Registration",self)
-        label_registration.setStyleSheet("QLabel {color:#00FF00; font: 16px;}")
-        label_registration.setGeometry(20,525,100,30)
-
-
-        label_vostanovlenie = QtGui.QLabel("Forgot your password?",self)
-        label_vostanovlenie.setStyleSheet("QLabel {color:#00FF00; font: 16px;}")
-        label_vostanovlenie.setGeometry(170,525,200,30)
-
-
-       
-
-
 
 
  

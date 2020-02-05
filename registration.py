@@ -40,27 +40,27 @@ class QRegistration(QtGui.QWidget):
         password_label.setGeometry(30,416,90,50)
 
 
-        nameEdit = QtGui.QLineEdit(self)
-        firstnameEdit = QtGui.QLineEdit(self)
-        mailEdit = QtGui.QLineEdit(self)
-        passwordEdit = QtGui.QLineEdit(self)
-        nameEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
-        firstnameEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
-        mailEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
-        passwordEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
+        self.nameEdit = QtGui.QLineEdit(self)
+        self.firstnameEdit = QtGui.QLineEdit(self)
+        self.mailEdit = QtGui.QLineEdit(self)
+        self.passwordEdit = QtGui.QLineEdit(self)
+        self.nameEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
+        self.firstnameEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
+        self.mailEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
+        self.passwordEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
 
-        nameEdit.setGeometry(130,278,250,30)
-        firstnameEdit.setGeometry(130,328,250,30)
-        mailEdit.setGeometry(130,378,250,30)
-        passwordEdit.setGeometry(130,428,250,30)
+        self.nameEdit.setGeometry(130,278,250,30)
+        self.firstnameEdit.setGeometry(130,328,250,30)
+        self.mailEdit.setGeometry(130,378,250,30)
+        self.passwordEdit.setGeometry(130,428,250,30)
 
 
         
         
         #Кнопка регестрации
-        registration_button = QtGui.QPushButton('Registration', self)
-        registration_button.setStyleSheet("QPushButton {background:#088A08}")
-        registration_button.setGeometry(230,500,150,50)
+        self.registration_button = QtGui.QPushButton('Registration', self)
+        self.registration_button.setStyleSheet("QPushButton {background:#088A08}")
+        self.registration_button.setGeometry(230,500,150,50)
 
         
         
@@ -75,8 +75,8 @@ class QRegistration(QtGui.QWidget):
             #QtGui.qApp, QtCore.SLOT('quit()'))
 
 
-app = QtGui.QApplication(sys.argv)
-qb = QRegistration()
+#app = QtGui.QApplication(sys.argv)
+#qb = QRegistration()
 
-qb.show()
-sys.exit(app.exec_())
+#qb.show()
+#sys.exit(app.exec_())

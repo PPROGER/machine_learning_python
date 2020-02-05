@@ -39,35 +39,29 @@ class QRecovery(QtGui.QWidget):
 
 
        
-        firstnameEdit = QtGui.QLineEdit(self)
-        mailEdit = QtGui.QLineEdit(self)
-        passwordEdit = QtGui.QLineEdit(self)
+        self.firstnameEdit = QtGui.QLineEdit(self)
+        self.mailEdit = QtGui.QLineEdit(self)
+        self.passwordEdit = QtGui.QLineEdit(self)
 
-        firstnameEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
-        mailEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
-        passwordEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
+        self.firstnameEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
+        self.mailEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
+        self.passwordEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
 
     
-        firstnameEdit.setGeometry(170,278,220,30)
-        mailEdit.setGeometry(170,328,220,30)
-        passwordEdit.setGeometry(170,378,220,30)
+        self.firstnameEdit.setGeometry(170,278,220,30)
+        self.mailEdit.setGeometry(170,328,220,30)
+        self.passwordEdit.setGeometry(170,378,220,30)
 
 
         
         
         #Кнопка востановления
-        registration_button = QtGui.QPushButton('Recovery', self)
-        registration_button.setStyleSheet("QPushButton {background:#088A08}")
-        registration_button.setGeometry(230,500,150,50)
+        self.registration_button = QtGui.QPushButton('Recovery', self)
+        self.registration_button.setStyleSheet("QPushButton {background:#088A08}")
+        self.registration_button.setGeometry(230,500,150,50)
 
         
         
 
     
 
-
-app = QtGui.QApplication(sys.argv)
-qb = QRecovery()
-
-qb.show()
-sys.exit(app.exec_())

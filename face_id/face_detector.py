@@ -10,8 +10,6 @@ def Face_detector():
     img = io.imread('face_id/cam.png')
 
     win1 = dlib.image_window()
-    win1.clear_overlay()
-    win1.set_image(img)
 
     dets = detector(img, 1)
 
@@ -25,12 +23,10 @@ def Face_detector():
 
 
     face_descriptor1 = facerec.compute_face_descriptor(img, shape)
-    print(face_descriptor1)
+  
 
     img = io.imread('face_id/cam1.png')
     win2 = dlib.image_window()
-    win2.clear_overlay()
-    win2.set_image(img)
     dets_webcam = detector(img, 1)
     for k, d in enumerate(dets_webcam):
         print("Detection {}: Left: {} Top: {} Right: {} Bottom: {}".format(
