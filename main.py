@@ -75,8 +75,13 @@ def Recovery_user():
     cur = con.cursor()
     if(forms_recovery.firstnameEdit.text() != "" and forms_recovery.mailEdit.text() != "" and forms_recovery.passwordEdit.text() != ""):
         for row in cur.execute('SELECT Firstname,Gmail FROM user WHERE Firstname = ? and Gmail = ?',(forms_recovery.firstnameEdit.text(),forms_recovery.mailEdit.text())):
-            if(str(row[0]) == forms_recovery.firstnameEdit.text() and str(row[1]) == forms_recovery.mailEdit.text() and str[2] == forms_recovery.passwordEdit.text()):
+            if(str(row[0]) == forms_recovery.firstnameEdit.text() and str(row[1]) == forms_recovery.mailEdit.text()):
+                cur.execute('UPDATE user SET Password = ? WHERE Firstname = ? and Gmail = ?',(forms_recovery.passwordEdit.text(),forms_recovery.firstnameEdit.text(),forms_recovery.mailEdit.text()))
                 QtGui.QMessageBox.about(QtGui.QWidget(),"Message","successfully changed password")
+                forms_recovery.firstnameEdit.setText("")
+                forms_recovery.mailEdit.setText("")
+                forms_recovery.passwordEdit.setText("")
+       
 
  
     else:
