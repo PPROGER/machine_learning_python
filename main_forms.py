@@ -83,6 +83,70 @@ class QMain(QtGui.QWidget):
         FIO_label.setStyleSheet("QLabel {background:#808080; border: 1px solid #808080; border-radius: 1px; padding-left: 1px; margin: 6px}")
         FIO_label.setGeometry(80,0,181,60)
 
+        #Основна панель
+        main_panel = QtGui.QLabel(self)
+        #main_panel.setVisible(False)
+        main_panel.setStyleSheet("QLabel {background:#808080; border: 1px solid #00FF00; border-radius: 5px; padding-left: 10px; margin: 5px}")
+        main_panel.setGeometry(242,52,1359,848)
+
+        
+        #Светлая тема или темная
+        label_theme = QtGui.QLabel("Theme:",main_panel)
+        label_theme.setStyleSheet("QLabel {background:#808080; color: black; font: 25px; border: 1px solid #808080;}")
+        label_theme.setGeometry(10,10,150,30)
+        black_tema = QtGui.QLabel("Dark",main_panel)
+        black_tema.setStyleSheet("QLabel {background:#808080; color: black; font: 20px; border: 1px solid #808080;}")
+        black_tema.setGeometry(15,50,70,30)
+
+        self.tema_button = QtGui.QPushButton(main_panel)
+        self.tema_button.setIcon(QtGui.QIcon('image/0.png'))
+        self.tema_button.setIconSize(QtCore.QSize(70,70))
+        self.tema_button.setStyleSheet("QPushButton {background:#696969; border-radius: 16px; }")
+        self.tema_button.setGeometry(95,50,70,35)
+
+        black_tema = QtGui.QLabel("Light",main_panel)
+        black_tema.setStyleSheet("QLabel {background:#808080; color: black; font: 20px; border: 1px solid #808080;}")
+        black_tema.setGeometry(165,50,70,40)
+
+        #Регистрация Фейс айди
+        label_registartion = QtGui.QLabel("Registartion Face ID:",main_panel)
+        label_registartion.setStyleSheet("QLabel {background:#808080; color: black; font: 25px; border: 1px solid #808080;}")
+        label_registartion.setGeometry(10,100,300,50)
+        self.face_registration = QtGui.QPushButton("Registartion",main_panel)
+        self.face_registration.setIcon(QtGui.QIcon('image/faceID_registration'))
+        self.face_registration.setIconSize(QtCore.QSize(50,50))
+        self.face_registration.setStyleSheet("QPushButton {background:#696969; border-radius: 10px; border: 1px solid #C0C0C0; font: 20px;}")
+        self.face_registration.setGeometry(40,170,200,50)
+        label_progress = QtGui.QLabel("Progress:",main_panel)
+        label_progress.setStyleSheet("QLabel {background:#808080; color: black; font: 25px; border: 1px solid #808080;}")
+        label_progress.setGeometry(240,170,140,50)
+        self.progress = QtGui.QProgressBar(main_panel)
+        self.progress.setGeometry(380,180,400,30)
+
+        #Использовать Face id для входа в БД
+        label_db = QtGui.QLabel("Use Face ID to enter the database:",main_panel)
+        label_db.setStyleSheet("QLabel {background:#808080; color: black; font: 25px; border: 1px solid #808080;}")
+        label_db.setGeometry(10,250,410,50)
+        
+
+        yes_label_db = QtGui.QLabel("Yes",main_panel)
+        yes_label_db.setStyleSheet("QLabel {background:#808080; color: black; font: 20px; border: 1px solid #808080;}")
+        yes_label_db.setGeometry(15,300,60,30)
+
+        self.db_faceid_button = QtGui.QPushButton(main_panel)
+        self.db_faceid_button.setIcon(QtGui.QIcon('image/0.png'))
+        self.db_faceid_button.setIconSize(QtCore.QSize(70,70))
+        self.db_faceid_button.setStyleSheet("QPushButton {background:#696969; border-radius: 16px; }")
+        self.db_faceid_button.setGeometry(85,300,70,35)
+
+        false_label_db = QtGui.QLabel("False",main_panel)
+        false_label_db.setStyleSheet("QLabel {background:#808080; color: black; font: 20px; border: 1px solid #808080;}")
+        false_label_db.setGeometry(150,300,80,40)
+        
+        
+       
+        
+
 
 
         
