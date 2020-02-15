@@ -83,9 +83,9 @@ class QMain(QtGui.QWidget):
         FIO_label.setStyleSheet("QLabel {background:#808080; border: 1px solid #808080; border-radius: 1px; padding-left: 1px; margin: 6px}")
         FIO_label.setGeometry(80,0,181,60)
 
-        #Основна панель
+        #Settings panel
         main_panel = QtGui.QLabel(self)
-        #main_panel.setVisible(False)
+        main_panel.setVisible(False)
         main_panel.setStyleSheet("QLabel {background:#808080; border: 1px solid #00FF00; border-radius: 5px; padding-left: 10px; margin: 5px}")
         main_panel.setGeometry(242,52,1359,848)
 
@@ -214,7 +214,59 @@ class QMain(QtGui.QWidget):
 
         
 
+        #DB panel  
+        db_panel = QtGui.QLabel(self)
+        #db_panel.setVisible(False)
+        db_panel.setStyleSheet("QLabel {background:#808080; border: 1px solid #00FF00; border-radius: 5px; padding-left: 10px; margin: 5px}")
+        db_panel.setGeometry(242,52,1359,848)
 
+        #Login panel DB
+        panel_loning_db = QtGui.QLabel(db_panel)
+        #panel_loning_db.setVisible(False)
+        panel_loning_db.setStyleSheet("QLabel {background:#696969; border: 1px solid #00FF00; border-radius: 5px; padding-left: 10px; margin: 5px}")
+        panel_loning_db.setGeometry(459.5,100,400,600)
+
+        label_image = QtGui.QLabel(panel_loning_db)
+        pixmap = QtGui.QPixmap('image/db_image')
+        label_image.setPixmap(pixmap)
+        label_image.setStyleSheet("QLabel {background:#696969; color: black; font: 25px; border: 1px solid #696969}")
+        label_image.setGeometry(120,50,160,145)
+
+        login = QtGui.QLabel(panel_loning_db)
+        pixmap1 = QtGui.QPixmap('image/login.png')
+        login.setPixmap(pixmap1)
+        login.setStyleSheet("QLabel {background:#696969; color: black; font: 25px; border: 1px solid #696969}")
+        login.setGeometry(20,200,74,74)
+
+        self.loginEdit = QtGui.QLineEdit(panel_loning_db)
+        self.loginEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
+        self.loginEdit.setStyleSheet("QLineEdit {color:orange; font: 16px;}")
+        self.loginEdit.setGeometry(100,222,240,30)
+        self.loginEdit.setAlignment(QtCore.Qt.AlignCenter)
+
+        password = QtGui.QLabel(panel_loning_db)
+        pixmap2 = QtGui.QPixmap('image/password.png')
+        password.setPixmap(pixmap2)
+        password.setStyleSheet("QLabel {background:#696969; color: black; font: 25px; border: 1px solid #696969}")
+        password.setGeometry(20,300,74,74)
+
+        self.passwordEdit = QtGui.QLineEdit(panel_loning_db)
+        self.passwordEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray;}")
+        self.passwordEdit.setStyleSheet("QLineEdit {color:orange; font: 16px;}")
+        self.passwordEdit.setGeometry(100,322,240,30)
+        self.passwordEdit.setAlignment(QtCore.Qt.AlignCenter)
+        
+        #Кнопка входа
+        self.log_button = QtGui.QPushButton('Login', panel_loning_db)
+        self.log_button.setStyleSheet("QPushButton {background:#088A08}")
+        self.log_button.setGeometry(200,450,160,50)
+
+        #Кнопка face id
+        self.face_button = QtGui.QPushButton(panel_loning_db)
+        #self.face_button.setStyleSheet("QPushButton {background:#696969}")
+        self.face_button.setIcon(QtGui.QIcon('image/face.png'))
+        self.face_button.setIconSize(QtCore.QSize(64,64))
+        self.face_button.setGeometry(60,450,50,53)
 
 app = QtGui.QApplication(sys.argv)
 qb = QMain()

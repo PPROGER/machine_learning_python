@@ -56,7 +56,7 @@ class Qlogin(QtGui.QWidget):
         #self.face_button.setStyleSheet("QPushButton {background:#088A08}")
         self.face_button.setIcon(QtGui.QIcon('image/face.png'))
         self.face_button.setIconSize(QtCore.QSize(64,64))
-        self.face_button.setGeometry(20,415,64,64)
+        self.face_button.setGeometry(40,420,50,53)
 
         self.registration_button = QtGui.QPushButton('Registration', self)
         self.registration_button.setStyleSheet("QPushButton {color:#00FF00; font: 16px;}")
