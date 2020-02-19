@@ -12,6 +12,7 @@ from db_connect import con
 from login import Qlogin
 from registration import QRegistration
 from recovery import QRecovery
+from main_forms import QMain
 from face_id.cam import Cam
 from face_id.face_detector import Face_detector
 
@@ -30,7 +31,7 @@ def log_avtorization():
                 qb.passwordEdit.setText('')
                 QtGui.QMessageBox.about(QtGui.QWidget(),"Message","You have successfully\nlogged in!")
                 log_number = True
-                forms_registration.show()
+                main_forms.show()
             
             
             
@@ -46,6 +47,7 @@ def faceid_avtorization():
     evklid_znach = Face_detector()
     if(float(evklid_znach) < 0.6):
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message","You have successfully\nlogged in!")
+        main_forms.show()
     elif(float(evklid_znach) > 0.6):
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message","please try again or register through Face ID!")
         
@@ -88,10 +90,59 @@ def Recovery_user():
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message","please enter firstname, login and password")
 
     con.commit()
+
+
+
+
+def Cam_function():
+    main_forms.cam_panel.setVisible(True)
+    main_forms.foto_panel.setVisible(False)
+    main_forms.video_panel.setVisible(False)
+    main_forms.db_panel.setVisible(False)
+    main_forms.main_panel.setVisible(False)  
+
+
+def Vidoe_function():
+    main_forms.video_panel.setVisible(True)
+    main_forms.cam_panel.setVisible(False)
+    main_forms.foto_panel.setVisible(False)
+    main_forms.db_panel.setVisible(False)
+    main_forms.main_panel.setVisible(False) 
+
+def Foto_function():
+    main_forms.foto_panel.setVisible(True)
+    main_forms.video_panel.setVisible(False)
+    main_forms.cam_panel.setVisible(False)
+    main_forms.db_panel.setVisible(False)
+    main_forms.main_panel.setVisible(False) 
+
+def Db_function():
+    main_forms.db_panel.setVisible(True)
+    main_forms.cam_panel.setVisible(False)
+    main_forms.foto_panel.setVisible(False)
+    main_forms.video_panel.setVisible(False)
+    main_forms.main_panel.setVisible(False) 
+
+def Settings_function():
+    main_forms.main_panel.setVisible(True) 
+    main_forms.cam_panel.setVisible(False)
+    main_forms.foto_panel.setVisible(False)
+    main_forms.video_panel.setVisible(False)
+    main_forms.db_panel.setVisible(False)
+     
+
+def Log_func_db():
+    if(main_forms.loginEdit.text == "123" and main_forms.passwordEdit.text == "123"):
+
+        QtGui.QMessageBox.about(QtGui.QWidget(),"Message","You have successfully\nlogged in!")
+        
+
+#Основная программа 
 app = QtGui.QApplication(sys.argv)
 qb = Qlogin()
 forms_registration = QRegistration()
 forms_recovery = QRecovery()
+main_forms = QMain()
 #QtGui.QWidget.connect(qb.log_button, QtCore.SIGNAL('clicked()'), QtGui.qApp, QtCore.SLOT(log_avtorization))
 qb.log_button.clicked.connect(log_avtorization)
 qb.face_button.clicked.connect(faceid_avtorization)
@@ -99,7 +150,12 @@ qb.registration_button.clicked.connect(Registration_show)
 qb.vostanovlenie_button.clicked.connect(Recovery_show)
 forms_registration.registration_button.clicked.connect(Registration_user)
 forms_recovery.registration_button.clicked.connect(Recovery_user)
-
+main_forms.cam_button.clicked.connect(Cam_function)
+main_forms.video_button.clicked.connect(Vidoe_function)
+main_forms.foto_button.clicked.connect(Foto_function)
+main_forms.db_button.clicked.connect(Db_function)
+main_forms.settings_button.clicked.connect(Settings_function)
+main_forms.log_button.clicked.connect(Log_func_db)
 
 
 

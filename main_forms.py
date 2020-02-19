@@ -84,69 +84,69 @@ class QMain(QtGui.QWidget):
         FIO_label.setGeometry(80,0,181,60)
 
         #Settings panel
-        main_panel = QtGui.QLabel(self)
-        main_panel.setVisible(False)
-        main_panel.setStyleSheet("QLabel {background:#808080; border: 1px solid #00FF00; border-radius: 5px; padding-left: 10px; margin: 5px}")
-        main_panel.setGeometry(242,52,1359,848)
+        self.main_panel = QtGui.QLabel(self)
+        self.main_panel.setVisible(False)
+        self.main_panel.setStyleSheet("QLabel {background:#808080; border: 1px solid #00FF00; border-radius: 5px; padding-left: 10px; margin: 5px}")
+        self.main_panel.setGeometry(242,52,1359,848)
 
 
         #Фон для Face id
-        bagraound_label = QtGui.QLabel(main_panel)
+        bagraound_label = QtGui.QLabel(self.main_panel)
         bagraound_label.setStyleSheet("QLabel {background:#696969; border: 1px solid #00FF00; border-radius: 5px; padding-left: 10px; margin: 5px}") 
         bagraound_label.setGeometry(0,0,1359,400)
 
         #Регистрация Фейс айди
-        label_registartion = QtGui.QLabel("Registartion Face ID:",main_panel)
+        label_registartion = QtGui.QLabel("Registartion Face ID:",self.main_panel)
         label_registartion.setStyleSheet("QLabel {background:#696969; color: black; font: 25px; border: 1px solid #696969;}")
         label_registartion.setGeometry(10,10,300,50)
-        self.face_registration = QtGui.QPushButton("Registartion",main_panel)
+        self.face_registration = QtGui.QPushButton("Registartion",self.main_panel)
         self.face_registration.setIcon(QtGui.QIcon('image/faceID_registration'))
         self.face_registration.setIconSize(QtCore.QSize(50,50))
         self.face_registration.setStyleSheet("QPushButton {background:#696969; border-radius: 10px; border: 1px solid #C0C0C0; font: 20px;}")
         self.face_registration.setGeometry(40,70,250,50)
         
         #Использовать Face id для входа в БД
-        label_db = QtGui.QLabel("Use Face ID to enter the database:",main_panel)
+        label_db = QtGui.QLabel("Use Face ID to enter the database:",self.main_panel)
         label_db.setStyleSheet("QLabel {background:#696969; color: black; font: 25px; border: 1px solid #696969;}")
         label_db.setGeometry(10,150,410,50)
         
 
-        yes_label_db = QtGui.QLabel("Yes",main_panel)
+        yes_label_db = QtGui.QLabel("Yes",self.main_panel)
         yes_label_db.setStyleSheet("QLabel {background:#696969; color: black; font: 20px; border: 1px solid #696969;}")
         yes_label_db.setGeometry(15,210,60,30)
 
-        self.db_faceid_button = QtGui.QPushButton(main_panel)
+        self.db_faceid_button = QtGui.QPushButton(self.main_panel)
         self.db_faceid_button.setIcon(QtGui.QIcon('image/0.png'))
         self.db_faceid_button.setIconSize(QtCore.QSize(70,70))
         self.db_faceid_button.setStyleSheet("QPushButton {background:#696969; border-radius: 16px; }")
         self.db_faceid_button.setGeometry(85,210,70,35)
 
-        false_label_db = QtGui.QLabel("False",main_panel)
+        false_label_db = QtGui.QLabel("False",self.main_panel)
         false_label_db.setStyleSheet("QLabel {background:#696969; color: black; font: 20px; border: 1px solid #696969;}")
         false_label_db.setGeometry(150,205,80,40)
         
         
         #Использование фейс айди для входа в приложение
-        label_log = QtGui.QLabel("Using face id to enter the application:",main_panel)
+        label_log = QtGui.QLabel("Using face id to enter the application:",self.main_panel)
         label_log.setStyleSheet("QLabel {background:#696969; color: black; font: 25px; border: 1px solid #696969}")
         label_log.setGeometry(10,260,440,50)
         
-        yes_label_log = QtGui.QLabel("Yes",main_panel)
+        yes_label_log = QtGui.QLabel("Yes",self.main_panel)
         yes_label_log.setStyleSheet("QLabel {background:#696969; color: black; font: 20px; border: 1px solid #696969;}")
         yes_label_log.setGeometry(15,320,60,30)
 
-        self.log_button = QtGui.QPushButton(main_panel)
+        self.log_button = QtGui.QPushButton(self.main_panel)
         self.log_button.setIcon(QtGui.QIcon('image/0.png'))
         self.log_button.setIconSize(QtCore.QSize(70,70))
         self.log_button.setStyleSheet("QPushButton {background:#696969; border-radius: 16px; }")
         self.log_button.setGeometry(85,320,70,35)
 
-        false_label_log = QtGui.QLabel("False",main_panel)
+        false_label_log = QtGui.QLabel("False",self.main_panel)
         false_label_log.setStyleSheet("QLabel {background:#696969; color: black; font: 20px; border: 1px solid #696969;}")
         false_label_log.setGeometry(150,315,80,40)       
         
         #Фон для системных настроек 
-        system_label = QtGui.QLabel(main_panel)
+        system_label = QtGui.QLabel(self.main_panel)
         system_label.setStyleSheet("QLabel {background:#696969; border: 1px solid #00FF00; border-radius: 5px; padding-left: 10px; margin: 5px}") 
         system_label.setGeometry(0,392,679.5,455)
 
@@ -183,7 +183,7 @@ class QMain(QtGui.QWidget):
         english_button.setGeometry(116,160,64,40)
 
         #Фон для технічної підтримки
-        label_tehn = QtGui.QLabel(main_panel)
+        label_tehn = QtGui.QLabel(self.main_panel)
         label_tehn.setStyleSheet("QLabel {background:#696969; border: 1px solid #00FF00; border-radius: 5px; padding-left: 10px; margin: 5px}") 
         label_tehn.setGeometry(671,392,686,455)
         
@@ -215,61 +215,85 @@ class QMain(QtGui.QWidget):
         
 
         #DB panel  
-        db_panel = QtGui.QLabel(self)
-        #db_panel.setVisible(False)
-        db_panel.setStyleSheet("QLabel {background:#808080; border: 1px solid #00FF00; border-radius: 5px; padding-left: 10px; margin: 5px}")
-        db_panel.setGeometry(242,52,1359,848)
+        self.db_panel = QtGui.QLabel(self)
+        self.db_panel.setVisible(False)
+        self.db_panel.setStyleSheet("QLabel {background:#808080; border: 1px solid #00FF00; border-radius: 5px; padding-left: 10px; margin: 5px}")
+        self.db_panel.setGeometry(242,52,1359,848)
 
         #Login panel DB
-        panel_loning_db = QtGui.QLabel(db_panel)
-        #panel_loning_db.setVisible(False)
-        panel_loning_db.setStyleSheet("QLabel {background:#696969; border: 1px solid #00FF00; border-radius: 5px; padding-left: 10px; margin: 5px}")
-        panel_loning_db.setGeometry(459.5,100,400,600)
+        self.panel_loning_db = QtGui.QLabel(self.db_panel)
+        #self.panel_loning_db.setVisible(False)
+        self.panel_loning_db.setStyleSheet("QLabel {background:#696969; border: 1px solid #00FF00; border-radius: 5px; padding-left: 10px; margin: 5px}")
+        self.panel_loning_db.setGeometry(459.5,100,400,600)
 
-        label_image = QtGui.QLabel(panel_loning_db)
+        label_image = QtGui.QLabel(self.panel_loning_db)
         pixmap = QtGui.QPixmap('image/db_image')
         label_image.setPixmap(pixmap)
         label_image.setStyleSheet("QLabel {background:#696969; color: black; font: 25px; border: 1px solid #696969}")
         label_image.setGeometry(120,50,160,145)
 
-        login = QtGui.QLabel(panel_loning_db)
+        login = QtGui.QLabel(self.panel_loning_db)
         pixmap1 = QtGui.QPixmap('image/login.png')
         login.setPixmap(pixmap1)
         login.setStyleSheet("QLabel {background:#696969; color: black; font: 25px; border: 1px solid #696969}")
         login.setGeometry(20,200,74,74)
 
-        self.loginEdit = QtGui.QLineEdit(panel_loning_db)
+        self.loginEdit = QtGui.QLineEdit(self.panel_loning_db)
         self.loginEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
         self.loginEdit.setStyleSheet("QLineEdit {color:orange; font: 16px;}")
         self.loginEdit.setGeometry(100,222,240,30)
         self.loginEdit.setAlignment(QtCore.Qt.AlignCenter)
 
-        password = QtGui.QLabel(panel_loning_db)
+        password = QtGui.QLabel(self.panel_loning_db)
         pixmap2 = QtGui.QPixmap('image/password.png')
         password.setPixmap(pixmap2)
         password.setStyleSheet("QLabel {background:#696969; color: black; font: 25px; border: 1px solid #696969}")
         password.setGeometry(20,300,74,74)
 
-        self.passwordEdit = QtGui.QLineEdit(panel_loning_db)
+        self.passwordEdit = QtGui.QLineEdit(self.panel_loning_db)
         self.passwordEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray;}")
         self.passwordEdit.setStyleSheet("QLineEdit {color:orange; font: 16px;}")
         self.passwordEdit.setGeometry(100,322,240,30)
         self.passwordEdit.setAlignment(QtCore.Qt.AlignCenter)
         
         #Кнопка входа
-        self.log_button = QtGui.QPushButton('Login', panel_loning_db)
+        self.log_button = QtGui.QPushButton('Login', self.panel_loning_db)
         self.log_button.setStyleSheet("QPushButton {background:#088A08}")
         self.log_button.setGeometry(200,450,160,50)
 
         #Кнопка face id
-        self.face_button = QtGui.QPushButton(panel_loning_db)
+        self.face_button = QtGui.QPushButton(self.panel_loning_db)
         #self.face_button.setStyleSheet("QPushButton {background:#696969}")
         self.face_button.setIcon(QtGui.QIcon('image/face.png'))
         self.face_button.setIconSize(QtCore.QSize(64,64))
         self.face_button.setGeometry(60,450,50,53)
 
-app = QtGui.QApplication(sys.argv)
-qb = QMain()
 
-qb.show()
-sys.exit(app.exec_())
+        #FOTO panel  
+        self.foto_panel = QtGui.QLabel(self)
+        self.foto_panel.setVisible(False)
+        self.foto_panel.setStyleSheet("QLabel {background:#808080; border: 1px solid #00FF00; border-radius: 5px; padding-left: 10px; margin: 5px}")
+        self.foto_panel.setGeometry(242,52,1359,848)
+
+
+
+
+        #Video panel  
+        self.video_panel = QtGui.QLabel(self)
+        self.video_panel.setVisible(False)
+        self.video_panel.setStyleSheet("QLabel {background:#808080; border: 1px solid #00FF00; border-radius: 5px; padding-left: 10px; margin: 5px}")
+        self.video_panel.setGeometry(242,52,1359,848)
+
+
+        #Cam panel  
+        self.cam_panel = QtGui.QLabel(self)
+        self.cam_panel.setVisible(False)
+        self.cam_panel.setStyleSheet("QLabel {background:#808080; border: 1px solid #00FF00; border-radius: 5px; padding-left: 10px; margin: 5px}")
+        self.cam_panel.setGeometry(242,52,1359,848)  
+
+
+#app = QtGui.QApplication(sys.argv)
+#qb = QMain()
+
+#qb.show()
+#sys.exit(app.exec_())
