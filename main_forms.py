@@ -216,7 +216,7 @@ class QMain(QtGui.QWidget):
 
         #DB panel  
         self.db_panel = QtGui.QLabel(self)
-        self.db_panel.setVisible(False)
+        #self.db_panel.setVisible(False)
         self.db_panel.setStyleSheet("QLabel {background:#808080; border: 1px solid #00FF00; border-radius: 5px; padding-left: 10px; margin: 5px}")
         self.db_panel.setGeometry(242,52,1359,848)
 
@@ -267,6 +267,12 @@ class QMain(QtGui.QWidget):
         self.face_button.setIcon(QtGui.QIcon('image/face.png'))
         self.face_button.setIconSize(QtCore.QSize(64,64))
         self.face_button.setGeometry(60,450,50,53)
+
+        #DB FUNCTION PANEL
+        self.db_panel_function = QtGui.QLabel(self)
+        self.db_panel_function.setVisible(False)
+        self.db_panel_function.setStyleSheet("QLabel {background:#808080; border: 1px solid #00FF00; border-radius: 5px; padding-left: 10px; margin: 5px}")
+        self.db_panel_function.setGeometry(242,52,1359,848)
 
 
         #FOTO panel  

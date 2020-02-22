@@ -132,10 +132,19 @@ def Settings_function():
      
 
 def Log_func_db():
-    if(main_forms.loginEdit.text == "123" and main_forms.passwordEdit.text == "123"):
+    if(main_forms.loginEdit.text() == "123" and main_forms.passwordEdit.text() == "123"):
 
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message","You have successfully\nlogged in!")
-        
+        main_forms.db_panel.setVisible(False)
+        main_forms.db_panel_function.setVisible(True)
+    else:
+        QtGui.QMessageBox.about(QtGui.QWidget(),"Message","please enter login and password") 
+
+
+def Tema_Function():
+    pass
+
+
 
 #Основная программа 
 app = QtGui.QApplication(sys.argv)
@@ -156,6 +165,8 @@ main_forms.foto_button.clicked.connect(Foto_function)
 main_forms.db_button.clicked.connect(Db_function)
 main_forms.settings_button.clicked.connect(Settings_function)
 main_forms.log_button.clicked.connect(Log_func_db)
+main_forms.tema_button.clicked.connect(Tema_Function)
+
 
 
 
