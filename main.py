@@ -18,15 +18,16 @@ from face_id.face_detector import Face_detector
 
 
     
-   
-
-
+id_code = 0
+#Поле ID пользователя
 def log_avtorization():
     log_number = False
     cur = con.cursor()
     if(qb.loginEdit.text()!= "" and qb.passwordEdit.text() != ""):
-        for row in cur.execute('SELECT Gmail,Password FROM user'):
+        for row in cur.execute('SELECT Gmail,Password,id FROM user'):
             if(str(row[0]) == qb.loginEdit.text() and str(row[1]) == qb.passwordEdit.text()):
+                global id_code
+                id_code = str(row[2])
                 qb.loginEdit.setText('')
                 qb.passwordEdit.setText('')
                 QtGui.QMessageBox.about(QtGui.QWidget(),"Message","You have successfully\nlogged in!")
@@ -99,7 +100,8 @@ def Cam_function():
     main_forms.foto_panel.setVisible(False)
     main_forms.video_panel.setVisible(False)
     main_forms.db_panel.setVisible(False)
-    main_forms.main_panel.setVisible(False)  
+    main_forms.main_panel.setVisible(False)
+    main_forms.db_panel_function.setVisible(False)  
 
 
 def Vidoe_function():
@@ -107,14 +109,16 @@ def Vidoe_function():
     main_forms.cam_panel.setVisible(False)
     main_forms.foto_panel.setVisible(False)
     main_forms.db_panel.setVisible(False)
-    main_forms.main_panel.setVisible(False) 
+    main_forms.main_panel.setVisible(False)
+    main_forms.db_panel_function.setVisible(False) 
 
 def Foto_function():
     main_forms.foto_panel.setVisible(True)
     main_forms.video_panel.setVisible(False)
     main_forms.cam_panel.setVisible(False)
     main_forms.db_panel.setVisible(False)
-    main_forms.main_panel.setVisible(False) 
+    main_forms.main_panel.setVisible(False)
+    main_forms.db_panel_function.setVisible(False) 
 
 def Db_function():
     main_forms.db_panel.setVisible(True)
@@ -129,6 +133,7 @@ def Settings_function():
     main_forms.foto_panel.setVisible(False)
     main_forms.video_panel.setVisible(False)
     main_forms.db_panel.setVisible(False)
+    main_forms.db_panel_function.setVisible(False)
      
 
 def Log_func_db():
@@ -137,6 +142,9 @@ def Log_func_db():
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message","You have successfully\nlogged in!")
         main_forms.db_panel.setVisible(False)
         main_forms.db_panel_function.setVisible(True)
+        main_forms.loginEdit.setText("")
+        main_forms.passwordEdit.setText("")
+
     else:
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message","please enter login and password") 
 
@@ -145,6 +153,17 @@ def Tema_Function():
     pass
 
 
+def Message_function():
+    cur = con.cursor()
+    if(main_forms.mail_edit_tehn.text() !="" and main_forms.message_edit.toPlainText() != ""):
+        cur.execute('INSERT INTO message (id_user,email,text) VALUES (?,?,?)',(id_code,main_forms.mail_edit_tehn.text(),main_forms.message_edit.toPlainText()))
+        QtGui.QMessageBox.about(QtGui.QWidget(),"Message","Message sent!")
+        main_forms.mail_edit_tehn.setText("")
+        main_forms.message_edit.setText("")
+    else:
+        QtGui.QMessageBox.about(QtGui.QWidget(),"Message", "enter mail and message!")
+
+    con.commit()    
 
 #Основная программа 
 app = QtGui.QApplication(sys.argv)
@@ -166,6 +185,7 @@ main_forms.db_button.clicked.connect(Db_function)
 main_forms.settings_button.clicked.connect(Settings_function)
 main_forms.log_button.clicked.connect(Log_func_db)
 main_forms.tema_button.clicked.connect(Tema_Function)
+main_forms.enter_button.clicked.connect(Message_function)
 
 
 

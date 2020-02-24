@@ -194,23 +194,23 @@ class QMain(QtGui.QWidget):
         label_mail_tehn.setStyleSheet("QLabel {background:#696969; color: black; font: 25px; border: 1px solid #696969}")
         label_mail_tehn.setGeometry(20,52,100,50)
         
-        mail_edit_tehn = QtGui.QLineEdit(label_tehn)
-        mail_edit_tehn.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
-        mail_edit_tehn.setGeometry(130,63,400,30)
+        self.mail_edit_tehn = QtGui.QLineEdit(label_tehn)
+        self.mail_edit_tehn.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
+        self.mail_edit_tehn.setGeometry(130,63,400,30)
 
         label_text = QtGui.QLabel("Message:",label_tehn)
         label_text.setStyleSheet("QLabel {background:#696969; color: black; font: 25px; border: 1px solid #696969}")
         label_text.setGeometry(20,110,150,50)
 
-        message_edit = QtGui.QTextEdit(label_tehn)
-        message_edit.setStyleSheet("QTextEdit {color:orange; font: 16px; border: 2px solid gray; }")
-        message_edit.setGeometry(40,170,605,200)
+        self.message_edit = QtGui.QTextEdit(label_tehn)
+        self.message_edit.setStyleSheet("QTextEdit {color:orange; font: 16px; border: 2px solid gray; }")
+        self.message_edit.setGeometry(40,170,605,200)
 
-        enter_button = QtGui.QPushButton(label_tehn)
-        enter_button.setIcon(QtGui.QIcon('image/message.png'))
-        enter_button.setIconSize(QtCore.QSize(84,84))
-        enter_button.setStyleSheet("QPushButton {background:#696969; border-radius: 10px; border: 1px solid #C0C0C0;}")
-        enter_button.setGeometry(500,380,154,60)
+        self.enter_button = QtGui.QPushButton(label_tehn)
+        self.enter_button.setIcon(QtGui.QIcon('image/message.png'))
+        self.enter_button.setIconSize(QtCore.QSize(84,84))
+        self.enter_button.setStyleSheet("QPushButton {background:#696969; border-radius: 10px; border: 1px solid #C0C0C0;}")
+        self.enter_button.setGeometry(500,380,154,60)
 
         
 
