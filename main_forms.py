@@ -79,9 +79,9 @@ class QMain(QtGui.QWidget):
         label_image_user.setStyleSheet("QLabel {background:#808080; border: 1px solid #808080; border-radius: 1px; padding-left: 5px; margin: 6px}")
         label_image_user.resize(80,60)
 
-        FIO_label = QtGui.QLabel('Andrey Kornienko',profil_panel)
-        FIO_label.setStyleSheet("QLabel {background:#808080; border: 1px solid #808080; border-radius: 1px; padding-left: 1px; margin: 6px}")
-        FIO_label.setGeometry(80,0,181,60)
+        self.FIO_label = QtGui.QLabel('Andrey Kornienko',profil_panel)
+        self.FIO_label.setStyleSheet("QLabel {background:#808080; border: 1px solid #808080; border-radius: 1px; padding-left: 1px; margin: 6px}")
+        self.FIO_label.setGeometry(80,0,181,60)
 
         #Settings panel
         self.main_panel = QtGui.QLabel(self)

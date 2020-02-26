@@ -6,7 +6,7 @@ def Cam():
     cap = cv2.VideoCapture(0)
   
     # "Прогреваем" камеру, чтобы снимок не был тёмным
-    for i in range(30):
+    for i in range(5):
         cap.read()
 
     # Делаем снимок

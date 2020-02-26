@@ -15,6 +15,7 @@ from recovery import QRecovery
 from main_forms import QMain
 from face_id.cam import Cam
 from face_id.face_detector import Face_detector
+from face_id.cam_registartion import Cam_registration
 
 
     
@@ -32,6 +33,7 @@ def log_avtorization():
                 qb.passwordEdit.setText('')
                 QtGui.QMessageBox.about(QtGui.QWidget(),"Message","You have successfully\nlogged in!")
                 log_number = True
+                load_main_forms()
                 main_forms.show()
             
             
@@ -165,6 +167,15 @@ def Message_function():
 
     con.commit()    
 
+#Регистрация Face_id
+def Registration_face():
+    Cam_registration()
+
+def load_main_forms():
+    cur = con.cursor()
+    for row in cur.execute('SELECT Name,Firstname FROM user WHERE id = ? and id = ?',(id_code,id_code)):
+        main_forms.FIO_label.setText(str(row[0]) + " " + str(row[1]))
+    con.commit()
 #Основная программа 
 app = QtGui.QApplication(sys.argv)
 qb = Qlogin()
@@ -186,6 +197,7 @@ main_forms.settings_button.clicked.connect(Settings_function)
 main_forms.log_button.clicked.connect(Log_func_db)
 main_forms.tema_button.clicked.connect(Tema_Function)
 main_forms.enter_button.clicked.connect(Message_function)
+main_forms.face_registration.clicked.connect(Registration_face)
 
 
 
