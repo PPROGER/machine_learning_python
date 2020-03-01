@@ -68,6 +68,34 @@ class QMain(QtGui.QWidget):
         panel.setStyleSheet("QLabel {background:#808080; border: 1px solid #00FF00; border-radius: 5px; padding-left: 10px; margin: 5px}")
         panel.setGeometry(242,0,1100,60)
 
+        #Кнопка редактор фото
+        self.foto_redactor = QtGui.QPushButton(panel)
+        #self.foto_redactor.setStyleSheet(style_button)
+        self.foto_redactor.setIcon(QtGui.QIcon('image/foto_redactor.png'))
+        self.foto_redactor.setIconSize(QtCore.QSize(50,50))
+        self.foto_redactor.setGeometry(8,8,44,44)
+
+        #Плагины 
+        self.plugins = QtGui.QPushButton(panel)
+        #self.plugins.setStyleSheet(style_button)
+        self.plugins.setIcon(QtGui.QIcon('image/plagin.png'))
+        self.plugins.setIconSize(QtCore.QSize(48,48))
+        self.plugins.setGeometry(54,8,44,44)
+
+        #Голосовой асистент
+        self.voise = QtGui.QPushButton(panel)
+        #self.voise.setStyleSheet(style_button)
+        self.voise.setIcon(QtGui.QIcon('image/voice_assistant.png'))
+        self.voise.setIconSize(QtCore.QSize(48,48))
+        self.voise.setGeometry(100,8,44,44)
+
+        #Помощь
+        self.help = QtGui.QPushButton(panel)
+        #self.help.setStyleSheet(style_button)
+        self.help.setIcon(QtGui.QIcon('image/help.png'))
+        self.help.setIconSize(QtCore.QSize(64,64))
+        self.help.setGeometry(146,8,44,44)
+
         #Профіль панель
         profil_panel = QtGui.QLabel(self)
         profil_panel.setStyleSheet("QLabel {background:#808080; border: 1px solid #00FF00; border-radius: 5px; padding-left: 10px; margin: 5px}")
