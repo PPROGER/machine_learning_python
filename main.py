@@ -176,6 +176,18 @@ def load_main_forms():
     for row in cur.execute('SELECT Name,Firstname FROM user WHERE id = ? and id = ?',(id_code,id_code)):
         main_forms.FIO_label.setText(str(row[0]) + " " + str(row[1]))
     con.commit()
+
+
+def Face_avtorization_db():
+    Cam()
+    evklid_znach = Face_detector()
+    if(float(evklid_znach) < 0.6):
+        #QtGui.QMessageBox.about(QtGui.QWidget(),"Message","You have successfully\nlogged in!")
+        main_forms.db_panel.setVisible(False)
+        main_forms.db_panel_function.setVisible(True)
+    elif(float(evklid_znach) > 0.6):
+        QtGui.QMessageBox.about(QtGui.QWidget(),"Message","please try again or register through Face ID!")
+
 #Основная программа 
 app = QtGui.QApplication(sys.argv)
 qb = Qlogin()
@@ -198,6 +210,7 @@ main_forms.log_button.clicked.connect(Log_func_db)
 main_forms.tema_button.clicked.connect(Tema_Function)
 main_forms.enter_button.clicked.connect(Message_function)
 main_forms.face_registration.clicked.connect(Registration_face)
+main_forms.face_button.clicked.connect(Face_avtorization_db)
 
 
 
