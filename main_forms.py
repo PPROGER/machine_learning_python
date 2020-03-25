@@ -302,15 +302,60 @@ class QMain(QtGui.QWidget):
         self.db_panel_function.setStyleSheet("QLabel {background:#808080; border: 1px solid #00FF00; border-radius: 5px; padding-left: 10px; margin: 5px}")
         self.db_panel_function.setGeometry(242,52,1359,848)
 
+        self.label_datatime = QtGui.QLabel("03/23/21",self.db_panel_function)
+        self.label_datatime.setStyleSheet("QLabel {background:#696969; color: black; font: 25px; border: 1px solid #696969}")
+        self.label_datatime.setGeometry(1180,10,170,50)
+        
+        #Панель для таблицы user
+        self.table_user_panel = QtGui.QLabel()
+        #self.table_user_panel.setVisible(False)
+        self.table_user_panel.setStyleSheet("QLabel {background:#696969; border: 1px solid #0000CD; border-radius: 5px; padding-left: 10px; margin: 5px}")
+        self.table_user_panel.setGeometry(0,0,1200,780)
+
+        #Таблица user
+        self.table_widget = QtGui.QTableWidget(self.table_user_panel)
+        self.table_widget.setGeometry(10,10,700,725)
+        self.table_widget.setStyleSheet("QTableWidget {}")
+
+        labels_column = ['ID','Name', 'Lastname', 'Gmail', 'Password']
+
+        self.table_widget.setColumnCount(len(labels_column))
+        self.table_widget.setHorizontalHeaderLabels(labels_column)
+
+        label_znach = QtGui.QLabel("Enter value:",self.table_user_panel)
+        label_znach.setStyleSheet("QLabel {background:#696969; border: 1px solid #808080; color: black; font: 20px;}")
+        label_znach.setGeometry(740,10,150,50)
+
+        self.poiskEdit = QtGui.QLineEdit(self.table_user_panel)
+        self.poiskEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
+        self.poiskEdit.setGeometry(770,70,450,35)
+        self.poiskEdit.setAlignment(QtCore.Qt.AlignCenter)
+
+        self.poisk_button = QtGui.QPushButton('Search', self.table_user_panel)
+        self.poisk_button.setStyleSheet("QPushButton {background:#088A08; border-radius: 10px;border: 1px solid orange}")
+        self.poisk_button.setGeometry(1100,150,160,50)
+
+        #Панель для таблицы messager
+        self.table_messager_panel = QtGui.QLabel()
+        #self.table_messager_panel.setVisible(False)
+        self.table_messager_panel.setStyleSheet("QLabel {background:#696969; border: 1px solid #0000CD; border-radius: 5px; padding-left: 10px; margin: 5px}")
+        self.table_messager_panel.setGeometry(0,0,1200,780)
+
+
+
+        #Таб панель 
+        self.tab = QtGui.QTabWidget(self.db_panel_function)
+        self.tab.setGeometry(10,50,1339,780)
+        self.tab.addTab(self.table_user_panel,'User')
+        self.tab.addTab(self.table_messager_panel,'Message')
+
+
 
         #FOTO panel  
         self.foto_panel = QtGui.QLabel(self)
         self.foto_panel.setVisible(False)
         self.foto_panel.setStyleSheet("QLabel {background:#808080; border: 1px solid #00FF00; border-radius: 5px; padding-left: 10px; margin: 5px}")
         self.foto_panel.setGeometry(242,52,1359,848)
-
-
-
 
         #Video panel  
         self.video_panel = QtGui.QLabel(self)

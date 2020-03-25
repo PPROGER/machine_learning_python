@@ -5,6 +5,7 @@ import cv2
 import dlib
 from skimage import io
 from scipy.spatial import distance
+from datetime import datetime
 
 
 
@@ -146,6 +147,8 @@ def Log_func_db():
         main_forms.db_panel_function.setVisible(True)
         main_forms.loginEdit.setText("")
         main_forms.passwordEdit.setText("")
+        DateTime()
+        Load_data()
 
     else:
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message","please enter login and password") 
@@ -185,8 +188,48 @@ def Face_avtorization_db():
         #QtGui.QMessageBox.about(QtGui.QWidget(),"Message","You have successfully\nlogged in!")
         main_forms.db_panel.setVisible(False)
         main_forms.db_panel_function.setVisible(True)
+        DateTime()
+        Load_data()
     elif(float(evklid_znach) > 0.6):
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message","please try again or register through Face ID!")
+
+
+#Функция для вывода даты и времени
+def DateTime():
+    now = datetime.now()
+    main_forms.label_datatime.setText(now.strftime("%x"))
+
+#Функция загрузки данных из бд в таблицу
+def Load_data():
+    cur = con.cursor()
+    for id_, Name, Firstname, Gmail, Password in con.execute("SELECT id, Name, Firstname, Gmail, Password FROM user"):
+        row = main_forms.table_widget.rowCount()
+        main_forms.table_widget.setRowCount(row + 1)
+
+        main_forms.table_widget.setItem(row, 0, QtGui.QTableWidgetItem(str(id_)))
+        main_forms.table_widget.setItem(row, 1, QtGui.QTableWidgetItem(Name))
+        main_forms.table_widget.setItem(row, 2, QtGui.QTableWidgetItem(Firstname))
+        main_forms.table_widget.setItem(row, 3, QtGui.QTableWidgetItem(Gmail))
+        main_forms.table_widget.setItem(row, 4, QtGui.QTableWidgetItem(Password))
+    con.commit()
+def Search_user():
+    if(main_forms.poiskEdit.text() != ""):
+        main_forms.table_widget.clear()
+        cur = con.cursor()
+        for id_, Name, Firstname, Gmail, Password in con.execute("SELECT id, Name, Firstname, Gmail, Password FROM user WHERE id Like ? or Name Like ? or Firstname Like ? or Gmail Like ? or Password Like ?",(main_forms.poiskEdit.text(),main_forms.poiskEdit.text(),main_forms.poiskEdit.text(),main_forms.poiskEdit.text(),main_forms.poiskEdit.text())):
+            row = main_forms.table_widget.rowCount()
+            main_forms.table_widget.setRowCount(row + 1)
+
+            main_forms.table_widget.setItem(row, 0, QtGui.QTableWidgetItem(str(id_)))
+            main_forms.table_widget.setItem(row, 1, QtGui.QTableWidgetItem(Name))
+            main_forms.table_widget.setItem(row, 2, QtGui.QTableWidgetItem(Firstname))
+            main_forms.table_widget.setItem(row, 3, QtGui.QTableWidgetItem(Gmail))
+            main_forms.table_widget.setItem(row, 4, QtGui.QTableWidgetItem(Password))
+        con.commit()
+    else:
+        QtGui.QMessageBox.about(QtGui.QWidget(),"Message", "enter value!")
+
+
 
 #Основная программа 
 app = QtGui.QApplication(sys.argv)
@@ -211,6 +254,7 @@ main_forms.tema_button.clicked.connect(Tema_Function)
 main_forms.enter_button.clicked.connect(Message_function)
 main_forms.face_registration.clicked.connect(Registration_face)
 main_forms.face_button.clicked.connect(Face_avtorization_db)
+main_forms.poisk_button.clicked.connect(Search_user)
 
 
 
