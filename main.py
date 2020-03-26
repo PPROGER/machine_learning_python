@@ -50,7 +50,7 @@ def faceid_avtorization():
     Cam()
     evklid_znach = Face_detector()
     if(float(evklid_znach) < 0.6):
-        QtGui.QMessageBox.about(QtGui.QWidget(),"Message","You have successfully\nlogged in!")
+        #QtGui.QMessageBox.about(QtGui.QWidget(),"Message","You have successfully\nlogged in!")
         main_forms.show()
     elif(float(evklid_znach) > 0.6):
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message","please try again or register through Face ID!")
@@ -212,9 +212,18 @@ def Load_data():
         main_forms.table_widget.setItem(row, 3, QtGui.QTableWidgetItem(Gmail))
         main_forms.table_widget.setItem(row, 4, QtGui.QTableWidgetItem(Password))
     con.commit()
+
+#Функция удаление строк с таблицы на форме
+def Delete_row_table():
+
+    main_forms.table_widget.clearContents()
+    main_forms.table_widget.setRowCount(0)
+    
+
+
 def Search_user():
     if(main_forms.poiskEdit.text() != ""):
-        main_forms.table_widget.clear()
+        Delete_row_table()
         cur = con.cursor()
         for id_, Name, Firstname, Gmail, Password in con.execute("SELECT id, Name, Firstname, Gmail, Password FROM user WHERE id Like ? or Name Like ? or Firstname Like ? or Gmail Like ? or Password Like ?",(main_forms.poiskEdit.text(),main_forms.poiskEdit.text(),main_forms.poiskEdit.text(),main_forms.poiskEdit.text(),main_forms.poiskEdit.text())):
             row = main_forms.table_widget.rowCount()
@@ -229,7 +238,33 @@ def Search_user():
     else:
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message", "enter value!")
 
+def Add_user():
+    cur = con.cursor()
+    if(main_forms.nameEdit.text() !="" and main_forms.lastnameEdit.text() != "" and main_forms.gmailEdit.text() != "" and main_forms.passEdit.text() != ""):
+        cur.execute('INSERT INTO user (id,Name,Firstname,Gmail,Password) VALUES (?,?,?,?,?)',(random.randint(1111,9999),main_forms.nameEdit.text(),main_forms.lastnameEdit.text(),main_forms.gmailEdit.text(),main_forms.passEdit.text()))
+        QtGui.QMessageBox.about(QtGui.QWidget(),"Message","You have successfully\nregistration!")
+        main_forms.nameEdit.setText("")
+        main_forms.lastnameEdit.setText("")
+        main_forms.gmailEdit.setText("")
+        main_forms.passEdit.setText("")
+        Delete_row_table()
+        Load_data()
+    else:
+        QtGui.QMessageBox.about(QtGui.QWidget(),"Message","please enter data")
 
+    con.commit()
+
+def Delete_user():
+    cur = con.cursor()
+    if(main_forms.delEdit.text() != ""):
+        cur.execute("DELETE FROM user WHERE id Like ? or Name Like ? or Firstname Like ? or Gmail Like ? or Password Like ?",(main_forms.delEdit.text(),main_forms.delEdit.text(),main_forms.delEdit.text(),main_forms.delEdit.text(),main_forms.delEdit.text()))
+        QtGui.QMessageBox.about(QtGui.QWidget(),"Message","You have successfully\delete!")
+        main_forms.delEdit.setText("")
+        Delete_row_table()
+        Load_data()
+    else:
+        QtGui.QMessageBox.about(QtGui.QWidget(),"Message","please enter value")
+    con.commit()
 
 #Основная программа 
 app = QtGui.QApplication(sys.argv)
@@ -255,7 +290,8 @@ main_forms.enter_button.clicked.connect(Message_function)
 main_forms.face_registration.clicked.connect(Registration_face)
 main_forms.face_button.clicked.connect(Face_avtorization_db)
 main_forms.poisk_button.clicked.connect(Search_user)
-
+main_forms.add_button.clicked.connect(Add_user)
+main_forms.del_button.clicked.connect(Delete_user)
 
 
 

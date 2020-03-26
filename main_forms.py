@@ -322,18 +322,89 @@ class QMain(QtGui.QWidget):
         self.table_widget.setColumnCount(len(labels_column))
         self.table_widget.setHorizontalHeaderLabels(labels_column)
 
+        #Поиск в таблице user
         label_znach = QtGui.QLabel("Enter value:",self.table_user_panel)
         label_znach.setStyleSheet("QLabel {background:#696969; border: 1px solid #808080; color: black; font: 20px;}")
-        label_znach.setGeometry(740,10,150,50)
+        label_znach.setGeometry(725,20,150,50)
 
         self.poiskEdit = QtGui.QLineEdit(self.table_user_panel)
         self.poiskEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
-        self.poiskEdit.setGeometry(770,70,450,35)
+        self.poiskEdit.setGeometry(770,90,450,35)
         self.poiskEdit.setAlignment(QtCore.Qt.AlignCenter)
 
         self.poisk_button = QtGui.QPushButton('Search', self.table_user_panel)
         self.poisk_button.setStyleSheet("QPushButton {background:#088A08; border-radius: 10px;border: 1px solid orange}")
-        self.poisk_button.setGeometry(1100,150,160,50)
+        self.poisk_button.setGeometry(1150,150,160,50)
+
+
+        label_image = QtGui.QLabel(self.table_user_panel)
+        pixmap = QtGui.QPixmap('image/line.png')
+        label_image.setPixmap(pixmap)
+        label_image.setStyleSheet("QLabel {background:#696969; border: 1px solid #696969;}")
+        label_image.setGeometry(715,200,600,50)
+
+        #Добавление данных в таблицу user
+        label_name = QtGui.QLabel("Name:",self.table_user_panel)
+        label_name.setStyleSheet("QLabel {background:#696969; border: 1px solid #808080; color: black; font: 20px;}")
+        label_name.setGeometry(725,250,150,50)
+
+        self.nameEdit = QtGui.QLineEdit(self.table_user_panel)
+        self.nameEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
+        self.nameEdit.setGeometry(880,258,300,30)
+        self.nameEdit.setAlignment(QtCore.Qt.AlignCenter)
+
+
+        label_lastname = QtGui.QLabel("Lastname:",self.table_user_panel)
+        label_lastname.setStyleSheet("QLabel {background:#696969; border: 1px solid #808080; color: black; font: 20px;}")
+        label_lastname.setGeometry(725,310,150,50)
+
+        self.lastnameEdit = QtGui.QLineEdit(self.table_user_panel)
+        self.lastnameEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
+        self.lastnameEdit.setGeometry(880,318,300,30)
+        self.lastnameEdit.setAlignment(QtCore.Qt.AlignCenter)
+
+        label_gmail = QtGui.QLabel("Gmail:",self.table_user_panel)
+        label_gmail.setStyleSheet("QLabel {background:#696969; border: 1px solid #808080; color: black; font: 20px;}")
+        label_gmail.setGeometry(725,370,150,50)
+
+        self.gmailEdit = QtGui.QLineEdit(self.table_user_panel)
+        self.gmailEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
+        self.gmailEdit.setGeometry(880,378,300,30)
+        self.gmailEdit.setAlignment(QtCore.Qt.AlignCenter)
+
+        label_password = QtGui.QLabel("Password:",self.table_user_panel)
+        label_password.setStyleSheet("QLabel {background:#696969; border: 1px solid #808080; color: black; font: 20px;}")
+        label_password.setGeometry(725,430,150,50)
+
+        self.passEdit = QtGui.QLineEdit(self.table_user_panel)
+        self.passEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
+        self.passEdit.setGeometry(880,438,300,30)
+        self.passEdit.setAlignment(QtCore.Qt.AlignCenter)
+
+        self.add_button = QtGui.QPushButton('Add data', self.table_user_panel)
+        self.add_button.setStyleSheet("QPushButton {background:#088A08; border-radius: 10px;border: 1px solid orange}")
+        self.add_button.setGeometry(1150,500,160,50)
+
+
+        label_image1 = QtGui.QLabel(self.table_user_panel)
+        pixmap1 = QtGui.QPixmap('image/line.png')
+        label_image1.setPixmap(pixmap1)
+        label_image1.setStyleSheet("QLabel {background:#696969; border: 1px solid #696969;}")
+        label_image1.setGeometry(715,550,600,50)
+
+        #Удаление с таблицы user
+        label_znach_del = QtGui.QLabel("Enter value:",self.table_user_panel)
+        label_znach_del.setStyleSheet("QLabel {background:#696969; border: 1px solid #808080; color: black; font: 20px;}")
+        label_znach_del.setGeometry(725,600,150,50)
+
+        self.delEdit = QtGui.QLineEdit(self.table_user_panel)
+        self.delEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
+        self.delEdit.setGeometry(880,608,350,35)
+        self.delEdit.setAlignment(QtCore.Qt.AlignCenter)
+
+        self.del_button = QtGui.QPushButton('Delete', self.table_user_panel)
+        self.del_button.setStyleSheet("QPushButton {background:#088A08; border-radius: 10px;border: 1px solid orange}")
+        self.del_button.setGeometry(1150,670,160,50)
 
         #Панель для таблицы messager
         self.table_messager_panel = QtGui.QLabel()
