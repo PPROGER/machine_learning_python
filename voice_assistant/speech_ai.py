@@ -33,24 +33,17 @@ class Speech_AI:
 
         try:
             while True:
-                print("Скажи что - нибудь!")
+                self.say(str("Скажи что - нибудь!"))
+                #print("Скажи что - нибудь!")
                 with self._microphone as source:
                     audio = self._recognizer.listen(source)
-                print("Понял, идет распознавание...")
+                #print("Понял, идет распознавание...")
+                self.say(str("Понял, идет распознавание..."))
                 try:
                     statement = self._recognizer.recognize_google(audio, language="ru_RU")
                     statement=statement.lower()
 
                     # Команды для открытия различных внешних приложений
-
-                    if((statement.find("калькулятор")!=-1) or (statement.find("calculator")!=-1)):
-                        self.osrun('calc')
-                               
-                    if((statement.find("блокнот")!=-1) or (statement.find("notepad")!=-1)):
-                        self.osrun('notepad')
-                             
-                    if((statement.find("paint")!=-1) or (statement.find("паинт")!=-1)):
-                        self.osrun('mspaint')
 
                     if((statement.find("browser")!=-1) or (statement.find("браузер")!=-1)):
                         self.openurl('http://google.com', 'Открываю браузер')
@@ -60,14 +53,6 @@ class Speech_AI:
                     if(((statement.find("youtube")!=-1) or (statement.find("youtub")!=-1) or (statement.find("ютуб")!=-1) or (statement.find("you tube")!=-1)) and (statement.find("смотреть")==-1)):                        
                         self.openurl('http://youtube.com', 'Открываю ютуб')
  
-                    if(((statement.find("новости")!=-1) or (statement.find("новость")!=-1) or (statement.find("на усть")!=-1)) and ((statement.find("youtube")==-1) and (statement.find("youtub")!=-1) and (statement.find("ютуб")==-1) and (statement.find("you tube")==-1))):
-                        self.openurl('https://www.youtube.com/user/rtrussian/videos', 'Открываю новости')
-                         
-                    if((statement.find("mail")!=-1) or (statement.find("майл")!=-1)):
-                        self.openurl('https://e.mail.ru/messages/inbox/', 'Открываю почту')
-                        
-                    if((statement.find("вконтакте")!=-1) or (statement.find("в контакте")!=-1)):
-                        self.openurl('http://vk.com', 'Открываю Вконтакте')
 
                     # Команды для поиска в сети интернет
 
@@ -122,9 +107,11 @@ class Speech_AI:
                         self.say(str(answer))
                         while pygame.mixer.music.get_busy():
                             time.sleep(0.1)
-                        sys.exit()
+                        break
                     
                     print("Вы сказали: {}".format(statement))
+                    self.say("Вы сказали: {}".format(statement))
+                    
                     
                 except sr.UnknownValueError:
                     print("Упс! Кажется, я тебя не поняла, повтори еще раз")
@@ -166,8 +153,3 @@ class Speech_AI:
             os.remove(self._mp3_name)
 
 
-def main():
-    ai = Speech_AI()
-    ai.work()
-
-main()

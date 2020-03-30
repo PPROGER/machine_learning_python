@@ -163,11 +163,11 @@ class QMain(QtGui.QWidget):
         yes_label_log.setStyleSheet("QLabel {background:#696969; color: black; font: 20px; border: 1px solid #696969;}")
         yes_label_log.setGeometry(15,320,60,30)
 
-        self.log_button = QtGui.QPushButton(self.main_panel)
-        self.log_button.setIcon(QtGui.QIcon('image/0.png'))
-        self.log_button.setIconSize(QtCore.QSize(70,70))
-        self.log_button.setStyleSheet("QPushButton {background:#696969; border-radius: 16px; }")
-        self.log_button.setGeometry(85,320,70,35)
+        self.log_button_face = QtGui.QPushButton(self.main_panel)
+        self.log_button_face.setIcon(QtGui.QIcon('image/0.png'))
+        self.log_button_face.setIconSize(QtCore.QSize(70,70))
+        self.log_button_face.setStyleSheet("QPushButton {background:#696969; border-radius: 16px; }")
+        self.log_button_face.setGeometry(85,320,70,35)
 
         false_label_log = QtGui.QLabel("False",self.main_panel)
         false_label_log.setStyleSheet("QLabel {background:#696969; color: black; font: 20px; border: 1px solid #696969;}")

@@ -17,10 +17,12 @@ from main_forms import QMain
 from face_id.cam import Cam
 from face_id.face_detector import Face_detector
 from face_id.cam_registartion import Cam_registration
+from voice_assistant.speech_ai import Speech_AI
 
 
     
 id_code = 0
+button_check = [True, True, True]
 #Поле ID пользователя
 def log_avtorization():
     log_number = False
@@ -153,10 +155,36 @@ def Log_func_db():
     else:
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message","please enter login and password") 
 
-
+#Функция для смены темы 
 def Tema_Function():
-    pass
-
+    if(button_check[2] == True):
+        main_forms.tema_button.setIcon(QtGui.QIcon('image/1.png'))
+        main_forms.tema_button.setIconSize(QtCore.QSize(70,70))
+        button_check[2] = False
+    elif(button_check[2] == False):
+        main_forms.tema_button.setIcon(QtGui.QIcon('image/0.png'))
+        main_forms.tema_button.setIconSize(QtCore.QSize(70,70))
+        button_check[2] = True
+#Функция для включения функции входа в бд по Face id или выключение этой функции
+def DB_faceid_button():
+    if(button_check[0] == True):
+        main_forms.db_faceid_button.setIcon(QtGui.QIcon('image/1.png'))
+        main_forms.db_faceid_button.setIconSize(QtCore.QSize(70,70))
+        button_check[0] = False
+    elif(button_check[0] == False):
+        main_forms.db_faceid_button.setIcon(QtGui.QIcon('image/0.png'))
+        main_forms.db_faceid_button.setIconSize(QtCore.QSize(70,70))
+        button_check[0] = True
+#Функция для включения функции входа в приложение по Face id или выключение этой функции
+def Log_button_face():
+    if(button_check[1] == True):
+        main_forms.log_button_face.setIcon(QtGui.QIcon('image/1.png'))
+        main_forms.log_button_face.setIconSize(QtCore.QSize(70,70))
+        button_check[1] = False
+    elif(button_check[1] == False):
+        main_forms.log_button_face.setIcon(QtGui.QIcon('image/0.png'))
+        main_forms.log_button_face.setIconSize(QtCore.QSize(70,70))
+        button_check[1] = True
 
 def Message_function():
     cur = con.cursor()
@@ -266,6 +294,11 @@ def Delete_user():
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message","please enter value")
     con.commit()
 
+def Voise_assistant():
+    ai = Speech_AI()
+    ai.work()
+
+
 #Основная программа 
 app = QtGui.QApplication(sys.argv)
 qb = Qlogin()
@@ -286,12 +319,15 @@ main_forms.db_button.clicked.connect(Db_function)
 main_forms.settings_button.clicked.connect(Settings_function)
 main_forms.log_button.clicked.connect(Log_func_db)
 main_forms.tema_button.clicked.connect(Tema_Function)
+main_forms.db_faceid_button.clicked.connect(DB_faceid_button)
+main_forms.log_button_face.clicked.connect(Log_button_face)
 main_forms.enter_button.clicked.connect(Message_function)
 main_forms.face_registration.clicked.connect(Registration_face)
 main_forms.face_button.clicked.connect(Face_avtorization_db)
 main_forms.poisk_button.clicked.connect(Search_user)
 main_forms.add_button.clicked.connect(Add_user)
 main_forms.del_button.clicked.connect(Delete_user)
+main_forms.voise.clicked.connect(Voise_assistant)
 
 
 
