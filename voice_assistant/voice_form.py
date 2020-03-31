@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+#Форма для голосовго помощника доработать 
+
 import sys
 from PyQt4 import QtGui, QtCore
 

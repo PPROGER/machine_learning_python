@@ -11,7 +11,7 @@ class QMain(QtGui.QWidget):
         QtGui.QWidget.__init__(self, parent)
 
         self.setGeometry(200, 200, 1600,900)
-        self.setWindowTitle('Main')
+        self.setWindowTitle('Laboratory detection')
         self.setWindowIcon(QtGui.QIcon('image/web.png'))
         menu = QtGui.QLabel(self)
         menu.setStyleSheet("QLabel {background:#808080; border: 1px solid #00FF00; border-radius: 5px; padding-left: 10px; margin: 5px}")
