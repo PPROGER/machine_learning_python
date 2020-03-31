@@ -11,13 +11,12 @@ from datetime import datetime
 
 from db_connect import con
 from login import Qlogin
-from registration import QRegistration
-from recovery import QRecovery
 from main_forms import QMain
 from face_id.cam import Cam
 from face_id.face_detector import Face_detector
 from face_id.cam_registartion import Cam_registration
 from voice_assistant.speech_ai import Speech_AI
+from load_form import QLoad
 
 
     
@@ -58,22 +57,23 @@ def faceid_avtorization():
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message","please try again or register through Face ID!")
         
 
-
-def Registration_show():
-    forms_registration.show()
-
 def Recovery_show():
-    forms_recovery.show()
+    qb.panel_login_registration.setVisible(False)
+    qb.panel_recovery.setVisible(True)
 
+def Show_log_reg():
+    qb.panel_recovery.setVisible(False)
+    qb.panel_login_registration.setVisible(True)
+    
 def Registration_user():
     cur = con.cursor()
-    if(forms_registration.nameEdit.text() !="" and forms_registration.firstnameEdit.text() != "" and forms_registration.mailEdit.text() != "" and forms_registration.passwordEdit.text() != ""):
-        cur.execute('INSERT INTO user (id,Name,Firstname,Gmail,Password) VALUES (?,?,?,?,?)',(random.randint(1111,9999),forms_registration.nameEdit.text(),forms_registration.firstnameEdit.text(),forms_registration.mailEdit.text(),forms_registration.passwordEdit.text()))
+    if(qb.nameEdit.text() !="" and qb.firstnameEdit.text() != "" and qb.mailEdit.text() != "" and qb.password_Edit.text() != ""):
+        cur.execute('INSERT INTO user (id,Name,Firstname,Gmail,Password) VALUES (?,?,?,?,?)',(random.randint(1111,9999),qb.nameEdit.text(),qb.firstnameEdit.text(),qb.mailEdit.text(),qb.password_Edit.text()))
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message","You have successfully\nregistration!")
-        forms_registration.nameEdit.setText("")
-        forms_registration.firstnameEdit.setText("")
-        forms_registration.mailEdit.setText("")
-        forms_registration.passwordEdit.setText("")
+        qb.nameEdit.setText("")
+        qb.firstnameEdit.setText("")
+        qb.mailEdit.setText("")
+        qb.password_Edit.setText("")
     else:
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message","please enter login, name and password")
 
@@ -81,14 +81,17 @@ def Registration_user():
 
 def Recovery_user():
     cur = con.cursor()
-    if(forms_recovery.firstnameEdit.text() != "" and forms_recovery.mailEdit.text() != "" and forms_recovery.passwordEdit.text() != ""):
-        for row in cur.execute('SELECT Firstname,Gmail FROM user WHERE Firstname = ? and Gmail = ?',(forms_recovery.firstnameEdit.text(),forms_recovery.mailEdit.text())):
-            if(str(row[0]) == forms_recovery.firstnameEdit.text() and str(row[1]) == forms_recovery.mailEdit.text()):
-                cur.execute('UPDATE user SET Password = ? WHERE Firstname = ? and Gmail = ?',(forms_recovery.passwordEdit.text(),forms_recovery.firstnameEdit.text(),forms_recovery.mailEdit.text()))
+    if(qb.firstname__Edit.text() != "" and qb.mail__Edit.text() != "" and qb.password__Edit.text() != ""):
+        for row in cur.execute('SELECT Firstname,Gmail FROM user WHERE Firstname = ? and Gmail = ?',(qb.firstname__Edit.text(),qb.mail__Edit.text())):
+            if(str(row[0]) == qb.firstname__Edit.text() and str(row[1]) == qb.mail__Edit.text()):
+                cur.execute('UPDATE user SET Password = ? WHERE Firstname = ? and Gmail = ?',(qb.password__Edit.text(),qb.firstname__Edit.text(),qb.mail__Edit.text()))
                 QtGui.QMessageBox.about(QtGui.QWidget(),"Message","successfully changed password")
-                forms_recovery.firstnameEdit.setText("")
-                forms_recovery.mailEdit.setText("")
-                forms_recovery.passwordEdit.setText("")
+                qb.firstname__Edit.setText("")
+                qb.mail__Edit.setText("")
+                qb.password__Edit.setText("")
+            else:
+                QtGui.QMessageBox.about(QtGui.QWidget(),"Message","not user ")
+
        
 
  
@@ -298,20 +301,24 @@ def Voise_assistant():
     ai = Speech_AI()
     ai.work()
 
+def Progress_load():
+    completed = 0
 
+    while completed < 100:
+        completed += 0.0001
+        load_form.progress.setValue(completed)
 #Основная программа 
 app = QtGui.QApplication(sys.argv)
+load_form = QLoad()
 qb = Qlogin()
-forms_registration = QRegistration()
-forms_recovery = QRecovery()
 main_forms = QMain()
 #QtGui.QWidget.connect(qb.log_button, QtCore.SIGNAL('clicked()'), QtGui.qApp, QtCore.SLOT(log_avtorization))
 qb.log_button.clicked.connect(log_avtorization)
 qb.face_button.clicked.connect(faceid_avtorization)
-qb.registration_button.clicked.connect(Registration_show)
+qb.registration_button.clicked.connect(Registration_user)
 qb.vostanovlenie_button.clicked.connect(Recovery_show)
-forms_registration.registration_button.clicked.connect(Registration_user)
-forms_recovery.registration_button.clicked.connect(Recovery_user)
+qb.log_r_button.clicked.connect(Show_log_reg)
+qb.recovey_button_.clicked.connect(Recovery_user)
 main_forms.cam_button.clicked.connect(Cam_function)
 main_forms.video_button.clicked.connect(Vidoe_function)
 main_forms.foto_button.clicked.connect(Foto_function)
@@ -330,8 +337,9 @@ main_forms.del_button.clicked.connect(Delete_user)
 main_forms.voise.clicked.connect(Voise_assistant)
 
 
-
-
+load_form.show()
+Progress_load()
+load_form.close()
 qb.show()
 sys.exit(app.exec_())
 
