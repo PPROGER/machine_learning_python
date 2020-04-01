@@ -37,6 +37,7 @@ def log_avtorization():
                 log_number = True
                 load_main_forms()
                 main_forms.show()
+                qb.close()
             
             
             
@@ -53,6 +54,7 @@ def faceid_avtorization():
     if(float(evklid_znach) < 0.6):
         #QtGui.QMessageBox.about(QtGui.QWidget(),"Message","You have successfully\nlogged in!")
         main_forms.show()
+        qb.close()
     elif(float(evklid_znach) > 0.6):
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message","please try again or register through Face ID!")
         
@@ -307,6 +309,10 @@ def Progress_load():
     while completed < 100:
         completed += 0.0001
         load_form.progress.setValue(completed)
+
+def Logout_forms():
+    main_forms.close()
+    qb.show()        
 #Основная программа 
 app = QtGui.QApplication(sys.argv)
 load_form = QLoad()
@@ -335,6 +341,7 @@ main_forms.poisk_button.clicked.connect(Search_user)
 main_forms.add_button.clicked.connect(Add_user)
 main_forms.del_button.clicked.connect(Delete_user)
 main_forms.voise.clicked.connect(Voise_assistant)
+main_forms.logout_button.clicked.connect(Logout_forms)
 
 
 load_form.show()
