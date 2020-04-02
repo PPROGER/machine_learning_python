@@ -14,7 +14,7 @@ class QMain(QtGui.QWidget):
         self.setWindowTitle('Laboratory detection')
         self.setWindowIcon(QtGui.QIcon('image/web.png'))
         menu = QtGui.QLabel(self)
-        menu.setStyleSheet("QLabel {background:#292E33; border: 1px solid #00FF00; border-radius: 5px; padding-left: 10px; margin: 5px}")
+        menu.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; border-radius: 5px; padding-left: 10px; margin: 5px}")
         menu.resize(250, 900)
        
         menu.setGeometry(0,0,250,900)
@@ -93,14 +93,14 @@ class QMain(QtGui.QWidget):
 
         #Панель инструментов
         panel = QtGui.QLabel(self)
-        panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #00FF00; border-radius: 5px; padding-left: 10px; margin: 5px}")
+        panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; border-radius: 5px; padding-left: 10px; margin: 5px}")
         panel.setGeometry(242,0,1100,60)
 
         
 
         #Профіль панель
         profil_panel = QtGui.QLabel(self)
-        profil_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #00FF00; border-radius: 5px; padding-left: 10px; margin: 5px}")
+        profil_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; border-radius: 5px; padding-left: 10px; margin: 5px}")
         profil_panel.setGeometry(1334,0,266,60)
 
         label_image_user = QtGui.QLabel(profil_panel)
@@ -110,7 +110,7 @@ class QMain(QtGui.QWidget):
         label_image_user.resize(80,60)
 
         self.FIO_label = QtGui.QLabel('Andrey Kornienko',profil_panel)
-        self.FIO_label.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; border-radius: 1px; padding-left: 1px; margin: 6px}")
+        self.FIO_label.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; border-radius: 1px; padding-left: 1px; margin: 6px; font: 18px}")
         self.FIO_label.setGeometry(80,0,181,60)
 
         #Settings panel
@@ -246,14 +246,14 @@ class QMain(QtGui.QWidget):
 
         #DB panel  
         self.db_panel = QtGui.QLabel(self)
-        self.db_panel.setVisible(False)
-        self.db_panel.setStyleSheet("QLabel {background:#1F2327; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
+        #self.db_panel.setVisible(False)
+        self.db_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; border-radius: 5px; padding-left: 10px; margin: 5px}")
         self.db_panel.setGeometry(243,53,1359,848)
 
         #Login panel DB
         self.panel_loning_db = QtGui.QLabel(self.db_panel)
         #self.panel_loning_db.setVisible(False)
-        self.panel_loning_db.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; border-radius: 5px; padding-left: 10px; margin: 5px}")
+        self.panel_loning_db.setStyleSheet("QLabel {background:#292E33; border: 3px solid #076CDA; border-radius: 5px; padding-left: 10px; margin: 5px}")
         self.panel_loning_db.setGeometry(459.5,100,400,600)
 
         label_image = QtGui.QLabel(self.panel_loning_db)
@@ -424,8 +424,8 @@ class QMain(QtGui.QWidget):
 
         #FOTO panel  
         self.foto_panel = QtGui.QLabel(self)
-        #self.foto_panel.setVisible(False)
-        self.foto_panel.setStyleSheet("QLabel {background:#1F2327; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
+        self.foto_panel.setVisible(False)
+        self.foto_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
         self.foto_panel.setGeometry(243,53,1359,848)
 
         #Video panel  
@@ -442,8 +442,4 @@ class QMain(QtGui.QWidget):
         self.cam_panel.setGeometry(243,53,1359,848)  
 
 
-#app = QtGui.QApplication(sys.argv)
-#qb = QMain()
 
-#qb.show()
-#sys.exit(app.exec_())
