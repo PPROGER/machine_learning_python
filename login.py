@@ -130,7 +130,7 @@ class Qlogin(QtGui.QWidget):
 
         self.tab = QtGui.QTabWidget(self.panel_login_registration)
         self.tab.setGeometry(0,30,600,545)
-        self.tab.addTab(panel_login,'LOGIN')
+        self.tab.addTab(panel_login,'LOG IN')
         self.tab.addTab(panel_registration,'REGISTRATION')
         
         #Панель для востановление пароля
@@ -177,7 +177,7 @@ class Qlogin(QtGui.QWidget):
         self.recovey_button_.setGeometry(100,350,250,50)
 
 
-        self.log_r_button = QtGui.QPushButton("Sign in",self.panel_recovery)
+        self.log_r_button = QtGui.QPushButton("Log in",self.panel_recovery)
         self.log_r_button.setStyleSheet("QPushButton  {background:transparent; color:#00FF00; font: 16px;}")
         self.log_r_button.setGeometry(130,480,200,30)
 
