@@ -246,7 +246,7 @@ class QMain(QtGui.QWidget):
 
         #DB panel  
         self.db_panel = QtGui.QLabel(self)
-        #self.db_panel.setVisible(False)
+        self.db_panel.setVisible(False)
         self.db_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; border-radius: 5px; padding-left: 10px; margin: 5px}")
         self.db_panel.setGeometry(243,53,1359,848)
 
@@ -437,9 +437,89 @@ class QMain(QtGui.QWidget):
 
         #Cam panel  
         self.cam_panel = QtGui.QLabel(self)
-        self.cam_panel.setVisible(False)
-        self.cam_panel.setStyleSheet("QLabel {background:#1F2327; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
+        #self.cam_panel.setVisible(False)
+        self.cam_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
         self.cam_panel.setGeometry(243,53,1359,848)  
 
+        str_style_css = ["QLabel {background:#292E33; border: 1px solid #292E33; color: white; font: 25px;}", "QLineEdit {color:orange; font: 16px; border: 2px solid gray; font: 25px; }"]
 
+        label_cam = QtGui.QLabel("Camera:",self.cam_panel)
+        label_cam.setStyleSheet(str_style_css[0])
+        label_cam.setGeometry(10,20,120,50)
+        
+
+        self.camEdit = QtGui.QLineEdit(self.cam_panel)
+        self.camEdit.setStyleSheet(str_style_css[1])
+        self.camEdit.setGeometry(145,28,200,35)
+        self.camEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.camEdit.setText("0")
+
+        label_width = QtGui.QLabel("Width:",self.cam_panel)
+        label_width.setStyleSheet(str_style_css[0])
+        label_width.setGeometry(370,20,120,50)
+
+        self.widthEdit = QtGui.QLineEdit(self.cam_panel)
+        self.widthEdit.setStyleSheet(str_style_css[1])
+        self.widthEdit.setGeometry(490,28,200,35)
+        self.widthEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.widthEdit.setText("640")
+
+        label_height = QtGui.QLabel("Height:",self.cam_panel)
+        label_height.setStyleSheet(str_style_css[0])
+        label_height.setGeometry(715,20,120,50)
+
+        self.heightEdit = QtGui.QLineEdit(self.cam_panel)
+        self.heightEdit.setStyleSheet(str_style_css[1])
+        self.heightEdit.setGeometry(840,28,200,35)
+        self.heightEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.heightEdit.setText("480")
+
+        label_puty = QtGui.QLabel("File path:",self.cam_panel)
+        label_puty.setStyleSheet(str_style_css[0])
+        label_puty.setGeometry(10,100,140,50)
+
+        self.putyEdit = QtGui.QLineEdit(self.cam_panel)
+        self.putyEdit.setStyleSheet(str_style_css[1])
+        self.putyEdit.setGeometry(155,108,500,35)
+        self.putyEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.putyEdit.setText("/home/pproger/Desktop/machine_learning_python/FacialRecognitionProject/dataset/")
+        
+
+        label_object_number = QtGui.QLabel("Object number:",self.cam_panel)
+        label_object_number.setStyleSheet(str_style_css[0])
+        label_object_number.setGeometry(675,100,195,50)
+
+        self.object_numberEdit = QtGui.QLineEdit(self.cam_panel)
+        self.object_numberEdit.setStyleSheet(str_style_css[1])
+        self.object_numberEdit.setGeometry(880,108,160,35)
+        self.object_numberEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.object_numberEdit.setText("1")
+
+        label_frames = QtGui.QLabel("Number of frames:",self.cam_panel)
+        label_frames.setStyleSheet(str_style_css[0])
+        label_frames.setGeometry(10,180,237,50)
+
+        self.framesEdit = QtGui.QLineEdit(self.cam_panel)
+        self.framesEdit.setStyleSheet(str_style_css[1])
+        self.framesEdit.setGeometry(265,188,160,35)
+        self.framesEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.framesEdit.setText("30")
+
+
+        self.Face_dataset_button = QtGui.QPushButton('Face dataset', self.cam_panel)
+        self.Face_dataset_button.setStyleSheet("QPushButton {background:#088A08; border-radius: 10px;border: 1px solid #088A08; font: 20px;}")
+        self.Face_dataset_button.setGeometry(500,180,540,50)
+
+        line_label_cam1 = QtGui.QLabel(self.cam_panel)
+        line_label_cam1.setStyleSheet("QLabel {background: #34393D}")
+        line_label_cam1.setGeometry(0,300,1055,3)
+
+
+        line_label_cam2 = QtGui.QLabel(self.cam_panel)
+        line_label_cam2.setStyleSheet("QLabel {background: #34393D}")
+        line_label_cam2.setGeometry(1060,0,3,847)
+
+
+
+       
 

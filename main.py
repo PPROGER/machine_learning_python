@@ -17,6 +17,7 @@ from face_id.face_detector import Face_detector
 from face_id.cam_registartion import Cam_registration
 from voice_assistant.speech_ai import Speech_AI
 from load_form import QLoad
+from FacialRecognitionProject.face_dataset import Face_datasets
 
 
     
@@ -312,7 +313,12 @@ def Progress_load():
 
 def Logout_forms():
     main_forms.close()
-    qb.show()        
+    qb.show()
+
+def Face_dataset():
+    if(main_forms.camEdit.text() != "" and main_forms.widthEdit.text != "" and main_forms.heightEdit.text() != "" and main_forms.object_numberEdit.text() and main_forms.putyEdit.text() != "" and main_forms.framesEdit.text() != ""):
+        Face_datasets(main_forms.camEdit.text(),main_forms.widthEdit.text(), main_forms.heightEdit.text(), main_forms.object_numberEdit.text(), main_forms.putyEdit.text(), main_forms.framesEdit.text())
+
 #Основная программа 
 app = QtGui.QApplication(sys.argv)
 load_form = QLoad()
@@ -342,6 +348,7 @@ main_forms.add_button.clicked.connect(Add_user)
 main_forms.del_button.clicked.connect(Delete_user)
 main_forms.voise.clicked.connect(Voise_assistant)
 main_forms.logout_button.clicked.connect(Logout_forms)
+main_forms.Face_dataset_button.clicked.connect(Face_dataset)
 
 
 load_form.show()
