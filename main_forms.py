@@ -441,6 +441,7 @@ class QMain(QtGui.QWidget):
         self.cam_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
         self.cam_panel.setGeometry(243,53,1359,848)  
 
+        #Создание кадров
         str_style_css = ["QLabel {background:#292E33; border: 1px solid #292E33; color: white; font: 25px;}", "QLineEdit {color:orange; font: 16px; border: 2px solid gray; font: 25px; }"]
 
         label_cam = QtGui.QLabel("Camera:",self.cam_panel)
@@ -487,11 +488,11 @@ class QMain(QtGui.QWidget):
 
         label_object_number = QtGui.QLabel("Object number:",self.cam_panel)
         label_object_number.setStyleSheet(str_style_css[0])
-        label_object_number.setGeometry(675,100,195,50)
+        label_object_number.setGeometry(675,100,200,50)
 
         self.object_numberEdit = QtGui.QLineEdit(self.cam_panel)
         self.object_numberEdit.setStyleSheet(str_style_css[1])
-        self.object_numberEdit.setGeometry(880,108,160,35)
+        self.object_numberEdit.setGeometry(890,108,150,35)
         self.object_numberEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.object_numberEdit.setText("1")
 
@@ -510,14 +511,80 @@ class QMain(QtGui.QWidget):
         self.Face_dataset_button.setStyleSheet("QPushButton {background:#088A08; border-radius: 10px;border: 1px solid #088A08; font: 20px;}")
         self.Face_dataset_button.setGeometry(500,180,540,50)
 
-        line_label_cam1 = QtGui.QLabel(self.cam_panel)
-        line_label_cam1.setStyleSheet("QLabel {background: #34393D}")
-        line_label_cam1.setGeometry(0,300,1055,3)
+        #line_label_cam1 = QtGui.QLabel(self.cam_panel)
+        #line_label_cam1.setStyleSheet("QLabel {background: #34393D}")
+        #line_label_cam1.setGeometry(0,300,1055,3)
 
-
+    
         line_label_cam2 = QtGui.QLabel(self.cam_panel)
         line_label_cam2.setStyleSheet("QLabel {background: #34393D}")
-        line_label_cam2.setGeometry(1060,0,3,847)
+        line_label_cam2.setGeometry(1093,0,3,847)
+
+        #Тренировка распознования
+        label_path_training = QtGui.QLabel("Path dataset:",self.cam_panel)
+        label_path_training.setStyleSheet(str_style_css[0])
+        label_path_training.setGeometry(10,290,237,50)
+
+        self.path_trainingEdit = QtGui.QLineEdit(self.cam_panel)
+        self.path_trainingEdit.setStyleSheet(str_style_css[1])
+        self.path_trainingEdit.setGeometry(200,298,840,35)
+        self.path_trainingEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.path_trainingEdit.setText("/home/pproger/Desktop/machine_learning_python/FacialRecognitionProject/dataset")
+
+        label_model = QtGui.QLabel("Save the model into:",self.cam_panel)
+        label_model.setStyleSheet(str_style_css[0])
+        label_model.setGeometry(10,370,260,50)
+
+        self.modelEdit = QtGui.QLineEdit(self.cam_panel)
+        self.modelEdit.setStyleSheet(str_style_css[1])
+        self.modelEdit.setGeometry(280,378,760,35)
+        self.modelEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.modelEdit.setText("/home/pproger/Desktop/machine_learning_python/FacialRecognitionProject/trainer/trainer.yml")
+
+        self.Face_training_button = QtGui.QPushButton('Face training', self.cam_panel)
+        self.Face_training_button.setStyleSheet("QPushButton {background:#088A08; border-radius: 10px;border: 1px solid #088A08; font: 20px;}")
+        self.Face_training_button.setGeometry(500,450,540,50)
+
+        #Распознование лица
+        label_path_model = QtGui.QLabel("Path to training:",self.cam_panel)
+        label_path_model.setStyleSheet(str_style_css[0])
+        label_path_model.setGeometry(10,560,237,50)
+
+        self.path_modelEdit = QtGui.QLineEdit(self.cam_panel)
+        self.path_modelEdit.setStyleSheet(str_style_css[1])
+        self.path_modelEdit.setGeometry(230,568,810,35)
+        self.path_modelEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.path_modelEdit.setText("/home/pproger/Desktop/machine_learning_python/FacialRecognitionProject/trainer/trainer.yml")
+
+        label_object_name = QtGui.QLabel("Object name:",self.cam_panel)
+        label_object_name.setStyleSheet(str_style_css[0])
+        label_object_name.setGeometry(10,640,237,50)
+
+        self.object_nameEdit = QtGui.QLineEdit(self.cam_panel)
+        self.object_nameEdit.setStyleSheet(str_style_css[1])
+        self.object_nameEdit.setGeometry(200,648,350,35)
+        self.object_nameEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.object_nameEdit.setText("Andrey")
+
+        label_object_number_recognition = QtGui.QLabel("Object number:",self.cam_panel)
+        label_object_number_recognition.setStyleSheet(str_style_css[0])
+        label_object_number_recognition.setGeometry(575,640,200,50)
+
+        self.object_number_recognitionEdit = QtGui.QLineEdit(self.cam_panel)
+        self.object_number_recognitionEdit.setStyleSheet(str_style_css[1])
+        self.object_number_recognitionEdit.setGeometry(790,648,250,35)
+        self.object_number_recognitionEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.object_number_recognitionEdit.setText("1")
+
+        self.Face_recognition_button = QtGui.QPushButton('Face training', self.cam_panel)
+        self.Face_recognition_button.setStyleSheet("QPushButton {background:#088A08; border-radius: 10px;border: 1px solid #088A08; font: 20px;}")
+        self.Face_recognition_button.setGeometry(500,720,540,50)
+
+
+
+
+
+       
 
 
 

@@ -18,6 +18,8 @@ from face_id.cam_registartion import Cam_registration
 from voice_assistant.speech_ai import Speech_AI
 from load_form import QLoad
 from FacialRecognitionProject.face_dataset import Face_datasets
+from FacialRecognitionProject.face_training import Face_trainings
+from FacialRecognitionProject.face_recognition import Face_recognitions
 
 
     
@@ -315,9 +317,30 @@ def Logout_forms():
     main_forms.close()
     qb.show()
 
+#Создание кадров об обьекте
 def Face_dataset():
     if(main_forms.camEdit.text() != "" and main_forms.widthEdit.text != "" and main_forms.heightEdit.text() != "" and main_forms.object_numberEdit.text() and main_forms.putyEdit.text() != "" and main_forms.framesEdit.text() != ""):
         Face_datasets(main_forms.camEdit.text(),main_forms.widthEdit.text(), main_forms.heightEdit.text(), main_forms.object_numberEdit.text(), main_forms.putyEdit.text(), main_forms.framesEdit.text())
+
+#Тренировка распознования 
+def Face_training():
+    if(main_forms.path_trainingEdit.text() != "" and main_forms.modelEdit.text() != ""):
+        Face_trainings(main_forms.path_trainingEdit.text(), main_forms.modelEdit.text())
+
+#Распознование лица
+def Face_recognition():
+
+    if(main_forms.path_modelEdit.text() != "" and main_forms.object_number_recognitionEdit.text() != "" and main_forms.object_nameEdit.text() != ""):
+        mas_object = []
+        cur = con.cursor()
+        for row in cur.execute('SELECT id,Name FROM face_recognition'):
+            mas_object.append(row[1])
+            
+            
+                     
+    con.commit()
+    Face_recognitions(main_forms.path_modelEdit.text(),mas_object)
+
 
 #Основная программа 
 app = QtGui.QApplication(sys.argv)
@@ -349,6 +372,8 @@ main_forms.del_button.clicked.connect(Delete_user)
 main_forms.voise.clicked.connect(Voise_assistant)
 main_forms.logout_button.clicked.connect(Logout_forms)
 main_forms.Face_dataset_button.clicked.connect(Face_dataset)
+main_forms.Face_training_button.clicked.connect(Face_training)
+main_forms.Face_recognition_button.clicked.connect(Face_recognition)
 
 
 load_form.show()
