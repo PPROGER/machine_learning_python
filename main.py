@@ -56,6 +56,7 @@ def faceid_avtorization():
     evklid_znach = Face_detector()
     if(float(evklid_znach) < 0.6):
         #QtGui.QMessageBox.about(QtGui.QWidget(),"Message","You have successfully\nlogged in!")
+        Load_cam_panel()
         main_forms.show()
         qb.close()
     elif(float(evklid_znach) > 0.6):
@@ -114,7 +115,8 @@ def Cam_function():
     main_forms.video_panel.setVisible(False)
     main_forms.db_panel.setVisible(False)
     main_forms.main_panel.setVisible(False)
-    main_forms.db_panel_function.setVisible(False)  
+    main_forms.db_panel_function.setVisible(False)
+    Load_cam_panel()  
 
 
 def Vidoe_function():
@@ -209,12 +211,15 @@ def Message_function():
 #Регистрация Face_id
 def Registration_face():
     Cam_registration()
+    QtGui.QMessageBox.about(QtGui.QWidget(),"Message","register Face ID successfully")
 
 def load_main_forms():
     cur = con.cursor()
     for row in cur.execute('SELECT Name,Firstname FROM user WHERE id = ? and id = ?',(id_code,id_code)):
         main_forms.FIO_label.setText(str(row[0]) + " " + str(row[1]))
     con.commit()
+    Load_cam_panel()
+    
 
 
 def Face_avtorization_db():
@@ -329,8 +334,14 @@ def Face_training():
 
 #Распознование лица
 def Face_recognition():
+    if((main_forms.check_button_add_object_db.isChecked() == True) and main_forms.object_number_recognitionEdit.text() != "" and main_forms.object_nameEdit.text() != ""):
+        cur = con.cursor()
+        cur.execute('INSERT INTO face_recognition (id, Name) VALUES (?,?)',(main_forms.object_number_recognitionEdit.text(), main_forms.object_nameEdit.text()))
+        QtGui.QMessageBox.about(QtGui.QWidget(),"Message","Message ok!")
+        
+        con.commit()
 
-    if(main_forms.path_modelEdit.text() != "" and main_forms.object_number_recognitionEdit.text() != "" and main_forms.object_nameEdit.text() != ""):
+    if(main_forms.path_modelEdit.text() != ""):
         mas_object = []
         cur = con.cursor()
         for row in cur.execute('SELECT id,Name FROM face_recognition'):
@@ -340,6 +351,22 @@ def Face_recognition():
                      
     con.commit()
     Face_recognitions(main_forms.path_modelEdit.text(),mas_object)
+
+def Load_cam_panel():
+    mas_object = []
+    cur = con.cursor()
+    for row in cur.execute('SELECT id,Name FROM face_recognition'):
+        mas_object.append(row[1])
+            
+            
+                     
+    con.commit()
+    main_forms.count_object_label.setText("Number of objects: " + str(len(mas_object)-1))
+    text = "Object names:"
+    for i in range(1,len(mas_object)):
+        text = text + "\n" + "      "+str(i) + ")" +str(mas_object[i])
+    main_forms.name_object_label.setText(text)
+
 
 
 #Основная программа 

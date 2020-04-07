@@ -1,7 +1,8 @@
 #!/usr/bin/python
-
+import random
 import sys
 from PyQt4 import QtGui, QtCore
+import pyqtgraph as pg
 
 
 
@@ -562,17 +563,17 @@ class QMain(QtGui.QWidget):
 
         self.object_nameEdit = QtGui.QLineEdit(self.cam_panel)
         self.object_nameEdit.setStyleSheet(str_style_css[1])
-        self.object_nameEdit.setGeometry(200,648,350,35)
+        self.object_nameEdit.setGeometry(200,648,250,35)
         self.object_nameEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.object_nameEdit.setText("Andrey")
 
         label_object_number_recognition = QtGui.QLabel("Object number:",self.cam_panel)
         label_object_number_recognition.setStyleSheet(str_style_css[0])
-        label_object_number_recognition.setGeometry(575,640,200,50)
+        label_object_number_recognition.setGeometry(475,640,200,50)
 
         self.object_number_recognitionEdit = QtGui.QLineEdit(self.cam_panel)
         self.object_number_recognitionEdit.setStyleSheet(str_style_css[1])
-        self.object_number_recognitionEdit.setGeometry(790,648,250,35)
+        self.object_number_recognitionEdit.setGeometry(690,648,120,35)
         self.object_number_recognitionEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.object_number_recognitionEdit.setText("1")
 
@@ -580,10 +581,29 @@ class QMain(QtGui.QWidget):
         self.Face_recognition_button.setStyleSheet("QPushButton {background:#088A08; border-radius: 10px;border: 1px solid #088A08; font: 20px;}")
         self.Face_recognition_button.setGeometry(500,720,540,50)
 
+        self.check_button_add_object_db = QtGui.QCheckBox("Add object to db",self.cam_panel)
+        self.check_button_add_object_db.setStyleSheet("QCheckBox {background:#292E33; font: 20px}")
+        self.check_button_add_object_db.setChecked(False)
+        self.check_button_add_object_db.setGeometry(850,640,200,50)
+
+        style_object_label = "QLabel {background:#292E33; border: 1px solid #292E33; color: white; font: 18px;}"
+
+        self.count_object_label = QtGui.QLabel("Number of objects:",self.cam_panel)
+        self.count_object_label.setStyleSheet(style_object_label)
+        self.count_object_label.setGeometry(1100,10,200,30)
+
+        self.name_object_label = QtGui.QLabel("Object names:",self.cam_panel)
+        self.name_object_label.setStyleSheet(style_object_label)
+        self.name_object_label.setGeometry(1100,30,150,100)
+
+        
+        
 
 
 
 
+       
+       
        
 
 
