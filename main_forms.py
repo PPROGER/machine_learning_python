@@ -96,6 +96,45 @@ class QMain(QtGui.QWidget):
         panel = QtGui.QLabel(self)
         panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; border-radius: 5px; padding-left: 10px; margin: 5px}")
         panel.setGeometry(242,0,1100,60)
+        
+        #Cловарь для поиска
+        model = QtGui.QStringListModel()
+        model.setStringList(['Face ID', 'Face', 'in', 'my', 'dictionary'])
+
+        completer = QtGui.QCompleter()
+        completer.setModel(model)
+
+        #Кнопка поиска
+        self.search_function_button = QtGui.QPushButton(" Search",panel)
+        self.search_function_button.setStyleSheet("QPushButton {background:#007AFF; border: 1px solid #007AFF; border-radius: 10px}")
+        self.search_function_button.setGeometry(515,14,100,32)
+
+        #Сам поиск 
+        lineedit = QtGui.QLineEdit(panel)
+        lineedit.setCompleter(completer)
+        lineedit.setStyleSheet("QLineEdit {background:#222528; border-radius: 15px; font: 18px;}")
+        lineedit.setGeometry(30,13,500,35)
+        lineedit.setAlignment(QtCore.Qt.AlignCenter)
+
+        
+
+
+        self.message_function_button = QtGui.QPushButton(panel)
+        self.message_function_button.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;}")
+        self.message_function_button.setIcon(QtGui.QIcon('image/massage_function_panel.png'))
+        self.message_function_button.setIconSize(QtCore.QSize(30,35))
+        self.message_function_button.setGeometry(980,13,40,40)
+
+        self.bell_function_button = QtGui.QPushButton(panel)
+        self.bell_function_button.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;}")
+        self.bell_function_button.setIcon(QtGui.QIcon('image/bell_function_panel.png'))
+        self.bell_function_button.setIconSize(QtCore.QSize(30,30))
+        self.bell_function_button.setGeometry(1030,13,40,40)
+
+        
+
+        
+        
 
         
 
@@ -595,6 +634,13 @@ class QMain(QtGui.QWidget):
         self.name_object_label = QtGui.QLabel("Object names:",self.cam_panel)
         self.name_object_label.setStyleSheet(style_object_label)
         self.name_object_label.setGeometry(1100,30,150,100)
+
+
+app = QtGui.QApplication(sys.argv)
+qb = QMain()
+
+qb.show()
+sys.exit(app.exec_())
 
         
         

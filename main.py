@@ -357,9 +357,7 @@ def Load_cam_panel():
     cur = con.cursor()
     for row in cur.execute('SELECT id,Name FROM face_recognition'):
         mas_object.append(row[1])
-            
-            
-                     
+                          
     con.commit()
     main_forms.count_object_label.setText("Number of objects: " + str(len(mas_object)-1))
     text = "Object names:"
