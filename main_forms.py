@@ -2,7 +2,7 @@
 import random
 import sys
 from PyQt4 import QtGui, QtCore
-import pyqtgraph as pg
+from menu_tree import Window
 
 
 
@@ -106,13 +106,13 @@ class QMain(QtGui.QWidget):
 
         #Кнопка поиска
         self.search_function_button = QtGui.QPushButton(" Search",panel)
-        self.search_function_button.setStyleSheet("QPushButton {background:#007AFF; border: 1px solid #007AFF; border-radius: 10px}")
-        self.search_function_button.setGeometry(515,14,100,32)
+        self.search_function_button.setStyleSheet("QPushButton {background:#007AFF; border: 1px solid #007AFF; border-radius: 0px}")
+        self.search_function_button.setGeometry(530,13.7,100,34)
 
         #Сам поиск 
         lineedit = QtGui.QLineEdit(panel)
         lineedit.setCompleter(completer)
-        lineedit.setStyleSheet("QLineEdit {background:#222528; border-radius: 15px; font: 18px;}")
+        lineedit.setStyleSheet("QLineEdit {background:#222528; border-radius: 0px; font: 18px;}")
         lineedit.setGeometry(30,13,500,35)
         lineedit.setAlignment(QtCore.Qt.AlignCenter)
 
@@ -482,7 +482,7 @@ class QMain(QtGui.QWidget):
         self.cam_panel.setGeometry(243,53,1359,848)  
 
         #Создание кадров
-        str_style_css = ["QLabel {background:#292E33; border: 1px solid #292E33; color: white; font: 25px;}", "QLineEdit {color:orange; font: 16px; border: 2px solid gray; font: 25px; }"]
+        str_style_css = ["QLabel {background:#292E33; border: 1px solid #292E33; color: #6D6F72; font: 25px;}", "QLineEdit {background:#222528;color:#FBFBFC; font: 16px; border: 2px solid #222528; font: 20px; }"]
 
         label_cam = QtGui.QLabel("Camera:",self.cam_panel)
         label_cam.setStyleSheet(str_style_css[0])
@@ -548,7 +548,7 @@ class QMain(QtGui.QWidget):
 
 
         self.Face_dataset_button = QtGui.QPushButton('Face dataset', self.cam_panel)
-        self.Face_dataset_button.setStyleSheet("QPushButton {background:#088A08; border-radius: 10px;border: 1px solid #088A08; font: 20px;}")
+        self.Face_dataset_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;}")
         self.Face_dataset_button.setGeometry(500,180,540,50)
 
         #line_label_cam1 = QtGui.QLabel(self.cam_panel)
@@ -582,7 +582,7 @@ class QMain(QtGui.QWidget):
         self.modelEdit.setText("/home/pproger/Desktop/machine_learning_python/FacialRecognitionProject/trainer/trainer.yml")
 
         self.Face_training_button = QtGui.QPushButton('Face training', self.cam_panel)
-        self.Face_training_button.setStyleSheet("QPushButton {background:#088A08; border-radius: 10px;border: 1px solid #088A08; font: 20px;}")
+        self.Face_training_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;}")
         self.Face_training_button.setGeometry(500,450,540,50)
 
         #Распознование лица
@@ -617,7 +617,7 @@ class QMain(QtGui.QWidget):
         self.object_number_recognitionEdit.setText("1")
 
         self.Face_recognition_button = QtGui.QPushButton('Face training', self.cam_panel)
-        self.Face_recognition_button.setStyleSheet("QPushButton {background:#088A08; border-radius: 10px;border: 1px solid #088A08; font: 20px;}")
+        self.Face_recognition_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;}")
         self.Face_recognition_button.setGeometry(500,720,540,50)
 
         self.check_button_add_object_db = QtGui.QCheckBox("Add object to db",self.cam_panel)
@@ -625,22 +625,86 @@ class QMain(QtGui.QWidget):
         self.check_button_add_object_db.setChecked(False)
         self.check_button_add_object_db.setGeometry(850,640,200,50)
 
-        style_object_label = "QLabel {background:#292E33; border: 1px solid #292E33; color: white; font: 18px;}"
+        style_object_label = "QLabel {background:#292E33; border: 1px solid #292E33; color: white; font: 14px;}"
 
-        self.count_object_label = QtGui.QLabel("Number of objects:",self.cam_panel)
-        self.count_object_label.setStyleSheet(style_object_label)
-        self.count_object_label.setGeometry(1100,10,200,30)
+        #Tree panel  
+        self.tree_panel = QtGui.QLabel(self.cam_panel)
+        #self.cam_panel.setVisible(False)
+        self.tree_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; border-radius: 5px;}")
+        self.tree_panel.setGeometry(1100,10,250,830)
+    
 
-        self.name_object_label = QtGui.QLabel("Object names:",self.cam_panel)
-        self.name_object_label.setStyleSheet(style_object_label)
-        self.name_object_label.setGeometry(1100,30,150,100)
+        self.treeView = QtGui.QTreeView()
+        self.treeView.setStyleSheet("QTreeView {background:#292E33;border: 1px solid #292E33}")
+        
+
+        def openMenu(self, position):
+    
+            indexes = self.treeView.selectedIndexes()
+            if len(indexes) > 0:
+        
+                level = 0
+                index = indexes[0]
+                while index.parent().isValid():
+                    index = index.parent()
+                    level += 1
+        
+            menu = QtGui.QMenu()
+            if level == 0:
+                menu.addAction(self.tr("Edit person"))
+            elif level == 1:
+                menu.addAction(self.tr("Edit object/container"))
+            elif level == 2:
+                menu.addAction(self.tr("Edit object"))
+        
+            menu.exec_(self.treeView.viewport().mapToGlobal(position))
+
+        data = [("Alice", [("Keys", []),("Purse", [("Cellphone", [])])]),("Bob", [("Wallet", [("Credit card", []),("Money", [])])])]
+
+        def addItems(parent, elements):
+    
+            for text, children in elements:
+                item = QtGui.QStandardItem(text)
+                parent.appendRow(item)
+                if children:
+                    addItems(item, children)
+
+        self.treeView.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        self.treeView.customContextMenuRequested.connect(openMenu)
+
+        model = QtGui.QStandardItemModel()
+        addItems(model, data)
+        self.treeView.setModel(model)
+        
+        model.setHorizontalHeaderLabels([self.tr("Object")])
+        
+        layout = QtGui.QVBoxLayout(self.tree_panel)
+        layout.addWidget(self.treeView)
+        
+        
 
 
-app = QtGui.QApplication(sys.argv)
-qb = QMain()
 
-qb.show()
-sys.exit(app.exec_())
+        #self.count_object_label = QtGui.QLabel("Number of objects:",self.cam_panel)
+        #self.count_object_label.setStyleSheet(style_object_label)
+        #self.count_object_label.setGeometry(1100,10,200,30)
+
+        #self.name_object_label = QtGui.QLabel("Object names:",self.cam_panel)
+       # self.name_object_label.setStyleSheet(style_object_label)
+        #self.name_object_label.setGeometry(1100,40,150,100)
+        
+
+        
+
+
+   
+        
+        
+
+
+
+
+
 
         
         
