@@ -2,7 +2,7 @@
 import random
 import sys
 from PyQt4 import QtGui, QtCore
-from menu_tree import Window
+
 
 
 
@@ -11,7 +11,7 @@ class QMain(QtGui.QWidget):
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
 
-        self.setGeometry(200, 200, 1600,900)
+        self.setGeometry(150, 100, 1600,900)
         self.setWindowTitle('Laboratory detection')
         self.setWindowIcon(QtGui.QIcon('image/web.png'))
         menu = QtGui.QLabel(self)
@@ -638,45 +638,7 @@ class QMain(QtGui.QWidget):
         self.treeView.setStyleSheet("QTreeView {background:#292E33;border: 1px solid #292E33}")
         
 
-        def openMenu(self, position):
     
-            indexes = self.treeView.selectedIndexes()
-            if len(indexes) > 0:
-        
-                level = 0
-                index = indexes[0]
-                while index.parent().isValid():
-                    index = index.parent()
-                    level += 1
-        
-            menu = QtGui.QMenu()
-            if level == 0:
-                menu.addAction(self.tr("Edit person"))
-            elif level == 1:
-                menu.addAction(self.tr("Edit object/container"))
-            elif level == 2:
-                menu.addAction(self.tr("Edit object"))
-        
-            menu.exec_(self.treeView.viewport().mapToGlobal(position))
-
-        data = [("Alice", [("Keys", []),("Purse", [("Cellphone", [])])]),("Bob", [("Wallet", [("Credit card", []),("Money", [])])])]
-
-        def addItems(parent, elements):
-    
-            for text, children in elements:
-                item = QtGui.QStandardItem(text)
-                parent.appendRow(item)
-                if children:
-                    addItems(item, children)
-
-        self.treeView.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
-        self.treeView.customContextMenuRequested.connect(openMenu)
-
-        model = QtGui.QStandardItemModel()
-        addItems(model, data)
-        self.treeView.setModel(model)
-        
-        model.setHorizontalHeaderLabels([self.tr("Object")])
         
         layout = QtGui.QVBoxLayout(self.tree_panel)
         layout.addWidget(self.treeView)
@@ -694,7 +656,7 @@ class QMain(QtGui.QWidget):
         #self.name_object_label.setGeometry(1100,40,150,100)
         
 
-        
+   
 
 
    

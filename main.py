@@ -220,6 +220,7 @@ def load_main_forms():
     con.commit()
     Load_cam_panel()
     
+    
 
 
 def Face_avtorization_db():
@@ -353,19 +354,62 @@ def Face_recognition():
     Face_recognitions(main_forms.path_modelEdit.text(),mas_object)
 
 def Load_cam_panel():
+    data = data = [('Number of objects',[]), ('Bob', [('Wallet', [('Credit card', []), ('Money', [])])])]
     mas_object = []
     cur = con.cursor()
     for row in cur.execute('SELECT id,Name FROM face_recognition'):
         mas_object.append(row[1])
                           
     con.commit()
-    main_forms.count_object_label.setText("Number of objects: " + str(len(mas_object)-1))
-    text = "Object names:"
+    
+    data[0][1].append((str(len(mas_object)-1) + ' Objects',[]))
+
+    
     for i in range(1,len(mas_object)):
-        text = text + "\n" + "      "+str(i) + ")" +str(mas_object[i])
-    main_forms.name_object_label.setText(text)
+        data[0][1][0][1].append((str(mas_object[i]),[]))
 
+    
 
+    main_forms.treeView.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+    main_forms.treeView.customContextMenuRequested.connect(openMenu)
+
+    model = QtGui.QStandardItemModel()
+    
+    addItems(model, data)
+    main_forms.treeView.setModel(model)
+        
+    model.setHorizontalHeaderLabels([main_forms.tr("Object")])
+    
+
+    
+def openMenu(self, position):
+
+    indexes = main_forms.treeView.selectedIndexes()
+    if len(indexes) > 0:
+        
+        level = 0
+        index = indexes[0]
+        while index.parent().isValid():
+            index = index.parent()
+            level += 1
+        
+    menu = QtGui.QMenu()
+    if level == 0:
+        menu.addAction(self.tr("Edit person"))
+    elif level == 1:
+        menu.addAction(self.tr("Edit object/container"))
+    elif level == 2:
+        menu.addAction(self.tr("Edit object"))
+        
+    menu.exec_(main_forms.treeView.viewport().mapToGlobal(position))
+
+def addItems(parent, elements):
+    
+    for text, children in elements:
+        item = QtGui.QStandardItem(text)
+        parent.appendRow(item)
+        if children:
+            addItems(item, children)
 
 #Основная программа 
 app = QtGui.QApplication(sys.argv)
