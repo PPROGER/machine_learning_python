@@ -14,6 +14,8 @@ class QMain(QtGui.QWidget):
         self.setGeometry(150, 100, 1600,900)
         self.setWindowTitle('Laboratory detection')
         self.setWindowIcon(QtGui.QIcon('image/web.png'))
+        self.setFixedSize(1600,900)
+
         menu = QtGui.QLabel(self)
         menu.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; border-radius: 5px; padding-left: 10px; margin: 5px}")
         menu.resize(250, 900)
@@ -106,13 +108,13 @@ class QMain(QtGui.QWidget):
 
         #Кнопка поиска
         self.search_function_button = QtGui.QPushButton(" Search",panel)
-        self.search_function_button.setStyleSheet("QPushButton {background:#007AFF; border: 1px solid #007AFF; border-radius: 0px}")
+        self.search_function_button.setStyleSheet("QPushButton {background:#007AFF; border: 1px solid #007AFF; border-radius: 2px}")
         self.search_function_button.setGeometry(530,13.7,100,34)
 
         #Сам поиск 
         lineedit = QtGui.QLineEdit(panel)
         lineedit.setCompleter(completer)
-        lineedit.setStyleSheet("QLineEdit {background:#222528; border-radius: 0px; font: 18px;}")
+        lineedit.setStyleSheet("QLineEdit {background:#222528; border-radius: 2px; font: 18px;}")
         lineedit.setGeometry(30,13,500,35)
         lineedit.setAlignment(QtCore.Qt.AlignCenter)
 
@@ -122,14 +124,14 @@ class QMain(QtGui.QWidget):
         self.message_function_button = QtGui.QPushButton(panel)
         self.message_function_button.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;}")
         self.message_function_button.setIcon(QtGui.QIcon('image/massage_function_panel.png'))
-        self.message_function_button.setIconSize(QtCore.QSize(30,35))
-        self.message_function_button.setGeometry(980,13,40,40)
+        self.message_function_button.setIconSize(QtCore.QSize(35,35))
+        self.message_function_button.setGeometry(990,13,40,40)
 
         self.bell_function_button = QtGui.QPushButton(panel)
         self.bell_function_button.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;}")
         self.bell_function_button.setIcon(QtGui.QIcon('image/bell_function_panel.png'))
         self.bell_function_button.setIconSize(QtCore.QSize(30,30))
-        self.bell_function_button.setGeometry(1030,13,40,40)
+        self.bell_function_button.setGeometry(1035,13,40,40)
 
         
 
@@ -326,7 +328,7 @@ class QMain(QtGui.QWidget):
         
         #Кнопка входа
         self.log_button = QtGui.QPushButton('Login', self.panel_loning_db)
-        self.log_button.setStyleSheet("QPushButton {background:#088A08; border: 1px solid #00FF00; border-radius: 5px;}")
+        self.log_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;}")
         self.log_button.setGeometry(180,420,160,50)
 
         #Кнопка face id
@@ -373,7 +375,7 @@ class QMain(QtGui.QWidget):
         self.poiskEdit.setAlignment(QtCore.Qt.AlignCenter)
 
         self.poisk_button = QtGui.QPushButton('Search', self.table_user_panel)
-        self.poisk_button.setStyleSheet("QPushButton {background:#088A08; border-radius: 10px;border: 1px solid #088A08}")
+        self.poisk_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;}")
         self.poisk_button.setGeometry(1150,150,160,50)
 
 
@@ -422,7 +424,7 @@ class QMain(QtGui.QWidget):
         self.passEdit.setAlignment(QtCore.Qt.AlignCenter)
 
         self.add_button = QtGui.QPushButton('Add data', self.table_user_panel)
-        self.add_button.setStyleSheet("QPushButton {background:#088A08; border-radius: 10px;border: 1px solid #088A08}")
+        self.add_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;}")
         self.add_button.setGeometry(1150,500,160,50)
 
 
@@ -443,7 +445,7 @@ class QMain(QtGui.QWidget):
         self.delEdit.setAlignment(QtCore.Qt.AlignCenter)
 
         self.del_button = QtGui.QPushButton('Delete', self.table_user_panel)
-        self.del_button.setStyleSheet("QPushButton {background:#088A08; border-radius: 10px;border: 1px solid #088A08}")
+        self.del_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;}")
         self.del_button.setGeometry(1150,670,160,50)
 
         #Панель для таблицы messager
@@ -645,17 +647,11 @@ class QMain(QtGui.QWidget):
         
         
 
+app = QtGui.QApplication(sys.argv)
+qb = QMain()
 
-
-        #self.count_object_label = QtGui.QLabel("Number of objects:",self.cam_panel)
-        #self.count_object_label.setStyleSheet(style_object_label)
-        #self.count_object_label.setGeometry(1100,10,200,30)
-
-        #self.name_object_label = QtGui.QLabel("Object names:",self.cam_panel)
-       # self.name_object_label.setStyleSheet(style_object_label)
-        #self.name_object_label.setGeometry(1100,40,150,100)
-        
-
+qb.show()
+sys.exit(app.exec_())
    
 
 
