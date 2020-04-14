@@ -157,9 +157,11 @@ class QMain(QtGui.QWidget):
 
         #Settings panel
         self.main_panel = QtGui.QLabel(self)
-        self.main_panel.setVisible(False)
+        #self.main_panel.setVisible(False)
         self.main_panel.setStyleSheet("QLabel {background:#1F2327; border: 1px solid transparent; border-radius: 5px; padding-left: 10px; margin: 5px}")
         self.main_panel.setGeometry(243,53,1359,848)
+
+        settings_style_css = ["QLabel {background:#292E33; border: 1px solid #292E33; color: #6D6F72; font: 25px;}", "QLineEdit {background:#222528;color:#FBFBFC; font: 16px; border: 2px solid #222528; font: 20px; }"]
 
 
         #Фон для Face id
@@ -169,22 +171,22 @@ class QMain(QtGui.QWidget):
 
         #Регистрация Фейс айди
         label_registartion = QtGui.QLabel("Registration Face ID:",self.main_panel)
-        label_registartion.setStyleSheet("QLabel {background:transparent; color: white; font: 25px; border: 1px solid transparent;}")
+        label_registartion.setStyleSheet(settings_style_css[0])
         label_registartion.setGeometry(10,10,300,50)
         self.face_registration = QtGui.QPushButton("Registartion",self.main_panel)
         self.face_registration.setIcon(QtGui.QIcon('image/faceID_registration'))
         self.face_registration.setIconSize(QtCore.QSize(50,50))
-        self.face_registration.setStyleSheet("QPushButton {background:transparent; border-radius: 10px; border: 1px solid #076CDA; font: 20px;}")
+        self.face_registration.setStyleSheet("QPushButton {background:transparent; border-radius: 10px; border: 2px solid #076CDA; font: 20px;}")
         self.face_registration.setGeometry(40,70,250,50)
         
         #Использовать Face id для входа в БД
         label_db = QtGui.QLabel("Use Face ID to enter the database:",self.main_panel)
-        label_db.setStyleSheet("QLabel {background:transparent; color: white; font: 25px; border: 1px solid transparent;}")
+        label_db.setStyleSheet(settings_style_css[0])
         label_db.setGeometry(10,150,410,50)
         
 
         yes_label_db = QtGui.QLabel("Yes",self.main_panel)
-        yes_label_db.setStyleSheet("QLabel {background:transparent; color: white; font: 25px; border: 1px solid transparent;}")
+        yes_label_db.setStyleSheet(settings_style_css[0])
         yes_label_db.setGeometry(15,210,80,30)
 
         self.db_faceid_button = QtGui.QPushButton(self.main_panel)
@@ -194,17 +196,17 @@ class QMain(QtGui.QWidget):
         self.db_faceid_button.setGeometry(100,210,70,35)
 
         false_label_db = QtGui.QLabel("False",self.main_panel)
-        false_label_db.setStyleSheet("QLabel {background:transparent; color: white; font: 25px; border: 1px solid transparent;}")
+        false_label_db.setStyleSheet(settings_style_css[0])
         false_label_db.setGeometry(170,205,100,40)
         
         
         #Использование фейс айди для входа в приложение
         label_log = QtGui.QLabel("Using face id to enter the application:",self.main_panel)
-        label_log.setStyleSheet("QLabel {background:transparent; color: white; font: 25px; border: 1px solid transparent;}")
+        label_log.setStyleSheet(settings_style_css[0])
         label_log.setGeometry(10,260,440,50)
         
         yes_label_log = QtGui.QLabel("Yes",self.main_panel)
-        yes_label_log.setStyleSheet("QLabel {background:transparent; color: white; font: 25px; border: 1px solid transparent;}")
+        yes_label_log.setStyleSheet(settings_style_css[0])
         yes_label_log.setGeometry(15,320,80,30)
 
         self.log_button_face = QtGui.QPushButton(self.main_panel)
@@ -214,7 +216,7 @@ class QMain(QtGui.QWidget):
         self.log_button_face.setGeometry(100,320,70,35)
 
         false_label_log = QtGui.QLabel("False",self.main_panel)
-        false_label_log.setStyleSheet("QLabel {background:transparent; color: white; font: 25px; border: 1px solid transparent;}")
+        false_label_log.setStyleSheet(settings_style_css[0])
         false_label_log.setGeometry(170,315,100,40)       
         
         #Фон для системных настроек 
@@ -224,10 +226,10 @@ class QMain(QtGui.QWidget):
 
         #Светлая тема или темная
         label_theme = QtGui.QLabel("Theme:",system_label)
-        label_theme.setStyleSheet("QLabel {background:transparent; color: white; font: 25px; border: 1px solid transparent;}")
+        label_theme.setStyleSheet(settings_style_css[0])
         label_theme.setGeometry(10,10,150,30)
         black_tema = QtGui.QLabel("Dark",system_label)
-        black_tema.setStyleSheet("QLabel {background:transparent; color: white; font: 25px; border: 1px solid transparent;}")
+        black_tema.setStyleSheet(settings_style_css[0])
         black_tema.setGeometry(15,50,80,30)
 
         self.tema_button = QtGui.QPushButton(system_label)
@@ -237,22 +239,18 @@ class QMain(QtGui.QWidget):
         self.tema_button.setGeometry(110,50,70,35)
 
         theme_tema = QtGui.QLabel("Light",system_label)
-        theme_tema.setStyleSheet("QLabel {background:transparent; color: white; font: 25px; border: 1px solid transparent;}")
+        theme_tema.setStyleSheet(settings_style_css[0])
         theme_tema.setGeometry(176,45,90,40)
 
         #Язык системы 
         label_language = QtGui.QLabel("Language:",system_label)
-        label_language.setStyleSheet("QLabel {background:transparent; color: white; font: 25px; border: 1px solid transparent;}")
+        label_language.setStyleSheet(settings_style_css[0])
         label_language.setGeometry(15,100,150,50)
 
-        ukr_button = QtGui.QPushButton(system_label)
-        ukr_button.setIcon(QtGui.QIcon('image/english.png'))
-        ukr_button.setIconSize(QtCore.QSize(70,70))
-        ukr_button.setGeometry(50,160,64,40)
-        english_button = QtGui.QPushButton(system_label)
-        english_button.setIcon(QtGui.QIcon('image/ukraine.png'))
-        english_button.setIconSize(QtCore.QSize(70,70))
-        english_button.setGeometry(116,160,64,40)
+        self.combo_language = QtGui.QComboBox(system_label)
+        self.combo_language.addItems(["English language", "Ukrainian language"])
+        self.combo_language.setStyleSheet("QComboBox {background:#222528;color:#FBFBFC; font: 16px; border: 2px solid #222528; font: 18px; }")
+        self.combo_language.setGeometry(168,113,250,30)
 
         #Фон для технічної підтримки
         label_tehn = QtGui.QLabel(self.main_panel)
@@ -260,29 +258,27 @@ class QMain(QtGui.QWidget):
         label_tehn.setGeometry(676,392,672,445)
         
         label_podderjka = QtGui.QLabel("Technical support:",label_tehn)
-        label_podderjka.setStyleSheet("QLabel {background:transparent; color: white; font: 25px; border: 1px solid transparent;}")
+        label_podderjka.setStyleSheet(settings_style_css[0])
         label_podderjka.setGeometry(1,1,250,50)
         label_mail_tehn = QtGui.QLabel("Gmail:",label_tehn)
-        label_mail_tehn.setStyleSheet("QLabel {background:transparent; color: white; font: 25px; border: 1px solid transparent;}")
+        label_mail_tehn.setStyleSheet(settings_style_css[0])
         label_mail_tehn.setGeometry(20,52,100,50)
         
         self.mail_edit_tehn = QtGui.QLineEdit(label_tehn)
-        self.mail_edit_tehn.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
+        self.mail_edit_tehn.setStyleSheet(settings_style_css[1])
         self.mail_edit_tehn.setGeometry(130,63,400,30)
 
         label_text = QtGui.QLabel("Message:",label_tehn)
-        label_text.setStyleSheet("QLabel {background:transparent; color: white; font: 25px; border: 1px solid transparent;}")
+        label_text.setStyleSheet(settings_style_css[0])
         label_text.setGeometry(20,110,150,50)
 
         self.message_edit = QtGui.QTextEdit(label_tehn)
-        self.message_edit.setStyleSheet("QTextEdit {color:orange; font: 16px; border: 2px solid gray; }")
+        self.message_edit.setStyleSheet("QTextEdit {background:#222528;color:#FBFBFC; font: 16px; border: 2px solid #222528; font: 20px; }")
         self.message_edit.setGeometry(40,170,605,200)
 
-        self.enter_button = QtGui.QPushButton(label_tehn)
-        self.enter_button.setIcon(QtGui.QIcon('image/message.png'))
-        self.enter_button.setIconSize(QtCore.QSize(74,74))
-        self.enter_button.setStyleSheet("QPushButton {background:transparent; border-radius: 10px; border: 2px solid #26B186} QPushButton:pressed {border: 2px solid #26B186}")
-        self.enter_button.setGeometry(500,380,144,50)
+        self.enter_button = QtGui.QPushButton('Send a message', label_tehn)
+        self.enter_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;}")
+        self.enter_button.setGeometry(450,380,200,50)
 
         
 
@@ -479,7 +475,7 @@ class QMain(QtGui.QWidget):
 
         #Cam panel  
         self.cam_panel = QtGui.QLabel(self)
-        #self.cam_panel.setVisible(False)
+        self.cam_panel.setVisible(False)
         self.cam_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
         self.cam_panel.setGeometry(243,53,1359,848)  
 
