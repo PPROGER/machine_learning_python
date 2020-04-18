@@ -15,6 +15,7 @@ class QMain(QtGui.QWidget):
         self.setWindowTitle('Laboratory detection')
         self.setWindowIcon(QtGui.QIcon('image/web.png'))
         self.setFixedSize(1600,900)
+        
 
         menu = QtGui.QLabel(self)
         menu.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; border-radius: 5px; padding-left: 10px; margin: 5px}")
@@ -157,7 +158,7 @@ class QMain(QtGui.QWidget):
 
         #Settings panel
         self.main_panel = QtGui.QLabel(self)
-        #self.main_panel.setVisible(False)
+        self.main_panel.setVisible(False)
         self.main_panel.setStyleSheet("QLabel {background:#1F2327; border: 1px solid transparent; border-radius: 5px; padding-left: 10px; margin: 5px}")
         self.main_panel.setGeometry(243,53,1359,848)
 
@@ -462,9 +463,62 @@ class QMain(QtGui.QWidget):
 
         #FOTO panel  
         self.foto_panel = QtGui.QLabel(self)
-        self.foto_panel.setVisible(False)
-        self.foto_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
+        #self.foto_panel.setVisible(False)
+        self.foto_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; margin: 5px}")
         self.foto_panel.setGeometry(243,53,1359,848)
+
+        foto_style_css = ["QLabel {background:#292E33; border: 1px solid #292E33; color: #6D6F72; font: 25px;}", "QLineEdit {background:#222528;color:#FBFBFC; font: 16px; border: 2px solid #222528; font: 20px; }"]
+        #Панель для функционала для распознование обьктов на фото 
+        panel_foto_detection = QtGui.QLabel(self.foto_panel)
+
+
+        label_foto_model = QtGui.QLabel("Model Path:",panel_foto_detection)
+        label_foto_model.setStyleSheet(foto_style_css[0])
+        label_foto_model.setGeometry(10,20,150,50)
+        
+
+        self.foto_modelEdit = QtGui.QLineEdit(panel_foto_detection)
+        self.foto_modelEdit.setStyleSheet(foto_style_css[1])
+        self.foto_modelEdit.setGeometry(185,28,1100,35)
+        self.foto_modelEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.foto_modelEdit.setText("/home/pproger/Desktop/machine_learning_python/FirstDetectionFoto/resnet50_coco_best_v2.0.1.h5")
+
+        label_foto_image = QtGui.QLabel("input_image:",panel_foto_detection)
+        label_foto_image .setStyleSheet(foto_style_css[0])
+        label_foto_image .setGeometry(10,100,165,50)
+
+        self.foto_imageEdit = QtGui.QLineEdit(panel_foto_detection)
+        self.foto_imageEdit.setStyleSheet(foto_style_css[1])
+        self.foto_imageEdit.setGeometry(185,108,1100,35)
+        self.foto_imageEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.foto_imageEdit.setText("/home/pproger/Desktop/machine_learning_python/FirstDetectionFoto/image.jpeg")
+
+        self.foto_detection_button = QtGui.QPushButton('Detection Object', panel_foto_detection)
+        self.foto_detection_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;}")
+        self.foto_detection_button.setGeometry(750,200,540,50)
+
+        label_foto_model = QtGui.QLabel("Object:",panel_foto_detection)
+        label_foto_model.setStyleSheet(foto_style_css[0])
+        label_foto_model.setGeometry(10,290,100,50)
+
+        self.object_list_foto = QtGui.QPlainTextEdit(panel_foto_detection)
+        self.object_list_foto.setGeometry(10,350,1308,390)
+
+        # tool box
+        tool_box = QtGui.QToolBox()
+        tool_box.setStyleSheet("QToolBox {background:#292E33; border-radius: 5px}")
+
+        # items
+        tool_box.addItem(panel_foto_detection,
+                         'Detection Object to Foto')
+        tool_box.addItem(QtGui.QPlainTextEdit('Text 2'),
+                         'Page 2')
+       
+        
+        vlayout = QtGui.QVBoxLayout(self.foto_panel)
+        vlayout.addWidget(tool_box)
+        self.foto_panel.setLayout(vlayout)
+
 
         #Video panel  
         self.video_panel = QtGui.QLabel(self)
@@ -642,13 +696,11 @@ class QMain(QtGui.QWidget):
         layout.addWidget(self.treeView)
         
         
-
 app = QtGui.QApplication(sys.argv)
 qb = QMain()
 
 qb.show()
-sys.exit(app.exec_())
-   
+sys.exit(app.exec_())   
 
 
    
