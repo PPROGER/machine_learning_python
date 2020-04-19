@@ -16,6 +16,8 @@ class QMain(QtGui.QWidget):
         self.setWindowIcon(QtGui.QIcon('image/web.png'))
         self.setFixedSize(1600,900)
         
+        
+        
 
         menu = QtGui.QLabel(self)
         menu.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; border-radius: 5px; padding-left: 10px; margin: 5px}")
@@ -502,6 +504,7 @@ class QMain(QtGui.QWidget):
         label_foto_model.setGeometry(10,290,100,50)
 
         self.object_list_foto = QtGui.QPlainTextEdit(panel_foto_detection)
+        self.object_list_foto.setStyleSheet("QPlainTextEdit {background:#222528;color:#FBFBFC; border: 2px solid #222528; font: 20px}")
         self.object_list_foto.setGeometry(10,350,1308,390)
 
         # tool box
@@ -694,14 +697,8 @@ class QMain(QtGui.QWidget):
         
         layout = QtGui.QVBoxLayout(self.tree_panel)
         layout.addWidget(self.treeView)
-        
-        
-app = QtGui.QApplication(sys.argv)
-qb = QMain()
 
-qb.show()
-sys.exit(app.exec_())   
-
+        
 
    
         

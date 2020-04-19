@@ -1,4 +1,5 @@
 import sys
+from PIL import Image
 import random
 from PyQt4 import QtGui, QtCore
 import cv2
@@ -6,6 +7,7 @@ import dlib
 from skimage import io
 from scipy.spatial import distance
 from datetime import datetime
+import numpy
 
 
 
@@ -20,6 +22,7 @@ from load_form import QLoad
 from FacialRecognitionProject.face_dataset import Face_datasets
 from FacialRecognitionProject.face_training import Face_trainings
 from FacialRecognitionProject.face_recognition import Face_recognitions
+from FirstDetectionFoto.FirstDetection import FirstDetection
 
 
     
@@ -411,6 +414,22 @@ def addItems(parent, elements):
         if children:
             addItems(item, children)
 
+def Foto_detection():
+    if(main_forms.foto_modelEdit.text() != "" and main_forms.foto_imageEdit.text() != ""):
+        obj_str = ""
+        detections = FirstDetection(main_forms.foto_modelEdit.text(), main_forms.foto_imageEdit.text())
+        for eachObject in detections:
+            obj_str += eachObject["name"]+ " : " +numpy.str(eachObject["percentage_probability"])+"\n" 
+
+        main_forms.object_list_foto.setPlainText(obj_str)
+        img = Image.open(r'/home/pproger/Desktop/machine_learning_python/FirstDetectionFoto/imagenew.jpeg')
+        img.show()
+
+        
+            
+            
+
+
 #Основная программа 
 app = QtGui.QApplication(sys.argv)
 load_form = QLoad()
@@ -443,6 +462,7 @@ main_forms.logout_button.clicked.connect(Logout_forms)
 main_forms.Face_dataset_button.clicked.connect(Face_dataset)
 main_forms.Face_training_button.clicked.connect(Face_training)
 main_forms.Face_recognition_button.clicked.connect(Face_recognition)
+main_forms.foto_detection_button.clicked.connect(Foto_detection)
 
 
 load_form.show()
