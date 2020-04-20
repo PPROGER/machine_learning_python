@@ -414,13 +414,17 @@ def addItems(parent, elements):
         if children:
             addItems(item, children)
 
+
+
 def Foto_detection():
-    if(main_forms.foto_modelEdit.text() != "" and main_forms.foto_imageEdit.text() != ""):
+    
+    if(main_forms.foto_modelEdit.text() != "" and main_forms.foto_imageEdit.text() != "" and main_forms.foto_image_outEdit.text() != ""):
         obj_str = ""
-        detections = FirstDetection(main_forms.foto_modelEdit.text(), main_forms.foto_imageEdit.text())
+        detections = FirstDetection(main_forms.foto_modelEdit.text(), main_forms.foto_imageEdit.text(), main_forms.foto_image_outEdit.text())
         for eachObject in detections:
             obj_str += eachObject["name"]+ " : " +numpy.str(eachObject["percentage_probability"])+"\n" 
-
+        main_forms.label_status_message.setText("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t         Processing.....")
+        main_forms.label_status_message.setText("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  Successful recognition of objects in the photo")
         main_forms.object_list_foto.setPlainText(obj_str)
         img = Image.open(r'/home/pproger/Desktop/machine_learning_python/FirstDetectionFoto/imagenew.jpeg')
         img.show()

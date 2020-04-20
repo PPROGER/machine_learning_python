@@ -7,15 +7,22 @@ from PyQt4 import QtGui, QtCore
 
 
 
-class QMain(QtGui.QWidget):
+class QMain(QtGui.QMainWindow):
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
 
-        self.setGeometry(150, 100, 1600,900)
+        self.setGeometry(150, 100, 1600,1000)
         self.setWindowTitle('Laboratory detection')
         self.setWindowIcon(QtGui.QIcon('image/web.png'))
-        self.setFixedSize(1600,900)
-        
+        self.setFixedSize(1600,926)
+        self.statusBar = QtGui.QStatusBar()
+        self.statusBar.setStyleSheet("QStatusBar{background:#076CDA;border-radius: 1px; }")
+        self.setStatusBar(self.statusBar)
+
+       
+
+       
+
         
         
 
@@ -25,7 +32,7 @@ class QMain(QtGui.QWidget):
        
         menu.setGeometry(0,0,250,900)
 
-        style_button = "QPushButton {background:transparent; border-radius: 5px; border: 2px solid #076CDA; font: 16px;} QPushButton:pressed {border: 2px solid #26B186}"
+        style_button = "QPushButton {background:transparent; border-radius: 5px; border: 2px solid #076CDA; font: 16px;outline: none; } QPushButton:focus {color:#007AFF; font-weight: bold;}"
 
         self.cam_button = QtGui.QPushButton('CAM', menu)
         self.cam_button.setStyleSheet(style_button)
@@ -111,7 +118,7 @@ class QMain(QtGui.QWidget):
 
         #Кнопка поиска
         self.search_function_button = QtGui.QPushButton(" Search",panel)
-        self.search_function_button.setStyleSheet("QPushButton {background:#007AFF; border: 1px solid #007AFF; border-radius: 2px}")
+        self.search_function_button.setStyleSheet("QPushButton {background:#007AFF; border: 1px solid #007AFF; border-radius: 2px;outline: none; } QPushButton:hover {background:#007AFF;font-weight: bold;}")
         self.search_function_button.setGeometry(530,13.7,100,34)
 
         #Сам поиск 
@@ -125,13 +132,13 @@ class QMain(QtGui.QWidget):
 
 
         self.message_function_button = QtGui.QPushButton(panel)
-        self.message_function_button.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;}")
+        self.message_function_button.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;outline: none;}")
         self.message_function_button.setIcon(QtGui.QIcon('image/massage_function_panel.png'))
         self.message_function_button.setIconSize(QtCore.QSize(35,35))
         self.message_function_button.setGeometry(990,13,40,40)
 
         self.bell_function_button = QtGui.QPushButton(panel)
-        self.bell_function_button.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;}")
+        self.bell_function_button.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;outline: none;}")
         self.bell_function_button.setIcon(QtGui.QIcon('image/bell_function_panel.png'))
         self.bell_function_button.setIconSize(QtCore.QSize(30,30))
         self.bell_function_button.setGeometry(1035,13,40,40)
@@ -280,7 +287,7 @@ class QMain(QtGui.QWidget):
         self.message_edit.setGeometry(40,170,605,200)
 
         self.enter_button = QtGui.QPushButton('Send a message', label_tehn)
-        self.enter_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;}")
+        self.enter_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;outline: none; } QPushButton:hover {background:#076CDA;font-weight: bold;}")
         self.enter_button.setGeometry(450,380,200,50)
 
         
@@ -481,23 +488,33 @@ class QMain(QtGui.QWidget):
 
         self.foto_modelEdit = QtGui.QLineEdit(panel_foto_detection)
         self.foto_modelEdit.setStyleSheet(foto_style_css[1])
-        self.foto_modelEdit.setGeometry(185,28,1100,35)
+        self.foto_modelEdit.setGeometry(200,28,1100,35)
         self.foto_modelEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.foto_modelEdit.setText("/home/pproger/Desktop/machine_learning_python/FirstDetectionFoto/resnet50_coco_best_v2.0.1.h5")
 
-        label_foto_image = QtGui.QLabel("input_image:",panel_foto_detection)
+        label_foto_image = QtGui.QLabel("Input_image:",panel_foto_detection)
         label_foto_image .setStyleSheet(foto_style_css[0])
         label_foto_image .setGeometry(10,100,165,50)
 
         self.foto_imageEdit = QtGui.QLineEdit(panel_foto_detection)
         self.foto_imageEdit.setStyleSheet(foto_style_css[1])
-        self.foto_imageEdit.setGeometry(185,108,1100,35)
+        self.foto_imageEdit.setGeometry(200,108,1100,35)
         self.foto_imageEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.foto_imageEdit.setText("/home/pproger/Desktop/machine_learning_python/FirstDetectionFoto/image.jpeg")
 
+        label_foto_image_out = QtGui.QLabel("Output_image:",panel_foto_detection)
+        label_foto_image_out .setStyleSheet(foto_style_css[0])
+        label_foto_image_out.setGeometry(10,180,190,50)
+
+        self.foto_image_outEdit = QtGui.QLineEdit(panel_foto_detection)
+        self.foto_image_outEdit.setStyleSheet(foto_style_css[1])
+        self.foto_image_outEdit.setGeometry(200,188,1100,35)
+        self.foto_image_outEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.foto_image_outEdit.setText("/home/pproger/Desktop/machine_learning_python/FirstDetectionFoto/imagenew.jpeg")
+
         self.foto_detection_button = QtGui.QPushButton('Detection Object', panel_foto_detection)
-        self.foto_detection_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;}")
-        self.foto_detection_button.setGeometry(750,200,540,50)
+        self.foto_detection_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;outline: none; } QPushButton:hover {background:#076CDA;font-weight: bold;}")
+        self.foto_detection_button.setGeometry(760,250,540,50)
 
         label_foto_model = QtGui.QLabel("Object:",panel_foto_detection)
         label_foto_model.setStyleSheet(foto_style_css[0])
@@ -603,7 +620,7 @@ class QMain(QtGui.QWidget):
 
 
         self.Face_dataset_button = QtGui.QPushButton('Face dataset', self.cam_panel)
-        self.Face_dataset_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;}")
+        self.Face_dataset_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;outline: none; } QPushButton:hover {background:#076CDA;font-weight: bold;}")
         self.Face_dataset_button.setGeometry(500,180,540,50)
 
         #line_label_cam1 = QtGui.QLabel(self.cam_panel)
@@ -637,7 +654,7 @@ class QMain(QtGui.QWidget):
         self.modelEdit.setText("/home/pproger/Desktop/machine_learning_python/FacialRecognitionProject/trainer/trainer.yml")
 
         self.Face_training_button = QtGui.QPushButton('Face training', self.cam_panel)
-        self.Face_training_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;}")
+        self.Face_training_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;outline: none; } QPushButton:hover {background:#076CDA;font-weight: bold;}")
         self.Face_training_button.setGeometry(500,450,540,50)
 
         #Распознование лица
@@ -672,7 +689,7 @@ class QMain(QtGui.QWidget):
         self.object_number_recognitionEdit.setText("1")
 
         self.Face_recognition_button = QtGui.QPushButton('Face training', self.cam_panel)
-        self.Face_recognition_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;}")
+        self.Face_recognition_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;outline: none; } QPushButton:hover {background:#076CDA;font-weight: bold;}")
         self.Face_recognition_button.setGeometry(500,720,540,50)
 
         self.check_button_add_object_db = QtGui.QCheckBox("Add object to db",self.cam_panel)
@@ -698,9 +715,25 @@ class QMain(QtGui.QWidget):
         layout = QtGui.QVBoxLayout(self.tree_panel)
         layout.addWidget(self.treeView)
 
+
+        #StatusBar настройкa
+        self.label_status_message = QtGui.QLabel("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t         Successfully work all the functions")
+        label_layout_version = QtGui.QLabel("  Version 1.1.0")
+        
+        
+        
+        self.connect_function_button = QtGui.QPushButton()
+        self.connect_function_button.setStyleSheet("QPushButton {background:#076CDA; border: 1px solid #076CDA;outline: none;}")
+        self.connect_function_button.setIcon(QtGui.QIcon('image/connect.png'))
+        self.connect_function_button.setIconSize(QtCore.QSize(20,20))
+        
+       
+        self.statusBar.addWidget(label_layout_version)
+        self.statusBar.addWidget(self.connect_function_button)
+
+        self.statusBar.addWidget(self.label_status_message)
         
 
-   
         
         
 
