@@ -522,7 +522,38 @@ class QMain(QtGui.QMainWindow):
 
         self.object_list_foto = QtGui.QPlainTextEdit(panel_foto_detection)
         self.object_list_foto.setStyleSheet("QPlainTextEdit {background:#222528;color:#FBFBFC; border: 2px solid #222528; font: 20px}")
-        self.object_list_foto.setGeometry(10,350,1308,390)
+        self.object_list_foto.setGeometry(10,350,1208,390)
+
+        style_panel_foto = "QPushButton {background:#292E33; border: 1px solid #292E33;outline: none;} QPushButton:hover {background:#222528;}"
+        self.folder_open_button = QtGui.QPushButton(panel_foto_detection)
+        self.folder_open_button.setStyleSheet(style_panel_foto)
+        self.folder_open_button.setIcon(QtGui.QIcon('image/folder_open.png'))
+        self.folder_open_button.setIconSize(QtCore.QSize(72,72))
+        self.folder_open_button.setGeometry(1235,340,72,72)
+
+        self.folder_dowladon_button = QtGui.QPushButton(panel_foto_detection)
+        self.folder_dowladon_button.setStyleSheet(style_panel_foto)
+        self.folder_dowladon_button.setIcon(QtGui.QIcon('image/folder_dowladon.png'))
+        self.folder_dowladon_button.setIconSize(QtCore.QSize(72,72))
+        self.folder_dowladon_button.setGeometry(1235,420,72,72)
+
+        self.folder_db_save_button = QtGui.QPushButton(panel_foto_detection)
+        self.folder_db_save_button.setStyleSheet(style_panel_foto)
+        self.folder_db_save_button.setIcon(QtGui.QIcon('image/folder_db_save.png'))
+        self.folder_db_save_button.setIconSize(QtCore.QSize(55,55))
+        self.folder_db_save_button.setGeometry(1235,500,72,72)
+
+        self.folder_file_save_button = QtGui.QPushButton(panel_foto_detection)
+        self.folder_file_save_button.setStyleSheet(style_panel_foto)
+        self.folder_file_save_button.setIcon(QtGui.QIcon('image/folder_file_save.png'))
+        self.folder_file_save_button.setIconSize(QtCore.QSize(72,72))
+        self.folder_file_save_button.setGeometry(1235,580,72,72)
+
+        self.prikrep_file_button = QtGui.QPushButton(panel_foto_detection)
+        self.prikrep_file_button.setStyleSheet(style_panel_foto)
+        self.prikrep_file_button.setIcon(QtGui.QIcon('image/prikrep_file.png'))
+        self.prikrep_file_button.setIconSize(QtCore.QSize(62,72))
+        self.prikrep_file_button.setGeometry(1235,660,72,72)
 
         # tool box
         tool_box = QtGui.QToolBox()
@@ -735,7 +766,11 @@ class QMain(QtGui.QMainWindow):
         
 
         
-        
+app = QtGui.QApplication(sys.argv)
+qb = QMain()
+
+qb.show()
+sys.exit(app.exec_())        
 
 
 
