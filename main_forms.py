@@ -551,7 +551,7 @@ class QMain(QtGui.QMainWindow):
 
         self.prikrep_file_button = QtGui.QPushButton(panel_foto_detection)
         self.prikrep_file_button.setStyleSheet(style_panel_foto)
-        self.prikrep_file_button.setIcon(QtGui.QIcon('image/prikrep_file.png'))
+        self.prikrep_file_button.setIcon(QtGui.QIcon('image/graph.png'))
         self.prikrep_file_button.setIconSize(QtCore.QSize(62,72))
         self.prikrep_file_button.setGeometry(1235,660,72,72)
 
@@ -766,11 +766,7 @@ class QMain(QtGui.QMainWindow):
         
 
         
-app = QtGui.QApplication(sys.argv)
-qb = QMain()
-
-qb.show()
-sys.exit(app.exec_())        
+      
 
 
 

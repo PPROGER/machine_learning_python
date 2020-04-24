@@ -1,4 +1,6 @@
 import sys
+import os
+import shutil
 from PIL import Image
 import random
 from PyQt4 import QtGui, QtCore
@@ -430,8 +432,36 @@ def Foto_detection():
         img.show()
 
         
+def Folder_Open():
+    QtGui.QFileDialog.getExistingDirectory(main_forms,'Open Folder','/home/pproger/Desktop/machine_learning_python/FirstDetectionFoto')            
             
-            
+
+def Folder_Dowladon():
+    if(main_forms.foto_imageEdit.text() != "" and main_forms.foto_image_outEdit.text() != ""):
+        os.system("mkdir /home/pproger/Desktop/Copy_foto_detection")
+        shutil.copy2(main_forms.foto_imageEdit.text(), r'/home/pproger/Desktop/Copy_foto_detection/image_input_copy.jpeg')
+        shutil.copy2(main_forms.foto_image_outEdit.text(), r'/home/pproger/Desktop/Copy_foto_detection/image_output_copy.jpeg')
+        QtGui.QFileDialog.getExistingDirectory(main_forms,'Open copy file','/home/pproger/Desktop/Copy_foto_detection')
+
+
+def folder_db_save():
+    if(main_forms.object_list_foto.toPlainText()!= "" and main_forms.foto_image_outEdit.text() != ""):
+        cur = con.cursor()
+        cur.execute('INSERT INTO foto_log (id,nazva_image, object) VALUES (?,?,?)',(random.randint(100,1000),main_forms.foto_image_outEdit.text(), main_forms.object_list_foto.toPlainText()))
+        QtGui.QMessageBox.about(QtGui.QWidget(),"Message","Message ok!")
+        con.commit()
+       
+    else:
+        QtGui.QMessageBox.about(QtGui.QWidget(),"Message","Detection object to foto!")
+
+def File_save_foto():
+    if(main_forms.object_list_foto.toPlainText()!= "" and main_forms.foto_image_outEdit.text() != ""):
+        my_file = open("/home/pproger/Desktop/file.txt", "w")
+        my_file.write(str(main_forms.foto_image_outEdit.text() + "\n" + main_forms.object_list_foto.toPlainText()))
+        my_file.close()
+        QtGui.QMessageBox.about(QtGui.QWidget(),"Message","Message ok!")
+    else:
+        QtGui.QMessageBox.about(QtGui.QWidget(),"Message","Detection object to foto!")
 
 
 #Основная программа 
@@ -467,6 +497,10 @@ main_forms.Face_dataset_button.clicked.connect(Face_dataset)
 main_forms.Face_training_button.clicked.connect(Face_training)
 main_forms.Face_recognition_button.clicked.connect(Face_recognition)
 main_forms.foto_detection_button.clicked.connect(Foto_detection)
+main_forms.folder_open_button.clicked.connect(Folder_Open)
+main_forms.folder_dowladon_button.clicked.connect(Folder_Dowladon)
+main_forms.folder_db_save_button.clicked.connect(folder_db_save)
+main_forms.folder_file_save_button.clicked.connect(File_save_foto)
 
 
 load_form.show()
