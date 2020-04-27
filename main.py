@@ -464,6 +464,11 @@ def File_save_foto():
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message","Detection object to foto!")
 
 
+def Exit_panel_connect_db():
+    main_forms.connect_db_panel.setVisible(False)
+
+def Connect_function():
+    main_forms.connect_db_panel.setVisible(True)
 #Основная программа 
 app = QtGui.QApplication(sys.argv)
 load_form = QLoad()
@@ -501,7 +506,8 @@ main_forms.folder_open_button.clicked.connect(Folder_Open)
 main_forms.folder_dowladon_button.clicked.connect(Folder_Dowladon)
 main_forms.folder_db_save_button.clicked.connect(folder_db_save)
 main_forms.folder_file_save_button.clicked.connect(File_save_foto)
-
+main_forms.exit_connect_db_button.clicked.connect(Exit_panel_connect_db)
+main_forms.connect_function_button.clicked.connect(Connect_function)
 
 load_form.show()
 Progress_load()

@@ -202,7 +202,7 @@ class QMain(QtGui.QMainWindow):
         self.db_faceid_button = QtGui.QPushButton(self.main_panel)
         self.db_faceid_button.setIcon(QtGui.QIcon('image/0.png'))
         self.db_faceid_button.setIconSize(QtCore.QSize(70,70))
-        self.db_faceid_button.setStyleSheet("QPushButton {background:transparent; border-radius: 16px; }")
+        self.db_faceid_button.setStyleSheet("QPushButton {background:transparent; border-radius: 16px; outline: none; }")
         self.db_faceid_button.setGeometry(100,210,70,35)
 
         false_label_db = QtGui.QLabel("False",self.main_panel)
@@ -222,7 +222,7 @@ class QMain(QtGui.QMainWindow):
         self.log_button_face = QtGui.QPushButton(self.main_panel)
         self.log_button_face.setIcon(QtGui.QIcon('image/0.png'))
         self.log_button_face.setIconSize(QtCore.QSize(70,70))
-        self.log_button_face.setStyleSheet("QPushButton {background:transparent; border-radius: 16px; }")
+        self.log_button_face.setStyleSheet("QPushButton {background:transparent; border-radius: 16px; outline: none; }")
         self.log_button_face.setGeometry(100,320,70,35)
 
         false_label_log = QtGui.QLabel("False",self.main_panel)
@@ -245,7 +245,7 @@ class QMain(QtGui.QMainWindow):
         self.tema_button = QtGui.QPushButton(system_label)
         self.tema_button.setIcon(QtGui.QIcon('image/0.png'))
         self.tema_button.setIconSize(QtCore.QSize(70,70))
-        self.tema_button.setStyleSheet("QPushButton {background:transparent; border-radius: 16px; }")
+        self.tema_button.setStyleSheet("QPushButton {background:transparent; border-radius: 16px; outline: none; }")
         self.tema_button.setGeometry(110,50,70,35)
 
         theme_tema = QtGui.QLabel("Light",system_label)
@@ -754,7 +754,7 @@ class QMain(QtGui.QMainWindow):
         
         
         self.connect_function_button = QtGui.QPushButton()
-        self.connect_function_button.setStyleSheet("QPushButton {background:#076CDA; border: 1px solid #076CDA;outline: none;}")
+        self.connect_function_button.setStyleSheet("QPushButton {background:#076CDA; border: 1px solid #076CDA;outline: none;} QPushButton:hover {background:#1F8AD2}")
         self.connect_function_button.setIcon(QtGui.QIcon('image/connect.png'))
         self.connect_function_button.setIconSize(QtCore.QSize(20,20))
         
@@ -764,9 +764,37 @@ class QMain(QtGui.QMainWindow):
 
         self.statusBar.addWidget(self.label_status_message)
         
+        #Панель конекта с базой данных
+        self.connect_db_panel = QtGui.QLabel(self)
+        self.connect_db_panel.setVisible(False)
+        self.connect_db_panel.setStyleSheet("QLabel {background:#292E33; border: 2px solid #1F2327; border-radius: 5px; margin: 5px}")
+        self.connect_db_panel.setGeometry(105,618,400,300)
+
+        self.exit_connect_db_button = QtGui.QPushButton(self.connect_db_panel)
+        self.exit_connect_db_button.setStyleSheet(style_panel_foto)
+        self.exit_connect_db_button.setIcon(QtGui.QIcon('image/close.png'))
+        self.exit_connect_db_button.setIconSize(QtCore.QSize(22,22))
+        self.exit_connect_db_button.setGeometry(365,15,20,20)
+
+
+        connect_style_css = ["QLabel {background:#292E33; border: 1px solid #292E33; color: #6D6F72; font: 18px;}", "QLineEdit {background:#222528;color:#FBFBFC; border: 2px solid #222528; font: 16px; }"]
+        label_path_training = QtGui.QLabel("Database path:",self.connect_db_panel)
+        label_path_training.setStyleSheet(connect_style_css[0])
+        label_path_training.setGeometry(10,30,150,50)
+
+        self.path_trainingEdit = QtGui.QLineEdit(self.connect_db_panel)
+        self.path_trainingEdit.setStyleSheet(connect_style_css[1])
+        self.path_trainingEdit.setGeometry(160,45,200,25)
+        self.path_trainingEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.path_trainingEdit.setText("logo.db")
+
+
+
+
+ 
 
         
-      
+  
 
 
 
