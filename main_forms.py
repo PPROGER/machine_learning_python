@@ -32,7 +32,7 @@ class QMain(QtGui.QMainWindow):
        
         menu.setGeometry(0,0,250,900)
 
-        style_button = "QPushButton {background:transparent; border-radius: 5px; border: 2px solid #076CDA; font: 16px;outline: none; } QPushButton:focus {color:#007AFF; font-weight: bold;}"
+        style_button = "QPushButton {background:transparent; border-radius: 5px; border: 2px solid #076CDA; font: 16px;outline: none; } QPushButton:hover {font: bold;} QPushButton:focus {color:#007AFF; font-weight: bold;}"
 
         self.cam_button = QtGui.QPushButton('CAM', menu)
         self.cam_button.setStyleSheet(style_button)
@@ -76,7 +76,7 @@ class QMain(QtGui.QMainWindow):
 
 
         #Плагины 
-        self.plugins = QtGui.QPushButton('PLAGINS',menu)
+        self.plugins = QtGui.QPushButton('PLUGIN',menu)
         self.plugins.setStyleSheet(style_button)
         self.plugins.setIcon(QtGui.QIcon('image/plagin.png'))
         self.plugins.setIconSize(QtCore.QSize(48,48))
@@ -101,7 +101,7 @@ class QMain(QtGui.QMainWindow):
         line_label_menu.setGeometry(0,800,250,3)
 
         self.logout_button = QtGui.QPushButton('Logout',menu)
-        self.logout_button.setStyleSheet("QPushButton {background: transparent; font: 14}")
+        self.logout_button.setStyleSheet("QPushButton {background: transparent; font: 14; outline: none;} QPushButton:hover {font: bold}")
         self.logout_button.setGeometry(100,820,50,50)
 
         #Панель инструментов
@@ -472,7 +472,7 @@ class QMain(QtGui.QMainWindow):
 
         #FOTO panel  
         self.foto_panel = QtGui.QLabel(self)
-        #self.foto_panel.setVisible(False)
+        self.foto_panel.setVisible(False)
         self.foto_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; margin: 5px}")
         self.foto_panel.setGeometry(243,53,1359,848)
 
@@ -789,12 +789,55 @@ class QMain(QtGui.QMainWindow):
         self.path_trainingEdit.setText("logo.db")
 
 
+        #Plagins panel  
+        self.Plagins_panel = QtGui.QLabel(self)
+        #self.Plagins_panel.setVisible(False)
+        self.Plagins_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
+        self.Plagins_panel.setGeometry(243,53,1359,848)
 
+        #Cловарь для поиска плагина
+        model_plag = QtGui.QStringListModel()
+        model_plag.setStringList(['Face ID', 'Face', 'in', 'my', 'dictionary'])
 
- 
+        completer_plag = QtGui.QCompleter()
+        completer_plag.setModel(model_plag)
 
         
-  
+
+        #Сам поиск 
+        lineedit_plagin = QtGui.QLineEdit(self.Plagins_panel)
+        lineedit_plagin.setCompleter(completer_plag)
+        lineedit_plagin.setStyleSheet("QLineEdit {background:#222528; border-radius: 10px; font: 18px;}")
+        lineedit_plagin.setGeometry(27,30,1300,45)
+        lineedit_plagin.setAlignment(QtCore.Qt.AlignCenter)  
+
+        self.plagins_function = QtGui.QLabel(self.Plagins_panel)
+        self.plagins_function.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 2px;}")
+        self.plagins_function.setGeometry(27,100,1300,100)
+
+        image_plugins = QtGui.QLabel(self.plagins_function)
+        pixmap1 = QtGui.QPixmap('image/face_plugins.png')
+        image_plugins.setPixmap(pixmap1)
+        image_plugins.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33;}")
+        image_plugins.setGeometry(5,5,95,90)
+
+        plugin_style_css = ["QLabel {background:#292E33; border: 1px solid #292E33; color: #6D6F72; font: 20px;}", "QLineEdit {background:#222528;color:#FBFBFC; font: 16px; border: 2px solid #222528; font: 20px; }"]
+        text_plugin_label = QtGui.QLabel('Face ID - a scanner of the three-dimensional shape of a person’s face. Used to identify a person.',self.plagins_function)
+        text_plugin_label.setStyleSheet(plugin_style_css[0])
+        text_plugin_label.setGeometry(120,5,900,90)
+
+        self.plugins = QtGui.QPushButton('Add plugin',self.plagins_function)
+        self.plugins.setStyleSheet(style_button)
+        self.plugins.setIcon(QtGui.QIcon('image/add_plugin.png'))
+        self.plugins.setIconSize(QtCore.QSize(30,30))
+        self.plugins.setGeometry(1050,20,200,60)
+
+        
+app = QtGui.QApplication(sys.argv)
+qb = QMain()
+
+qb.show()
+sys.exit(app.exec_())  
 
 
 
