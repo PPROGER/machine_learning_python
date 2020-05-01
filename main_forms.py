@@ -797,37 +797,92 @@ class QMain(QtGui.QMainWindow):
         
 
        
-        
-        self.plagins_function = QtGui.QLabel(self.scrollAreaWidgetContents)
-        self.plagins_function.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 2px;} QLabel:hover {border: 4px solid #1F2327;}")
-        self.plagins_function.setMinimumHeight(100)
+        #Плагин Face ID
+        self.plagins_function_face = QtGui.QLabel(self.scrollAreaWidgetContents)
+        self.plagins_function_face.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 2px;} QLabel:hover {border: 4px solid #1F2327;}")
+        self.plagins_function_face.setMinimumHeight(100)
 
        
 
-        self.verticalLayoutScroll.addWidget(self.plagins_function)
+        self.verticalLayoutScroll.addWidget(self.plagins_function_face)
+
+        image_plugins_face = QtGui.QLabel(self.plagins_function_face)
+        pixmap1 = QtGui.QPixmap('image/face_plugins.png')
+        image_plugins_face.setPixmap(pixmap1)
+        image_plugins_face.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33;}")
+        image_plugins_face.setGeometry(5,5,95,90)
+
+        plugin_style_css = ["QLabel {background:#292E33; border: 1px solid #292E33; color: #6D6F72; font: 20px;}", "QLineEdit {background:#222528;color:#FBFBFC; font: 16px; border: 2px solid #222528; font: 20px; }"]
+        text_plugin_label_face = QtGui.QLabel('Face ID - a scanner of the three-dimensional shape of a person’s face. Used to identify a person',self.plagins_function_face)
+        text_plugin_label_face.setStyleSheet(plugin_style_css[0])
+        text_plugin_label_face.setGeometry(120,5,900,90)
+
+        self.plugins_face = QtGui.QPushButton('Add plugin',self.plagins_function_face)
+        self.plugins_face.setStyleSheet(style_button)
+        self.plugins_face.setIcon(QtGui.QIcon('image/add_plugin.png'))
+        self.plugins_face.setIconSize(QtCore.QSize(30,30))
+        self.plugins_face.setGeometry(1050,20,200,60)
+
+        #Плагин Идентификации боле ли человек на туберкулез
+        self.plagins_function_flugo = QtGui.QLabel(self.scrollAreaWidgetContents)
+        self.plagins_function_flugo.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 2px;} QLabel:hover {border: 4px solid #1F2327;}")
+        self.plagins_function_flugo.setMinimumHeight(100)
+
+       
+
+        self.verticalLayoutScroll.addWidget(self.plagins_function_flugo)
+
+        image_plugins_flugo = QtGui.QLabel(self.plagins_function_flugo)
+        pixmap2 = QtGui.QPixmap('image/flugo1.png')
+        image_plugins_flugo.setPixmap(pixmap2)
+        image_plugins_flugo.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33;}")
+        image_plugins_flugo.setGeometry(5,5,95,90)
+
         
+        text_plugin_label_flugo = QtGui.QLabel('Fluorography is an X-ray examination that involves photographing an image of a fluorescent screen.',self.plagins_function_flugo)
+        text_plugin_label_flugo.setStyleSheet(plugin_style_css[0])
+        text_plugin_label_flugo.setGeometry(120,5,900,90)
+
+        self.plugins_flugo = QtGui.QPushButton('Add plugin',self.plagins_function_flugo)
+        self.plugins_flugo.setStyleSheet(style_button)
+        self.plugins_flugo.setIcon(QtGui.QIcon('image/add_plugin.png'))
+        self.plugins_flugo.setIconSize(QtCore.QSize(30,30))
+        self.plugins_flugo.setGeometry(1050,20,200,60)
+
+
+        #Плагин переобразование с чорнобелой фотографии в цветную
+        self.plagins_function_foto = QtGui.QLabel(self.scrollAreaWidgetContents)
+        self.plagins_function_foto.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 2px;} QLabel:hover {border: 4px solid #1F2327;}")
+        self.plagins_function_foto.setMinimumHeight(100)
+
+       
+
+        self.verticalLayoutScroll.addWidget(self.plagins_function_foto)
+
+        image_plugins_foto = QtGui.QLabel(self.plagins_function_foto)
+        pixmap3 = QtGui.QPixmap('image/foto_plagin.png')
+        image_plugins_foto.setPixmap(pixmap3)
+        image_plugins_foto.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33;}")
+        image_plugins_foto.setGeometry(5,5,95,90)
+
+        
+        text_plugin_label_foto = QtGui.QLabel('Automatically convert a black and white photo into a color photo using a neural network',self.plagins_function_foto)
+        text_plugin_label_foto.setStyleSheet(plugin_style_css[0])
+        text_plugin_label_foto.setGeometry(120,5,900,90)
+
+        self.plugins_foto = QtGui.QPushButton('Add plugin',self.plagins_function_foto)
+        self.plugins_foto.setStyleSheet(style_button)
+        self.plugins_foto.setIcon(QtGui.QIcon('image/add_plugin.png'))
+        self.plugins_foto.setIconSize(QtCore.QSize(30,30))
+        self.plugins_foto.setGeometry(1050,20,200,60)
+
+
+
         self.plagins_function1 = QtGui.QLabel(self.scrollAreaWidgetContents)
         self.plagins_function1.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 2px;} QLabel:hover {border: 4px solid #1F2327;}")
         self.plagins_function1.setMinimumHeight(1000)
         
         self.verticalLayoutScroll.addWidget(self.plagins_function1)
-
-        image_plugins = QtGui.QLabel(self.plagins_function)
-        pixmap1 = QtGui.QPixmap('image/face_plugins.png')
-        image_plugins.setPixmap(pixmap1)
-        image_plugins.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33;}")
-        image_plugins.setGeometry(5,5,95,90)
-
-        plugin_style_css = ["QLabel {background:#292E33; border: 1px solid #292E33; color: #6D6F72; font: 20px;}", "QLineEdit {background:#222528;color:#FBFBFC; font: 16px; border: 2px solid #222528; font: 20px; }"]
-        text_plugin_label = QtGui.QLabel('Face ID - a scanner of the three-dimensional shape of a person’s face. Used to identify a person.',self.plagins_function)
-        text_plugin_label.setStyleSheet(plugin_style_css[0])
-        text_plugin_label.setGeometry(120,5,900,90)
-
-        self.plugins = QtGui.QPushButton('Add plugin',self.plagins_function)
-        self.plugins.setStyleSheet(style_button)
-        self.plugins.setIcon(QtGui.QIcon('image/add_plugin.png'))
-        self.plugins.setIconSize(QtCore.QSize(30,30))
-        self.plugins.setGeometry(1050,20,200,60)
 
         
 
