@@ -32,7 +32,7 @@ class QMain(QtGui.QMainWindow):
        
         menu.setGeometry(0,0,250,900)
 
-        style_button = "QPushButton {background:transparent; border-radius: 5px; border: 2px solid #076CDA; font: 16px;outline: none; } QPushButton:hover {font: bold;} QPushButton:focus {color:#007AFF; font-weight: bold;}"
+        style_button = "QPushButton {background:transparent; border-radius: 5px; border: 2px solid #076CDA; font: 16px;outline: none; } QPushButton:hover {font: bold; border: 3px solid #076CDA;} QPushButton:focus {color:#007AFF; font-weight: bold;}"
 
         self.cam_button = QtGui.QPushButton('CAM', menu)
         self.cam_button.setStyleSheet(style_button)
@@ -763,7 +763,78 @@ class QMain(QtGui.QMainWindow):
         self.statusBar.addWidget(self.connect_function_button)
 
         self.statusBar.addWidget(self.label_status_message)
+
+        #Plagins panel  
+        self.Plagins_panel = QtGui.QLabel(self)
+        #self.Plagins_panel.setVisible(False)
+        self.Plagins_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
+        self.Plagins_panel.setGeometry(243,53,1359,848)
+
+        #Cловарь для поиска плагина
+        model_plag = QtGui.QStringListModel()
+        model_plag.setStringList(['Face ID', 'Face', 'in', 'my', 'dictionary'])
+
+        completer_plag = QtGui.QCompleter()
+        completer_plag.setModel(model_plag)
+
         
+        
+        #Сам поиск 
+        lineedit_plagin = QtGui.QLineEdit(self.Plagins_panel)
+        lineedit_plagin.setCompleter(completer_plag)
+        lineedit_plagin.setStyleSheet("QLineEdit {background:#222528; border-radius: 10px; font: 18px;}")
+        lineedit_plagin.setGeometry(27,30,1300,45)
+        lineedit_plagin.setAlignment(QtCore.Qt.AlignCenter)
+
+        self.scrollArea = QtGui.QScrollArea(self.Plagins_panel)
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollAreaWidgetContents = QtGui.QWidget(self.scrollArea)
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 380, 247))
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+        self.scrollArea.setGeometry(27,100,1300,720)
+        self.verticalLayoutScroll = QtGui.QVBoxLayout(self.scrollAreaWidgetContents)
+
+        
+
+       
+        
+        self.plagins_function = QtGui.QLabel(self.scrollAreaWidgetContents)
+        self.plagins_function.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 2px;} QLabel:hover {border: 4px solid #1F2327;}")
+        self.plagins_function.setMinimumHeight(100)
+
+       
+
+        self.verticalLayoutScroll.addWidget(self.plagins_function)
+        
+        self.plagins_function1 = QtGui.QLabel(self.scrollAreaWidgetContents)
+        self.plagins_function1.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 2px;} QLabel:hover {border: 4px solid #1F2327;}")
+        self.plagins_function1.setMinimumHeight(1000)
+        
+        self.verticalLayoutScroll.addWidget(self.plagins_function1)
+
+        image_plugins = QtGui.QLabel(self.plagins_function)
+        pixmap1 = QtGui.QPixmap('image/face_plugins.png')
+        image_plugins.setPixmap(pixmap1)
+        image_plugins.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33;}")
+        image_plugins.setGeometry(5,5,95,90)
+
+        plugin_style_css = ["QLabel {background:#292E33; border: 1px solid #292E33; color: #6D6F72; font: 20px;}", "QLineEdit {background:#222528;color:#FBFBFC; font: 16px; border: 2px solid #222528; font: 20px; }"]
+        text_plugin_label = QtGui.QLabel('Face ID - a scanner of the three-dimensional shape of a person’s face. Used to identify a person.',self.plagins_function)
+        text_plugin_label.setStyleSheet(plugin_style_css[0])
+        text_plugin_label.setGeometry(120,5,900,90)
+
+        self.plugins = QtGui.QPushButton('Add plugin',self.plagins_function)
+        self.plugins.setStyleSheet(style_button)
+        self.plugins.setIcon(QtGui.QIcon('image/add_plugin.png'))
+        self.plugins.setIconSize(QtCore.QSize(30,30))
+        self.plugins.setGeometry(1050,20,200,60)
+
+        
+
+
+
+
+
         #Панель конекта с базой данных
         self.connect_db_panel = QtGui.QLabel(self)
         self.connect_db_panel.setVisible(False)
@@ -784,53 +855,13 @@ class QMain(QtGui.QMainWindow):
 
         self.path_trainingEdit = QtGui.QLineEdit(self.connect_db_panel)
         self.path_trainingEdit.setStyleSheet(connect_style_css[1])
-        self.path_trainingEdit.setGeometry(160,45,200,25)
+        self.path_trainingEdit.setGeometry(160,45,212,25)
         self.path_trainingEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.path_trainingEdit.setText("logo.db")
 
-
-        #Plagins panel  
-        self.Plagins_panel = QtGui.QLabel(self)
-        #self.Plagins_panel.setVisible(False)
-        self.Plagins_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
-        self.Plagins_panel.setGeometry(243,53,1359,848)
-
-        #Cловарь для поиска плагина
-        model_plag = QtGui.QStringListModel()
-        model_plag.setStringList(['Face ID', 'Face', 'in', 'my', 'dictionary'])
-
-        completer_plag = QtGui.QCompleter()
-        completer_plag.setModel(model_plag)
-
-        
-
-        #Сам поиск 
-        lineedit_plagin = QtGui.QLineEdit(self.Plagins_panel)
-        lineedit_plagin.setCompleter(completer_plag)
-        lineedit_plagin.setStyleSheet("QLineEdit {background:#222528; border-radius: 10px; font: 18px;}")
-        lineedit_plagin.setGeometry(27,30,1300,45)
-        lineedit_plagin.setAlignment(QtCore.Qt.AlignCenter)  
-
-        self.plagins_function = QtGui.QLabel(self.Plagins_panel)
-        self.plagins_function.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 2px;}")
-        self.plagins_function.setGeometry(27,100,1300,100)
-
-        image_plugins = QtGui.QLabel(self.plagins_function)
-        pixmap1 = QtGui.QPixmap('image/face_plugins.png')
-        image_plugins.setPixmap(pixmap1)
-        image_plugins.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33;}")
-        image_plugins.setGeometry(5,5,95,90)
-
-        plugin_style_css = ["QLabel {background:#292E33; border: 1px solid #292E33; color: #6D6F72; font: 20px;}", "QLineEdit {background:#222528;color:#FBFBFC; font: 16px; border: 2px solid #222528; font: 20px; }"]
-        text_plugin_label = QtGui.QLabel('Face ID - a scanner of the three-dimensional shape of a person’s face. Used to identify a person.',self.plagins_function)
-        text_plugin_label.setStyleSheet(plugin_style_css[0])
-        text_plugin_label.setGeometry(120,5,900,90)
-
-        self.plugins = QtGui.QPushButton('Add plugin',self.plagins_function)
-        self.plugins.setStyleSheet(style_button)
-        self.plugins.setIcon(QtGui.QIcon('image/add_plugin.png'))
-        self.plugins.setIconSize(QtCore.QSize(30,30))
-        self.plugins.setGeometry(1050,20,200,60)
+        self.connect_panel_button = QtGui.QPushButton("Restart",self.connect_db_panel)
+        self.connect_panel_button.setStyleSheet("QPushButton {background:#007AFF; border: 1px solid #007AFF; border-radius: 2px;outline: none; } QPushButton:hover {background:#007AFF;font-weight: bold;}")
+        self.connect_panel_button.setGeometry(47,100,300,34)
 
         
 app = QtGui.QApplication(sys.argv)
