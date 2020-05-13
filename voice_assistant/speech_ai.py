@@ -15,6 +15,8 @@ import logging
 import webbrowser
 import subprocess
 
+
+
 class Speech_AI:
 
     def __init__(self):
@@ -25,15 +27,17 @@ class Speech_AI:
         now_time = datetime.datetime.now()
         self._mp3_name = now_time.strftime("%d%m%Y%I%M%S")+".mp3"
         self._mp3_nameold='111'
-
+        
+    
     def work(self):
+        
         print("Минутку тишины, пожалуйста...")
         with self._microphone as source:
             self._recognizer.adjust_for_ambient_noise(source)
 
         try:
             while True:
-                self.say(str("Скажи что - нибудь!"))
+                self.say(str("Что вам угодно мой господин"))
                 #print("Скажи что - нибудь!")
                 with self._microphone as source:
                     audio = self._recognizer.listen(source)
@@ -47,6 +51,9 @@ class Speech_AI:
 
                     if((statement.find("browser")!=-1) or (statement.find("браузер")!=-1)):
                         self.openurl('http://google.com', 'Открываю браузер')
+                        while pygame.mixer.music.get_busy():
+                            time.sleep(0.1)
+                        break
  
                     # Команды для открытия URL в браузере
                     
@@ -99,7 +106,13 @@ class Speech_AI:
                         statement=statement.strip()
                         self.openurl('https://my.mail.ru/music/search/' + statement, "Нажмите плэй")
 
+                    if((statement.find("Справка по программе")!=-1) or (statement.find("Довидка по программе")!=-1)):
+                        answer = "Эта программа создана для распознование обьектов"
+                        self.say(str(answer))
 
+                    if((statement.find("разработчик")!=-1) or (statement.find("Кто тебя разработал")!=-1)):
+                        answer = "Меня разработал Корниенко Андрей Михайлович"
+                        self.say(str(answer))
                     # Поддержание диалога
                     
                     if((statement.find("до свидания")!=-1) or (statement.find("досвидания")!=-1)):
@@ -115,11 +128,15 @@ class Speech_AI:
                     
                 except sr.UnknownValueError:
                     print("Упс! Кажется, я тебя не поняла, повтори еще раз")
+                    return'Упс! Кажется, я тебя не поняла, повтори еще раз'
                 except sr.RequestError as e:
                     print("Не могу получить данные от сервиса Google Speech Recognition; {0}".format(e))
+                    return "Не могу получить данные от сервиса Google Speech Recognition"
+
         except KeyboardInterrupt:
             self._clean_up()
             print("Пока!")
+            return "Плка"
         
     def osrun(self, cmd):
         PIPE = subprocess.PIPE

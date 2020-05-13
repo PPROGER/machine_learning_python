@@ -132,7 +132,7 @@ class QMain(QtGui.QMainWindow):
 
 
         self.message_function_button = QtGui.QPushButton(panel)
-        self.message_function_button.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;outline: none;}")
+        self.message_function_button.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;outline: none;} QPushButton:hover {}")
         self.message_function_button.setIcon(QtGui.QIcon('image/massage_function_panel.png'))
         self.message_function_button.setIconSize(QtCore.QSize(35,35))
         self.message_function_button.setGeometry(990,13,40,40)
@@ -573,16 +573,16 @@ class QMain(QtGui.QMainWindow):
 
         #Video panel  
         self.video_panel = QtGui.QLabel(self)
-        self.video_panel.setVisible(False)
-        self.video_panel.setStyleSheet("QLabel {background:#1F2327; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
-        self.video_panel.setGeometry(243,53,1359,848)
+        #self.video_panel.setVisible(False)
+        self.video_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
+        self.video_panel.setGeometry(243,53,1358,847)
 
 
         #Cam panel  
         self.cam_panel = QtGui.QLabel(self)
         self.cam_panel.setVisible(False)
         self.cam_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
-        self.cam_panel.setGeometry(243,53,1359,848)  
+        self.cam_panel.setGeometry(243,53,1358,847)  
 
         #Создание кадров
         str_style_css = ["QLabel {background:#292E33; border: 1px solid #292E33; color: #6D6F72; font: 25px;}", "QLineEdit {background:#222528;color:#FBFBFC; font: 16px; border: 2px solid #222528; font: 20px; }"]
@@ -766,7 +766,7 @@ class QMain(QtGui.QMainWindow):
 
         #Plagins panel  
         self.Plagins_panel = QtGui.QLabel(self)
-        #self.Plagins_panel.setVisible(False)
+        self.Plagins_panel.setVisible(False)
         self.Plagins_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
         self.Plagins_panel.setGeometry(243,53,1359,848)
 
@@ -886,6 +886,26 @@ class QMain(QtGui.QMainWindow):
 
         
 
+        #Voise Assistant panel  
+        self.voise_assistant_panel = QtGui.QLabel(self)
+        self.voise_assistant_panel.setVisible(False)
+        self.voise_assistant_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; border-radius: 5px;  margin: 5px}")
+        self.voise_assistant_panel.setGeometry(243,53,1358,847)
+
+        self.label_fon_assistant = QtGui.QLabel(self.voise_assistant_panel)
+        self.label_fon_assistant.setStyleSheet("QLabel {background:#1F2327; border: 1px solid #1F2327; border-radius: 10px;  margin: 5px}")
+        self.label_fon_assistant.setGeometry(77,700,1200,100)
+
+        self.microfon_function_button = QtGui.QPushButton(self.label_fon_assistant)
+        self.microfon_function_button.setStyleSheet("QPushButton {background:#1F2327; border: 1px solid #1F2327;outline: none;} QPushButton:hover {background:#1F2327; border: 2px solid #292E33}")
+        self.microfon_function_button.setIcon(QtGui.QIcon('image/mic.png'))
+        self.microfon_function_button.setIconSize(QtCore.QSize(72,72))
+        self.microfon_function_button.setGeometry(560,20,72,72)
+
+        self.object_list_foto = QtGui.QPlainTextEdit(self.voise_assistant_panel)
+        self.object_list_foto.setStyleSheet("QPlainTextEdit {background:#1F2327; color:#FBFBFC; border: 2px solid #1F2327; border-radius: 5px; font: 20px}")
+        self.object_list_foto.setGeometry(77,50,1200,590)
+
 
 
 
@@ -916,15 +936,15 @@ class QMain(QtGui.QMainWindow):
 
         self.connect_panel_button = QtGui.QPushButton("Restart",self.connect_db_panel)
         self.connect_panel_button.setStyleSheet("QPushButton {background:#007AFF; border: 1px solid #007AFF; border-radius: 2px;outline: none; } QPushButton:hover {background:#007AFF;font-weight: bold;}")
-        self.connect_panel_button.setGeometry(47,100,300,34)
+        self.connect_panel_button.setGeometry(15,100,360,34)
 
         
+
 app = QtGui.QApplication(sys.argv)
 qb = QMain()
 
 qb.show()
-sys.exit(app.exec_())  
-
+sys.exit(app.exec_())
 
 
 

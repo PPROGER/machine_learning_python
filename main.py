@@ -122,6 +122,7 @@ def Cam_function():
     main_forms.main_panel.setVisible(False)
     main_forms.db_panel_function.setVisible(False)
     main_forms.Plagins_panel.setVisible(False)
+    main_forms.voise_assistant_panel.setVisible(False)
     Load_cam_panel()  
 
 
@@ -132,7 +133,8 @@ def Vidoe_function():
     main_forms.db_panel.setVisible(False)
     main_forms.main_panel.setVisible(False)
     main_forms.db_panel_function.setVisible(False)
-    main_forms.Plagins_panel.setVisible(False) 
+    main_forms.Plagins_panel.setVisible(False)
+    main_forms.voise_assistant_panel.setVisible(False) 
 
 def Foto_function():
     main_forms.foto_panel.setVisible(True)
@@ -141,7 +143,8 @@ def Foto_function():
     main_forms.db_panel.setVisible(False)
     main_forms.main_panel.setVisible(False)
     main_forms.db_panel_function.setVisible(False)
-    main_forms.Plagins_panel.setVisible(False) 
+    main_forms.Plagins_panel.setVisible(False)
+    main_forms.voise_assistant_panel.setVisible(False) 
 
 def Db_function():
     main_forms.db_panel.setVisible(True)
@@ -149,7 +152,8 @@ def Db_function():
     main_forms.foto_panel.setVisible(False)
     main_forms.video_panel.setVisible(False)
     main_forms.main_panel.setVisible(False)
-    main_forms.Plagins_panel.setVisible(False) 
+    main_forms.Plagins_panel.setVisible(False)
+    main_forms.voise_assistant_panel.setVisible(False) 
 
 def Settings_function():
     main_forms.main_panel.setVisible(True) 
@@ -159,9 +163,22 @@ def Settings_function():
     main_forms.db_panel.setVisible(False)
     main_forms.db_panel_function.setVisible(False)
     main_forms.Plagins_panel.setVisible(False)
+    main_forms.voise_assistant_panel.setVisible(False)
      
 def Plugins_function():
     main_forms.Plagins_panel.setVisible(True)
+    main_forms.main_panel.setVisible(False) 
+    main_forms.cam_panel.setVisible(False)
+    main_forms.foto_panel.setVisible(False)
+    main_forms.video_panel.setVisible(False)
+    main_forms.db_panel.setVisible(False)
+    main_forms.db_panel_function.setVisible(False)
+    main_forms.voise_assistant_panel.setVisible(False)
+
+def Voise_assistant():
+    
+    main_forms.voise_assistant_panel.setVisible(True)
+    main_forms.Plagins_panel.setVisible(False)
     main_forms.main_panel.setVisible(False) 
     main_forms.cam_panel.setVisible(False)
     main_forms.foto_panel.setVisible(False)
@@ -327,9 +344,7 @@ def Delete_user():
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message","please enter value")
     con.commit()
 
-def Voise_assistant():
-    ai = Speech_AI()
-    ai.work()
+
 
 def Progress_load():
     completed = 0
@@ -483,6 +498,14 @@ def Exit_panel_connect_db():
 
 def Connect_function():
     main_forms.connect_db_panel.setVisible(True)
+
+
+def Microfon_assistant():
+    main_forms.object_list_foto.setPlainText("Минутку тишины, пожалуйста...\n")
+    ai = Speech_AI()
+    ai.work()
+    #main_forms.object_list_foto.setPlainText(str(asa))
+
 #Основная программа 
 app = QtGui.QApplication(sys.argv)
 load_form = QLoad()
@@ -522,7 +545,9 @@ main_forms.folder_db_save_button.clicked.connect(folder_db_save)
 main_forms.folder_file_save_button.clicked.connect(File_save_foto)
 main_forms.exit_connect_db_button.clicked.connect(Exit_panel_connect_db)
 main_forms.connect_function_button.clicked.connect(Connect_function)
-main_forms.plugins.connect.clicked(Plugins_function)
+main_forms.plugins.clicked.connect(Plugins_function)
+main_forms.microfon_function_button.clicked.connect(Microfon_assistant)
+
 
 load_form.show()
 Progress_load()
