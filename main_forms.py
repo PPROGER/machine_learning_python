@@ -578,6 +578,55 @@ class QMain(QtGui.QMainWindow):
         self.video_panel.setGeometry(243,53,1358,847)
 
 
+        label_video_model = QtGui.QLabel("Model Path:",self.video_panel)
+        label_video_model.setStyleSheet(foto_style_css[0])
+        label_video_model.setGeometry(10,20,170,50)
+        
+
+        self.video_modelEdit = QtGui.QLineEdit(self.video_panel)
+        self.video_modelEdit.setStyleSheet(foto_style_css[1])
+        self.video_modelEdit.setGeometry(210,28,1100,35)
+        self.video_modelEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.video_modelEdit.setText("/home/pproger/Desktop/machine_learning_python/video_obcject/yolo.h5")
+
+        label_video_image = QtGui.QLabel("Input_video:",self.video_panel)
+        label_video_image .setStyleSheet(foto_style_css[0])
+        label_video_image .setGeometry(10,100,190,50)
+
+        self.video_inputEdit = QtGui.QLineEdit(self.video_panel)
+        self.video_inputEdit.setStyleSheet(foto_style_css[1])
+        self.video_inputEdit.setGeometry(210,108,1100,35)
+        self.video_inputEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.video_inputEdit.setText("/home/pproger/Desktop/machine_learning_python/video_obcject/01.mp4")
+
+        label_video_image_out = QtGui.QLabel("Output_video:",self.video_panel)
+        label_video_image_out .setStyleSheet(foto_style_css[0])
+        label_video_image_out.setGeometry(10,180,200,50)
+
+        self.video_outEdit = QtGui.QLineEdit(self.video_panel)
+        self.video_outEdit.setStyleSheet(foto_style_css[1])
+        self.video_outEdit.setGeometry(210,188,1100,35)
+        self.video_outEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.video_outEdit.setText("/home/pproger/Desktop/machine_learning_python/video_obcject/traffic_detected")
+
+        label_frames_per_second = QtGui.QLabel("Frames_per_second:",self.video_panel)
+        label_frames_per_second.setStyleSheet(foto_style_css[0])
+        label_frames_per_second.setGeometry(10,260,270,50)
+
+        self.frames_per_secondEdit = QtGui.QLineEdit(self.video_panel)
+        self.frames_per_secondEdit.setStyleSheet(foto_style_css[1])
+        self.frames_per_secondEdit.setGeometry(280,268,400,35)
+        self.frames_per_secondEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.frames_per_secondEdit.setText("20")
+
+        self.video_detection_button = QtGui.QPushButton('Detection Object', self.video_panel)
+        self.video_detection_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;outline: none; } QPushButton:hover {background:#076CDA;font-weight: bold;}")
+        self.video_detection_button.setGeometry(760,260,550,50)
+
+
+
+
+
         #Cam panel  
         self.cam_panel = QtGui.QLabel(self)
         self.cam_panel.setVisible(False)
@@ -940,11 +989,7 @@ class QMain(QtGui.QMainWindow):
 
         
 
-app = QtGui.QApplication(sys.argv)
-qb = QMain()
 
-qb.show()
-sys.exit(app.exec_())
 
 
 

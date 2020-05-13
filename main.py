@@ -25,6 +25,7 @@ from FacialRecognitionProject.face_dataset import Face_datasets
 from FacialRecognitionProject.face_training import Face_trainings
 from FacialRecognitionProject.face_recognition import Face_recognitions
 from FirstDetectionFoto.FirstDetection import FirstDetection
+from video_obcject.main_video import Detection_object_video
 
 
     
@@ -506,6 +507,10 @@ def Microfon_assistant():
     ai.work()
     #main_forms.object_list_foto.setPlainText(str(asa))
 
+def Video_detection():
+    if(main_forms.video_modelEdit.text() != "" and main_forms.video_inputEdit.text() != "" and main_forms.video_outEdit.text() != "" and main_forms.frames_per_secondEdit.text() != ""):
+        Detection_object_video(main_forms.video_modelEdit.text(),main_forms.video_inputEdit.text(),main_forms.video_outEdit.text(), main_forms.frames_per_secondEdit.text())
+
 #Основная программа 
 app = QtGui.QApplication(sys.argv)
 load_form = QLoad()
@@ -547,6 +552,7 @@ main_forms.exit_connect_db_button.clicked.connect(Exit_panel_connect_db)
 main_forms.connect_function_button.clicked.connect(Connect_function)
 main_forms.plugins.clicked.connect(Plugins_function)
 main_forms.microfon_function_button.clicked.connect(Microfon_assistant)
+main_forms.video_detection_button.clicked.connect(Video_detection)
 
 
 load_form.show()
