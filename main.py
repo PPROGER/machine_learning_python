@@ -388,6 +388,7 @@ def Face_recognition():
     con.commit()
     Face_recognitions(main_forms.path_modelEdit.text(),mas_object)
 
+# Панель данных в функции ижентификации обьектов по камере
 def Load_cam_panel():
     data = data = [('Number of objects',[]), ('Bob', [('Wallet', [('Credit card', []), ('Money', [])])])]
     mas_object = []
@@ -416,7 +417,7 @@ def Load_cam_panel():
     model.setHorizontalHeaderLabels([main_forms.tr("Object")])
     
 
-    
+   
 def openMenu(self, position):
 
     indexes = main_forms.treeView.selectedIndexes()
@@ -484,6 +485,7 @@ def folder_db_save():
     else:
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message","Detection object to foto!")
 
+#Cохрание в файл данных после идентификации обьектов
 def File_save_foto():
     if(main_forms.object_list_foto.toPlainText()!= "" and main_forms.foto_image_outEdit.text() != ""):
         my_file = open("/home/pproger/Desktop/file.txt", "w")
@@ -493,23 +495,43 @@ def File_save_foto():
     else:
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message","Detection object to foto!")
 
-
+# Метод для звкрытия панель с подключением к БД
 def Exit_panel_connect_db():
     main_forms.connect_db_panel.setVisible(False)
 
+# Метод для открытия панель с подключением к БД
 def Connect_function():
     main_forms.connect_db_panel.setVisible(True)
 
-
+# Метод для голосового асистента
 def Microfon_assistant():
     main_forms.object_list_foto.setPlainText("Минутку тишины, пожалуйста...\n")
     ai = Speech_AI()
     ai.work()
     #main_forms.object_list_foto.setPlainText(str(asa))
 
+# Метод обнаружение обьктов на видео
 def Video_detection():
     if(main_forms.video_modelEdit.text() != "" and main_forms.video_inputEdit.text() != "" and main_forms.video_outEdit.text() != "" and main_forms.frames_per_secondEdit.text() != ""):
         Detection_object_video(main_forms.video_modelEdit.text(),main_forms.video_inputEdit.text(),main_forms.video_outEdit.text(), main_forms.frames_per_secondEdit.text())
+
+# Метод для открытие панели для входящих писем
+def Message_function():
+    main_forms.message_fun_panel.setVisible(True)
+    main_forms.been_panel.setVisible(False)
+
+# Метод для открытия панели для входящих уведомлений
+def Bell_function():
+    main_forms.been_panel.setVisible(True)
+    main_forms.message_fun_panel.setVisible(False)
+
+# Метод для закрытия панели уведомлений
+def Exit_Been():
+    main_forms.been_panel.setVisible(False)
+
+#Метод для закрытиня панели сообщений
+def Exit_message_fun():
+    main_forms.message_fun_panel.setVisible(False)
 
 #Основная программа 
 app = QtGui.QApplication(sys.argv)
@@ -553,7 +575,10 @@ main_forms.connect_function_button.clicked.connect(Connect_function)
 main_forms.plugins.clicked.connect(Plugins_function)
 main_forms.microfon_function_button.clicked.connect(Microfon_assistant)
 main_forms.video_detection_button.clicked.connect(Video_detection)
-
+main_forms.message_function_button.clicked.connect(Message_function)
+main_forms.bell_function_button.clicked.connect(Bell_function)
+main_forms.exit_been_button.clicked.connect(Exit_Been)
+main_forms.exit_message_fun_button.clicked.connect(Exit_message_fun)
 
 load_form.show()
 Progress_load()

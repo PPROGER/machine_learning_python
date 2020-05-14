@@ -132,13 +132,13 @@ class QMain(QtGui.QMainWindow):
 
 
         self.message_function_button = QtGui.QPushButton(panel)
-        self.message_function_button.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;outline: none;} QPushButton:hover {}")
+        self.message_function_button.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;outline: none;} QPushButton:hover {background:#1F2327;} QPushButton:focus {background:#1F2327;}")
         self.message_function_button.setIcon(QtGui.QIcon('image/massage_function_panel.png'))
         self.message_function_button.setIconSize(QtCore.QSize(35,35))
         self.message_function_button.setGeometry(990,13,40,40)
 
         self.bell_function_button = QtGui.QPushButton(panel)
-        self.bell_function_button.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;outline: none;}")
+        self.bell_function_button.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;outline: none; }QPushButton:hover {background:#1F2327;} QPushButton:focus {background:#1F2327;}")
         self.bell_function_button.setIcon(QtGui.QIcon('image/bell_function_panel.png'))
         self.bell_function_button.setIconSize(QtCore.QSize(30,30))
         self.bell_function_button.setGeometry(1035,13,40,40)
@@ -989,7 +989,36 @@ class QMain(QtGui.QMainWindow):
 
         
 
+        #Панель уведомлений
+        self.been_panel = QtGui.QLabel(self)
+        self.been_panel.setVisible(False)
+        self.been_panel.setStyleSheet("QLabel {background:#292E33; border: 2px solid #1F2327; border-radius: 5px; margin: 5px}")
+        self.been_panel.setGeometry(1270,50,300,500)
 
+        self.exit_been_button = QtGui.QPushButton(self.been_panel)
+        self.exit_been_button.setStyleSheet(style_panel_foto)
+        self.exit_been_button.setIcon(QtGui.QIcon('image/close.png'))
+        self.exit_been_button.setIconSize(QtCore.QSize(22,22))
+        self.exit_been_button.setGeometry(265,15,20,20)
+
+        #Панель сообщений
+        self.message_fun_panel = QtGui.QLabel(self)
+        self.message_fun_panel.setVisible(False)
+        self.message_fun_panel.setStyleSheet("QLabel {background:#292E33; border: 2px solid #1F2327; border-radius: 5px; margin: 5px}")
+        self.message_fun_panel.setGeometry(775,50,500,400)
+
+        self.exit_message_fun_button = QtGui.QPushButton(self.message_fun_panel)
+        self.exit_message_fun_button.setStyleSheet(style_panel_foto)
+        self.exit_message_fun_button.setIcon(QtGui.QIcon('image/close.png'))
+        self.exit_message_fun_button.setIconSize(QtCore.QSize(22,22))
+        self.exit_message_fun_button.setGeometry(465,15,20,20)
+
+
+app = QtGui.QApplication(sys.argv)
+qb = QMain()
+
+qb.show()
+sys.exit(app.exec_())
 
 
 
