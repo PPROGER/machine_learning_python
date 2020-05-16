@@ -11,7 +11,7 @@ class Qlogin(QtGui.QWidget):
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
 
-        self.setGeometry(400, 200, 1200, 754)
+        self.setGeometry(350, 200, 1200, 754)
         self.setWindowTitle('Laboratory detection')
         self.setWindowIcon(QtGui.QIcon('image/web.png'))
         self.setFixedSize(1200, 754)

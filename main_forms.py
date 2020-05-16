@@ -169,7 +169,7 @@ class QMain(QtGui.QMainWindow):
         self.main_panel = QtGui.QLabel(self)
         self.main_panel.setVisible(False)
         self.main_panel.setStyleSheet("QLabel {background:#1F2327; border: 1px solid transparent; border-radius: 5px; padding-left: 10px; margin: 5px}")
-        self.main_panel.setGeometry(243,53,1359,848)
+        self.main_panel.setGeometry(243,53,1357,847)
 
         settings_style_css = ["QLabel {background:#292E33; border: 1px solid #292E33; color: #6D6F72; font: 25px;}", "QLineEdit {background:#222528;color:#FBFBFC; font: 16px; border: 2px solid #222528; font: 20px; }"]
 
@@ -296,7 +296,7 @@ class QMain(QtGui.QMainWindow):
         self.db_panel = QtGui.QLabel(self)
         self.db_panel.setVisible(False)
         self.db_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; border-radius: 5px; padding-left: 10px; margin: 5px}")
-        self.db_panel.setGeometry(243,53,1359,848)
+        self.db_panel.setGeometry(243,53,1357,847)
 
         #Login panel DB
         self.panel_loning_db = QtGui.QLabel(self.db_panel)
@@ -348,7 +348,7 @@ class QMain(QtGui.QMainWindow):
         self.db_panel_function = QtGui.QLabel(self)
         self.db_panel_function.setVisible(False)
         self.db_panel_function.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
-        self.db_panel_function.setGeometry(243,53,1359,848)
+        self.db_panel_function.setGeometry(243,53,1357,847)
 
         self.label_datatime = QtGui.QLabel("03/23/21",self.db_panel_function)
         self.label_datatime.setStyleSheet("QLabel {background:#292E33; color: white; font: 25px; border: 1px solid #696969}")
@@ -474,7 +474,7 @@ class QMain(QtGui.QMainWindow):
         self.foto_panel = QtGui.QLabel(self)
         self.foto_panel.setVisible(False)
         self.foto_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; margin: 5px}")
-        self.foto_panel.setGeometry(243,53,1359,848)
+        self.foto_panel.setGeometry(243,53,1357,847)
 
         foto_style_css = ["QLabel {background:#292E33; border: 1px solid #292E33; color: #6D6F72; font: 25px;}", "QLineEdit {background:#222528;color:#FBFBFC; font: 16px; border: 2px solid #222528; font: 20px; }"]
         #Панель для функционала для распознование обьктов на фото 
@@ -490,7 +490,7 @@ class QMain(QtGui.QMainWindow):
         self.foto_modelEdit.setStyleSheet(foto_style_css[1])
         self.foto_modelEdit.setGeometry(200,28,1100,35)
         self.foto_modelEdit.setAlignment(QtCore.Qt.AlignCenter)
-        self.foto_modelEdit.setText("/home/pproger/Desktop/machine_learning_python/FirstDetectionFoto/resnet50_coco_best_v2.0.1.h5")
+        self.foto_modelEdit.setText("/home/pproger/Desktop/yolo-object-detection/yolo-coco")
 
         label_foto_image = QtGui.QLabel("Input_image:",panel_foto_detection)
         label_foto_image .setStyleSheet(foto_style_css[0])
@@ -500,7 +500,7 @@ class QMain(QtGui.QMainWindow):
         self.foto_imageEdit.setStyleSheet(foto_style_css[1])
         self.foto_imageEdit.setGeometry(200,108,1100,35)
         self.foto_imageEdit.setAlignment(QtCore.Qt.AlignCenter)
-        self.foto_imageEdit.setText("/home/pproger/Desktop/machine_learning_python/FirstDetectionFoto/image.jpeg")
+        self.foto_imageEdit.setText("/home/pproger/Desktop/machine_learning_python/FirstDetectionFoto/images/dining_table.jpg")
 
         label_foto_image_out = QtGui.QLabel("Output_image:",panel_foto_detection)
         label_foto_image_out .setStyleSheet(foto_style_css[0])
@@ -510,7 +510,7 @@ class QMain(QtGui.QMainWindow):
         self.foto_image_outEdit.setStyleSheet(foto_style_css[1])
         self.foto_image_outEdit.setGeometry(200,188,1100,35)
         self.foto_image_outEdit.setAlignment(QtCore.Qt.AlignCenter)
-        self.foto_image_outEdit.setText("/home/pproger/Desktop/machine_learning_python/FirstDetectionFoto/imagenew.jpeg")
+        self.foto_image_outEdit.setText("/home/pproger/Desktop/machine_learning_python/FirstDetectionFoto/output/imagenew.jpg")
 
         self.foto_detection_button = QtGui.QPushButton('Detection Object', panel_foto_detection)
         self.foto_detection_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;outline: none; } QPushButton:hover {background:#076CDA;font-weight: bold;}")
@@ -575,7 +575,7 @@ class QMain(QtGui.QMainWindow):
         self.video_panel = QtGui.QLabel(self)
         #self.video_panel.setVisible(False)
         self.video_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
-        self.video_panel.setGeometry(243,53,1358,847)
+        self.video_panel.setGeometry(243,53,1357,847)
 
 
         label_video_model = QtGui.QLabel("Model Path:",self.video_panel)
@@ -587,7 +587,7 @@ class QMain(QtGui.QMainWindow):
         self.video_modelEdit.setStyleSheet(foto_style_css[1])
         self.video_modelEdit.setGeometry(210,28,1100,35)
         self.video_modelEdit.setAlignment(QtCore.Qt.AlignCenter)
-        self.video_modelEdit.setText("/home/pproger/Desktop/machine_learning_python/video_obcject/yolo.h5")
+        self.video_modelEdit.setText("/home/pproger/Desktop/machine_learning_python/video_obcject/yolo-coco")
 
         label_video_image = QtGui.QLabel("Input_video:",self.video_panel)
         label_video_image .setStyleSheet(foto_style_css[0])
@@ -597,7 +597,7 @@ class QMain(QtGui.QMainWindow):
         self.video_inputEdit.setStyleSheet(foto_style_css[1])
         self.video_inputEdit.setGeometry(210,108,1100,35)
         self.video_inputEdit.setAlignment(QtCore.Qt.AlignCenter)
-        self.video_inputEdit.setText("/home/pproger/Desktop/machine_learning_python/video_obcject/01.mp4")
+        self.video_inputEdit.setText("/home/pproger/Desktop/machine_learning_python/video_obcject/videos/overpass.mp4")
 
         label_video_image_out = QtGui.QLabel("Output_video:",self.video_panel)
         label_video_image_out .setStyleSheet(foto_style_css[0])
@@ -607,7 +607,7 @@ class QMain(QtGui.QMainWindow):
         self.video_outEdit.setStyleSheet(foto_style_css[1])
         self.video_outEdit.setGeometry(210,188,1100,35)
         self.video_outEdit.setAlignment(QtCore.Qt.AlignCenter)
-        self.video_outEdit.setText("/home/pproger/Desktop/machine_learning_python/video_obcject/traffic_detected")
+        self.video_outEdit.setText("/home/pproger/Desktop/machine_learning_python/video_obcject/output/overpass.avi")
 
         label_frames_per_second = QtGui.QLabel("Frames_per_second:",self.video_panel)
         label_frames_per_second.setStyleSheet(foto_style_css[0])
@@ -617,7 +617,7 @@ class QMain(QtGui.QMainWindow):
         self.frames_per_secondEdit.setStyleSheet(foto_style_css[1])
         self.frames_per_secondEdit.setGeometry(280,268,400,35)
         self.frames_per_secondEdit.setAlignment(QtCore.Qt.AlignCenter)
-        self.frames_per_secondEdit.setText("20")
+        self.frames_per_secondEdit.setText("30")
 
         self.video_detection_button = QtGui.QPushButton('Detection Object', self.video_panel)
         self.video_detection_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;outline: none; } QPushButton:hover {background:#076CDA;font-weight: bold;}")
@@ -631,7 +631,7 @@ class QMain(QtGui.QMainWindow):
         self.cam_panel = QtGui.QLabel(self)
         self.cam_panel.setVisible(False)
         self.cam_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
-        self.cam_panel.setGeometry(243,53,1358,847)  
+        self.cam_panel.setGeometry(243,53,1357,847)  
 
         #Создание кадров
         str_style_css = ["QLabel {background:#292E33; border: 1px solid #292E33; color: #6D6F72; font: 25px;}", "QLineEdit {background:#222528;color:#FBFBFC; font: 16px; border: 2px solid #222528; font: 20px; }"]
@@ -817,7 +817,7 @@ class QMain(QtGui.QMainWindow):
         self.Plagins_panel = QtGui.QLabel(self)
         self.Plagins_panel.setVisible(False)
         self.Plagins_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
-        self.Plagins_panel.setGeometry(243,53,1359,848)
+        self.Plagins_panel.setGeometry(243,53,1357,847)
 
         #Cловарь для поиска плагина
         model_plag = QtGui.QStringListModel()
@@ -939,7 +939,7 @@ class QMain(QtGui.QMainWindow):
         self.voise_assistant_panel = QtGui.QLabel(self)
         self.voise_assistant_panel.setVisible(False)
         self.voise_assistant_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; border-radius: 5px;  margin: 5px}")
-        self.voise_assistant_panel.setGeometry(243,53,1358,847)
+        self.voise_assistant_panel.setGeometry(243,53,1357,847)
 
         self.label_fon_assistant = QtGui.QLabel(self.voise_assistant_panel)
         self.label_fon_assistant.setStyleSheet("QLabel {background:#1F2327; border: 1px solid #1F2327; border-radius: 10px;  margin: 5px}")
@@ -1014,11 +1014,6 @@ class QMain(QtGui.QMainWindow):
         self.exit_message_fun_button.setGeometry(465,15,20,20)
 
 
-app = QtGui.QApplication(sys.argv)
-qb = QMain()
-
-qb.show()
-sys.exit(app.exec_())
 
 
 

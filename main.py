@@ -145,7 +145,8 @@ def Foto_function():
     main_forms.main_panel.setVisible(False)
     main_forms.db_panel_function.setVisible(False)
     main_forms.Plagins_panel.setVisible(False)
-    main_forms.voise_assistant_panel.setVisible(False) 
+    main_forms.voise_assistant_panel.setVisible(False)
+    
 
 def Db_function():
     main_forms.db_panel.setVisible(True)
@@ -387,6 +388,7 @@ def Face_recognition():
                      
     con.commit()
     Face_recognitions(main_forms.path_modelEdit.text(),mas_object)
+    
 
 # Панель данных в функции ижентификации обьектов по камере
 def Load_cam_panel():
@@ -448,19 +450,20 @@ def addItems(parent, elements):
             addItems(item, children)
 
 
-
+#Вывод в QplaintextEdit не работает
 def Foto_detection():
-    
     if(main_forms.foto_modelEdit.text() != "" and main_forms.foto_imageEdit.text() != "" and main_forms.foto_image_outEdit.text() != ""):
         obj_str = ""
         detections = FirstDetection(main_forms.foto_modelEdit.text(), main_forms.foto_imageEdit.text(), main_forms.foto_image_outEdit.text())
-        for eachObject in detections:
-            obj_str += eachObject["name"]+ " : " +numpy.str(eachObject["percentage_probability"])+"\n" 
+        print(detections)
+        for i in range(len(detections)):
+            obj_str += detections[i] + "\n" 
+            
+        main_forms.object_list_foto.insertPlainText(obj_str)
         main_forms.label_status_message.setText("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t         Processing.....")
         main_forms.label_status_message.setText("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  Successful recognition of objects in the photo")
-        main_forms.object_list_foto.setPlainText(obj_str)
-        img = Image.open(r'/home/pproger/Desktop/machine_learning_python/FirstDetectionFoto/imagenew.jpeg')
-        img.show()
+        print(obj_str)
+        
 
         
 def Folder_Open():
