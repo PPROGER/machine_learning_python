@@ -5,8 +5,6 @@ from PyQt4 import QtGui, QtCore
 
 
 
-
-
 class QMain(QtGui.QMainWindow):
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
@@ -488,9 +486,15 @@ class QMain(QtGui.QMainWindow):
 
         self.foto_modelEdit = QtGui.QLineEdit(panel_foto_detection)
         self.foto_modelEdit.setStyleSheet(foto_style_css[1])
-        self.foto_modelEdit.setGeometry(200,28,1100,35)
+        self.foto_modelEdit.setGeometry(200,28,1050,35)
         self.foto_modelEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.foto_modelEdit.setText("/home/pproger/Desktop/yolo-object-detection/yolo-coco")
+
+        self.file_open_button_f1 = QtGui.QPushButton(panel_foto_detection)
+        self.file_open_button_f1.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;outline: none;} QPushButton:hover {background:#1F2327;}")
+        self.file_open_button_f1.setIcon(QtGui.QIcon('image/file_open_dialog.png'))
+        self.file_open_button_f1.setIconSize(QtCore.QSize(45,45))
+        self.file_open_button_f1.setGeometry(1260,24,40,40)
 
         label_foto_image = QtGui.QLabel("Input_image:",panel_foto_detection)
         label_foto_image .setStyleSheet(foto_style_css[0])
@@ -498,9 +502,15 @@ class QMain(QtGui.QMainWindow):
 
         self.foto_imageEdit = QtGui.QLineEdit(panel_foto_detection)
         self.foto_imageEdit.setStyleSheet(foto_style_css[1])
-        self.foto_imageEdit.setGeometry(200,108,1100,35)
+        self.foto_imageEdit.setGeometry(200,108,1050,35)
         self.foto_imageEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.foto_imageEdit.setText("/home/pproger/Desktop/machine_learning_python/FirstDetectionFoto/images/dining_table.jpg")
+
+        self.file_open_button_f2 = QtGui.QPushButton(panel_foto_detection)
+        self.file_open_button_f2.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;outline: none;} QPushButton:hover {background:#1F2327;}")
+        self.file_open_button_f2.setIcon(QtGui.QIcon('image/file_open_dialog.png'))
+        self.file_open_button_f2.setIconSize(QtCore.QSize(45,45))
+        self.file_open_button_f2.setGeometry(1260,104,40,40)
 
         label_foto_image_out = QtGui.QLabel("Output_image:",panel_foto_detection)
         label_foto_image_out .setStyleSheet(foto_style_css[0])
@@ -508,9 +518,15 @@ class QMain(QtGui.QMainWindow):
 
         self.foto_image_outEdit = QtGui.QLineEdit(panel_foto_detection)
         self.foto_image_outEdit.setStyleSheet(foto_style_css[1])
-        self.foto_image_outEdit.setGeometry(200,188,1100,35)
+        self.foto_image_outEdit.setGeometry(200,188,1050,35)
         self.foto_image_outEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.foto_image_outEdit.setText("/home/pproger/Desktop/machine_learning_python/FirstDetectionFoto/output/imagenew.jpg")
+
+        self.file_open_button_f3 = QtGui.QPushButton(panel_foto_detection)
+        self.file_open_button_f3.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;outline: none;} QPushButton:hover {background:#1F2327;}")
+        self.file_open_button_f3.setIcon(QtGui.QIcon('image/file_open_dialog.png'))
+        self.file_open_button_f3.setIconSize(QtCore.QSize(45,45))
+        self.file_open_button_f3.setGeometry(1260,184,40,40)
 
         self.foto_detection_button = QtGui.QPushButton('Detection Object', panel_foto_detection)
         self.foto_detection_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;outline: none; } QPushButton:hover {background:#076CDA;font-weight: bold;}")
@@ -520,9 +536,10 @@ class QMain(QtGui.QMainWindow):
         label_foto_model.setStyleSheet(foto_style_css[0])
         label_foto_model.setGeometry(10,290,100,50)
 
-        self.object_list_foto = QtGui.QPlainTextEdit(panel_foto_detection)
-        self.object_list_foto.setStyleSheet("QPlainTextEdit {background:#222528;color:#FBFBFC; border: 2px solid #222528; font: 20px}")
-        self.object_list_foto.setGeometry(10,350,1208,390)
+        self.object_list_foto_1 = QtGui.QPlainTextEdit(panel_foto_detection)
+        self.object_list_foto_1.setStyleSheet("QPlainTextEdit {background:#222528;color:#FBFBFC; border: 2px solid #222528; font: 20px}")
+        self.object_list_foto_1.setGeometry(10,350,1208,390)
+        #self.object_list_foto.setPlainText(":13298123")
 
         style_panel_foto = "QPushButton {background:#292E33; border: 1px solid #292E33;outline: none;} QPushButton:hover {background:#222528;}"
         self.folder_open_button = QtGui.QPushButton(panel_foto_detection)
@@ -573,7 +590,7 @@ class QMain(QtGui.QMainWindow):
 
         #Video panel  
         self.video_panel = QtGui.QLabel(self)
-        #self.video_panel.setVisible(False)
+        self.video_panel.setVisible(False)
         self.video_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
         self.video_panel.setGeometry(243,53,1357,847)
 
@@ -585,9 +602,15 @@ class QMain(QtGui.QMainWindow):
 
         self.video_modelEdit = QtGui.QLineEdit(self.video_panel)
         self.video_modelEdit.setStyleSheet(foto_style_css[1])
-        self.video_modelEdit.setGeometry(210,28,1100,35)
+        self.video_modelEdit.setGeometry(210,28,1050,35)
         self.video_modelEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.video_modelEdit.setText("/home/pproger/Desktop/machine_learning_python/video_obcject/yolo-coco")
+
+        self.file_open_button_v1 = QtGui.QPushButton(self.video_panel)
+        self.file_open_button_v1.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;outline: none;} QPushButton:hover {background:#1F2327;}")
+        self.file_open_button_v1.setIcon(QtGui.QIcon('image/file_open_dialog.png'))
+        self.file_open_button_v1.setIconSize(QtCore.QSize(45,45))
+        self.file_open_button_v1.setGeometry(1280,24,40,40)
 
         label_video_image = QtGui.QLabel("Input_video:",self.video_panel)
         label_video_image .setStyleSheet(foto_style_css[0])
@@ -595,9 +618,15 @@ class QMain(QtGui.QMainWindow):
 
         self.video_inputEdit = QtGui.QLineEdit(self.video_panel)
         self.video_inputEdit.setStyleSheet(foto_style_css[1])
-        self.video_inputEdit.setGeometry(210,108,1100,35)
+        self.video_inputEdit.setGeometry(210,108,1050,35)
         self.video_inputEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.video_inputEdit.setText("/home/pproger/Desktop/machine_learning_python/video_obcject/videos/overpass.mp4")
+
+        self.file_open_button_v2 = QtGui.QPushButton(self.video_panel)
+        self.file_open_button_v2.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;outline: none;} QPushButton:hover {background:#1F2327;}")
+        self.file_open_button_v2.setIcon(QtGui.QIcon('image/file_open_dialog.png'))
+        self.file_open_button_v2.setIconSize(QtCore.QSize(45,45))
+        self.file_open_button_v2.setGeometry(1280,104,40,40)
 
         label_video_image_out = QtGui.QLabel("Output_video:",self.video_panel)
         label_video_image_out .setStyleSheet(foto_style_css[0])
@@ -605,9 +634,15 @@ class QMain(QtGui.QMainWindow):
 
         self.video_outEdit = QtGui.QLineEdit(self.video_panel)
         self.video_outEdit.setStyleSheet(foto_style_css[1])
-        self.video_outEdit.setGeometry(210,188,1100,35)
+        self.video_outEdit.setGeometry(210,188,1050,35)
         self.video_outEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.video_outEdit.setText("/home/pproger/Desktop/machine_learning_python/video_obcject/output/overpass.avi")
+
+        self.file_open_button_v3 = QtGui.QPushButton(self.video_panel)
+        self.file_open_button_v3.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;outline: none;} QPushButton:hover {background:#1F2327;}")
+        self.file_open_button_v3.setIcon(QtGui.QIcon('image/file_open_dialog.png'))
+        self.file_open_button_v3.setIconSize(QtCore.QSize(45,45))
+        self.file_open_button_v3.setGeometry(1280,184,40,40)
 
         label_frames_per_second = QtGui.QLabel("Frames_per_second:",self.video_panel)
         label_frames_per_second.setStyleSheet(foto_style_css[0])
@@ -623,13 +658,22 @@ class QMain(QtGui.QMainWindow):
         self.video_detection_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;outline: none; } QPushButton:hover {background:#076CDA;font-weight: bold;}")
         self.video_detection_button.setGeometry(760,260,550,50)
 
+        self.Label_graph = QtGui.QLabel(self.video_panel)
+        self.Label_graph.setGeometry(30,360,1150,460)
+
+
+        self.graph_video_button = QtGui.QPushButton(self.video_panel)
+        self.graph_video_button.setStyleSheet(style_panel_foto)
+        self.graph_video_button.setIcon(QtGui.QIcon('image/folder_open.png'))
+        self.graph_video_button.setIconSize(QtCore.QSize(72,72))
+        self.graph_video_button.setGeometry(1220,370,72,72)
 
 
 
 
         #Cam panel  
         self.cam_panel = QtGui.QLabel(self)
-        self.cam_panel.setVisible(False)
+        #self.cam_panel.setVisible(False)
         self.cam_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
         self.cam_panel.setGeometry(243,53,1357,847)  
 
@@ -673,10 +717,15 @@ class QMain(QtGui.QMainWindow):
 
         self.putyEdit = QtGui.QLineEdit(self.cam_panel)
         self.putyEdit.setStyleSheet(str_style_css[1])
-        self.putyEdit.setGeometry(155,108,500,35)
+        self.putyEdit.setGeometry(155,108,450,35)
         self.putyEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.putyEdit.setText("/home/pproger/Desktop/machine_learning_python/FacialRecognitionProject/dataset/")
         
+        self.file_open_button_cam1 = QtGui.QPushButton(self.cam_panel)
+        self.file_open_button_cam1.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;outline: none;} QPushButton:hover {background:#1F2327;}")
+        self.file_open_button_cam1.setIcon(QtGui.QIcon('image/file_open_dialog.png'))
+        self.file_open_button_cam1.setIconSize(QtCore.QSize(45,45))
+        self.file_open_button_cam1.setGeometry(615,104,40,40)
 
         label_object_number = QtGui.QLabel("Object number:",self.cam_panel)
         label_object_number.setStyleSheet(str_style_css[0])
@@ -719,9 +768,15 @@ class QMain(QtGui.QMainWindow):
 
         self.path_trainingEdit = QtGui.QLineEdit(self.cam_panel)
         self.path_trainingEdit.setStyleSheet(str_style_css[1])
-        self.path_trainingEdit.setGeometry(200,298,840,35)
+        self.path_trainingEdit.setGeometry(200,298,790,35)
         self.path_trainingEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.path_trainingEdit.setText("/home/pproger/Desktop/machine_learning_python/FacialRecognitionProject/dataset")
+
+        self.file_open_button_cam2 = QtGui.QPushButton(self.cam_panel)
+        self.file_open_button_cam2.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;outline: none;} QPushButton:hover {background:#1F2327;}")
+        self.file_open_button_cam2.setIcon(QtGui.QIcon('image/file_open_dialog.png'))
+        self.file_open_button_cam2.setIconSize(QtCore.QSize(45,45))
+        self.file_open_button_cam2.setGeometry(1000,294,40,40)
 
         label_model = QtGui.QLabel("Save the model into:",self.cam_panel)
         label_model.setStyleSheet(str_style_css[0])
@@ -729,9 +784,15 @@ class QMain(QtGui.QMainWindow):
 
         self.modelEdit = QtGui.QLineEdit(self.cam_panel)
         self.modelEdit.setStyleSheet(str_style_css[1])
-        self.modelEdit.setGeometry(280,378,760,35)
+        self.modelEdit.setGeometry(280,378,710,35)
         self.modelEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.modelEdit.setText("/home/pproger/Desktop/machine_learning_python/FacialRecognitionProject/trainer/trainer.yml")
+
+        self.file_open_button_cam3 = QtGui.QPushButton(self.cam_panel)
+        self.file_open_button_cam3.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;outline: none;} QPushButton:hover {background:#1F2327;}")
+        self.file_open_button_cam3.setIcon(QtGui.QIcon('image/file_open_dialog.png'))
+        self.file_open_button_cam3.setIconSize(QtCore.QSize(45,45))
+        self.file_open_button_cam3.setGeometry(1000,374,40,40)
 
         self.Face_training_button = QtGui.QPushButton('Face training', self.cam_panel)
         self.Face_training_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;outline: none; } QPushButton:hover {background:#076CDA;font-weight: bold;}")
@@ -744,9 +805,15 @@ class QMain(QtGui.QMainWindow):
 
         self.path_modelEdit = QtGui.QLineEdit(self.cam_panel)
         self.path_modelEdit.setStyleSheet(str_style_css[1])
-        self.path_modelEdit.setGeometry(230,568,810,35)
+        self.path_modelEdit.setGeometry(230,568,760,35)
         self.path_modelEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.path_modelEdit.setText("/home/pproger/Desktop/machine_learning_python/FacialRecognitionProject/trainer/trainer.yml")
+
+        self.file_open_button_cam4 = QtGui.QPushButton(self.cam_panel)
+        self.file_open_button_cam4.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;outline: none;} QPushButton:hover {background:#1F2327;}")
+        self.file_open_button_cam4.setIcon(QtGui.QIcon('image/file_open_dialog.png'))
+        self.file_open_button_cam4.setIconSize(QtCore.QSize(45,45))
+        self.file_open_button_cam4.setGeometry(1000,564,40,40)
 
         label_object_name = QtGui.QLabel("Object name:",self.cam_panel)
         label_object_name.setStyleSheet(str_style_css[0])
@@ -951,9 +1018,9 @@ class QMain(QtGui.QMainWindow):
         self.microfon_function_button.setIconSize(QtCore.QSize(72,72))
         self.microfon_function_button.setGeometry(560,20,72,72)
 
-        self.object_list_foto = QtGui.QPlainTextEdit(self.voise_assistant_panel)
-        self.object_list_foto.setStyleSheet("QPlainTextEdit {background:#1F2327; color:#FBFBFC; border: 2px solid #1F2327; border-radius: 5px; font: 20px}")
-        self.object_list_foto.setGeometry(77,50,1200,590)
+        self.assistant_list = QtGui.QPlainTextEdit(self.voise_assistant_panel)
+        self.assistant_list.setStyleSheet("QPlainTextEdit {background:#1F2327; color:#FBFBFC; border: 2px solid #1F2327; border-radius: 5px; font: 20px}")
+        self.assistant_list.setGeometry(77,50,1200,590)
 
 
 
@@ -971,27 +1038,36 @@ class QMain(QtGui.QMainWindow):
         self.exit_connect_db_button.setIconSize(QtCore.QSize(22,22))
         self.exit_connect_db_button.setGeometry(365,15,20,20)
 
+        self.been_label_ = QtGui.QLabel("Database Connection",self.connect_db_panel)
+        self.been_label_.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; font:20px; color: #6D6F72;}")
+        self.been_label_.setGeometry(10,10,250,40)
 
         connect_style_css = ["QLabel {background:#292E33; border: 1px solid #292E33; color: #6D6F72; font: 18px;}", "QLineEdit {background:#222528;color:#FBFBFC; border: 2px solid #222528; font: 16px; }"]
         label_path_training = QtGui.QLabel("Database path:",self.connect_db_panel)
         label_path_training.setStyleSheet(connect_style_css[0])
-        label_path_training.setGeometry(10,30,150,50)
+        label_path_training.setGeometry(10,60,150,50)
 
         self.path_trainingEdit = QtGui.QLineEdit(self.connect_db_panel)
         self.path_trainingEdit.setStyleSheet(connect_style_css[1])
-        self.path_trainingEdit.setGeometry(160,45,212,25)
+        self.path_trainingEdit.setGeometry(150,75,180,25)
         self.path_trainingEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.path_trainingEdit.setText("logo.db")
 
+        self.file_open_button_db = QtGui.QPushButton(self.connect_db_panel)
+        self.file_open_button_db.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;outline: none;} QPushButton:hover {background:#1F2327;}")
+        self.file_open_button_db.setIcon(QtGui.QIcon('image/file_open_dialog.png'))
+        self.file_open_button_db.setIconSize(QtCore.QSize(35,35))
+        self.file_open_button_db.setGeometry(345,68,40,40)
+
         self.connect_panel_button = QtGui.QPushButton("Restart",self.connect_db_panel)
         self.connect_panel_button.setStyleSheet("QPushButton {background:#007AFF; border: 1px solid #007AFF; border-radius: 2px;outline: none; } QPushButton:hover {background:#007AFF;font-weight: bold;}")
-        self.connect_panel_button.setGeometry(15,100,360,34)
+        self.connect_panel_button.setGeometry(15,130,360,34)
 
         
 
         #Панель уведомлений
         self.been_panel = QtGui.QLabel(self)
-        self.been_panel.setVisible(False)
+        #self.been_panel.setVisible(False)
         self.been_panel.setStyleSheet("QLabel {background:#292E33; border: 2px solid #1F2327; border-radius: 5px; margin: 5px}")
         self.been_panel.setGeometry(1270,50,300,500)
 
@@ -1001,9 +1077,30 @@ class QMain(QtGui.QMainWindow):
         self.exit_been_button.setIconSize(QtCore.QSize(22,22))
         self.exit_been_button.setGeometry(265,15,20,20)
 
+        self.been_label_ = QtGui.QLabel("Notification",self.been_panel)
+        self.been_label_.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; font:20px; color: #6D6F72;}")
+        self.been_label_.setGeometry(10,10,200,40)
+
+        listWidget = QtGui.QListWidget(self.been_panel)
+        listWidget.setStyleSheet("QListWidget {background:#292E33;border: 1px solid #292E33; font:16px}")
+	
+        #Resize width and height
+        listWidget.setGeometry(10,50,280,410)
+	
+        listWidget.addItem("16:05 | 17.05.2020 Andrey Kornienko\ndskadhkashdkashdkashdksagshdfks"); 
+        listWidget.addItem("Item 2");
+        listWidget.addItem("Item 3");
+        listWidget.addItem("Item 4");
+        
+
+        self.connect_panel_button = QtGui.QPushButton("Сlear Notifications",self.been_panel)
+        self.connect_panel_button.setStyleSheet("QPushButton {background:#007AFF; border: 1px solid #007AFF; border-radius: 2px;outline: none; } QPushButton:hover {background:#007AFF;font-weight: bold;}")
+        self.connect_panel_button.setGeometry(10,465,280,25) 
+
+
         #Панель сообщений
         self.message_fun_panel = QtGui.QLabel(self)
-        self.message_fun_panel.setVisible(False)
+        #self.message_fun_panel.setVisible(False)
         self.message_fun_panel.setStyleSheet("QLabel {background:#292E33; border: 2px solid #1F2327; border-radius: 5px; margin: 5px}")
         self.message_fun_panel.setGeometry(775,50,500,400)
 
@@ -1013,8 +1110,31 @@ class QMain(QtGui.QMainWindow):
         self.exit_message_fun_button.setIconSize(QtCore.QSize(22,22))
         self.exit_message_fun_button.setGeometry(465,15,20,20)
 
+        self.message_label_ = QtGui.QLabel("Message",self.message_fun_panel)
+        self.message_label_.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; font:20px; color: #6D6F72;}")
+        self.message_label_.setGeometry(10,10,100,40)   
 
+        listWidget = QtGui.QListWidget(self.message_fun_panel)
+        listWidget.setStyleSheet("QListWidget {background:#292E33;border: 1px solid #292E33; font:17px;}")
+	
+        #Resize width and height
+        listWidget.setGeometry(10,50,480,305)
+	
+        listWidget.addItem("16:05 | 17.05.2020 Andrey Kornienko\ndskadhkashdkashdkashdksagshdfks"); 
+        listWidget.addItem("Item 2");
+        listWidget.addItem("Item 3");
+        listWidget.addItem("Item 4");
+        
 
+        self.connect_panel_button = QtGui.QPushButton("Clear Message",self.message_fun_panel)
+        self.connect_panel_button.setStyleSheet("QPushButton {background:#007AFF; border: 1px solid #007AFF; border-radius: 2px;outline: none; } QPushButton:hover {background:#007AFF;font-weight: bold;}")
+        self.connect_panel_button.setGeometry(10,360,480,30)
+
+app = QtGui.QApplication(sys.argv)
+qb = QMain()
+
+qb.show()
+sys.exit(app.exec_())
 
 
 

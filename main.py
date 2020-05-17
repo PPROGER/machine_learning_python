@@ -450,19 +450,20 @@ def addItems(parent, elements):
             addItems(item, children)
 
 
-#Вывод в QplaintextEdit не работает
+
 def Foto_detection():
+    
     if(main_forms.foto_modelEdit.text() != "" and main_forms.foto_imageEdit.text() != "" and main_forms.foto_image_outEdit.text() != ""):
         obj_str = ""
         detections = FirstDetection(main_forms.foto_modelEdit.text(), main_forms.foto_imageEdit.text(), main_forms.foto_image_outEdit.text())
-        print(detections)
+        
         for i in range(len(detections)):
             obj_str += detections[i] + "\n" 
             
-        main_forms.object_list_foto.insertPlainText(obj_str)
+        main_forms.object_list_foto_1.insertPlainText(obj_str)
         main_forms.label_status_message.setText("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t         Processing.....")
         main_forms.label_status_message.setText("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  Successful recognition of objects in the photo")
-        print(obj_str)
+        
         
 
         
@@ -479,9 +480,9 @@ def Folder_Dowladon():
 
 
 def folder_db_save():
-    if(main_forms.object_list_foto.toPlainText()!= "" and main_forms.foto_image_outEdit.text() != ""):
+    if(main_forms.object_list_foto_1.toPlainText()!= "" and main_forms.foto_image_outEdit.text() != ""):
         cur = con.cursor()
-        cur.execute('INSERT INTO foto_log (id,nazva_image, object) VALUES (?,?,?)',(random.randint(100,1000),main_forms.foto_image_outEdit.text(), main_forms.object_list_foto.toPlainText()))
+        cur.execute('INSERT INTO foto_log (id,nazva_image, object) VALUES (?,?,?)',(random.randint(100,1000),main_forms.foto_image_outEdit.text(), main_forms.object_list_foto_1.toPlainText()))
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message","Message ok!")
         con.commit()
        
@@ -490,9 +491,9 @@ def folder_db_save():
 
 #Cохрание в файл данных после идентификации обьектов
 def File_save_foto():
-    if(main_forms.object_list_foto.toPlainText()!= "" and main_forms.foto_image_outEdit.text() != ""):
+    if(main_forms.object_list_foto_1.toPlainText()!= "" and main_forms.foto_image_outEdit.text() != ""):
         my_file = open("/home/pproger/Desktop/file.txt", "w")
-        my_file.write(str(main_forms.foto_image_outEdit.text() + "\n" + main_forms.object_list_foto.toPlainText()))
+        my_file.write(str(main_forms.foto_image_outEdit.text() + "\n" + main_forms.object_list_foto_1.toPlainText()))
         my_file.close()
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message","Message ok!")
     else:
@@ -508,7 +509,7 @@ def Connect_function():
 
 # Метод для голосового асистента
 def Microfon_assistant():
-    main_forms.object_list_foto.setPlainText("Минутку тишины, пожалуйста...\n")
+    main_forms.assistant_list.setPlainText("Минутку тишины, пожалуйста...\n")
     ai = Speech_AI()
     ai.work()
     #main_forms.object_list_foto.setPlainText(str(asa))
@@ -535,6 +536,57 @@ def Exit_Been():
 #Метод для закрытиня панели сообщений
 def Exit_message_fun():
     main_forms.message_fun_panel.setVisible(False)
+
+#Открытие файлов для ввода панели Видео
+def File_open_s_v1():
+    filenamev1 = QtGui.QFileDialog.getOpenFileName(main_forms,'Open File', '/')
+    main_forms.video_modelEdit.setText(str(filenamev1))
+    
+
+def File_open_s_v2():
+    filenamev2 = QtGui.QFileDialog.getOpenFileName(main_forms,'Open File', '/')
+    main_forms.video_inputEdit.setText(str(filenamev2))
+    
+
+def File_open_s_v3():
+    filenamev3 = QtGui.QFileDialog.getOpenFileName(main_forms,'Open File', '/')
+    main_forms.video_outEdit.setText(str(filenamev3))
+    
+
+#Открытие файла панели конекта с бд
+def File_open_s_db():
+    filenamedb = QtGui.QFileDialog.getOpenFileName(main_forms,'Open File', '/')
+    main_forms.path_trainingEdit.setText(str(filenamedb))
+
+#Открытие файла в панели фото
+def File_open_s_f1():
+    filename1 = QtGui.QFileDialog.getOpenFileName(main_forms,'Open File', '/')
+    main_forms.foto_modelEdit.setText(str(filename1))
+
+def File_open_s_f2():
+    filename2 = QtGui.QFileDialog.getOpenFileName(main_forms,'Open File', '/')
+    main_forms.foto_imageEdit.setText(str(filename2))
+
+def File_open_s_f3():
+    filenamef3 = QtGui.QFileDialog.getOpenFileName(main_forms,'Open File', '/')
+    main_forms.foto_image_outEdit.setText(str(filenamef3))
+
+#Открытие файлов в панели камера
+def File_open_s_cam1():
+    filenamecam1 = QtGui.QFileDialog.getOpenFileName(main_forms,'Open File', '/')
+    main_forms.putyEdit.setText(str(filenamecam1))
+
+def File_open_s_cam2():
+    filenamecam2 = QtGui.QFileDialog.getOpenFileName(main_forms,'Open File', '/')
+    main_forms.path_trainingEdit.setText(str(filenamecam2))    
+
+def File_open_s_cam3():
+    filenamecam3 = QtGui.QFileDialog.getOpenFileName(main_forms,'Open File', '/')
+    main_forms.modelEdit.setText(str(filenamecam3))
+
+def File_open_s_cam4():
+    filenamecam4 = QtGui.QFileDialog.getOpenFileName(main_forms,'Open File', '/')
+    main_forms.path_modelEdit.setText(str(filenamecam4))
 
 #Основная программа 
 app = QtGui.QApplication(sys.argv)
@@ -582,6 +634,18 @@ main_forms.message_function_button.clicked.connect(Message_function)
 main_forms.bell_function_button.clicked.connect(Bell_function)
 main_forms.exit_been_button.clicked.connect(Exit_Been)
 main_forms.exit_message_fun_button.clicked.connect(Exit_message_fun)
+main_forms.file_open_button_v1.clicked.connect(File_open_s_v1)
+main_forms.file_open_button_v2.clicked.connect(File_open_s_v2)
+main_forms.file_open_button_v3.clicked.connect(File_open_s_v3)
+main_forms.file_open_button_db.clicked.connect(File_open_s_db)
+main_forms.file_open_button_f1.clicked.connect(File_open_s_f1)
+main_forms.file_open_button_f2.clicked.connect(File_open_s_f2)
+main_forms.file_open_button_f3.clicked.connect(File_open_s_f3)
+main_forms.file_open_button_cam1.clicked.connect(File_open_s_cam1)
+main_forms.file_open_button_cam2.clicked.connect(File_open_s_cam2)
+main_forms.file_open_button_cam3.clicked.connect(File_open_s_cam3)
+main_forms.file_open_button_cam4.clicked.connect(File_open_s_cam4)
+
 
 load_form.show()
 Progress_load()
