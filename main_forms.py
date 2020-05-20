@@ -590,7 +590,7 @@ class QMain(QtGui.QMainWindow):
 
         #Video panel  
         self.video_panel = QtGui.QLabel(self)
-        self.video_panel.setVisible(False)
+        #self.video_panel.setVisible(False)
         self.video_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
         self.video_panel.setGeometry(243,53,1357,847)
 
@@ -658,22 +658,35 @@ class QMain(QtGui.QMainWindow):
         self.video_detection_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;outline: none; } QPushButton:hover {background:#076CDA;font-weight: bold;}")
         self.video_detection_button.setGeometry(760,260,550,50)
 
-        self.Label_graph = QtGui.QLabel(self.video_panel)
-        self.Label_graph.setGeometry(30,360,1150,460)
 
+        label_foto_model = QtGui.QLabel("Neural Network Process:",self.video_panel)
+        label_foto_model.setStyleSheet(foto_style_css[0])
+        label_foto_model.setGeometry(10,330,350,50)
 
-        self.graph_video_button = QtGui.QPushButton(self.video_panel)
-        self.graph_video_button.setStyleSheet(style_panel_foto)
-        self.graph_video_button.setIcon(QtGui.QIcon('image/folder_open.png'))
-        self.graph_video_button.setIconSize(QtCore.QSize(72,72))
-        self.graph_video_button.setGeometry(1220,370,72,72)
+        
+        self.object_list_video = QtGui.QPlainTextEdit(self.video_panel)
+        self.object_list_video.setStyleSheet("QPlainTextEdit {background:#222528;color:#FBFBFC; border: 2px solid #222528; font: 20px}")
+        self.object_list_video.setGeometry(30,400,1208,420)
+
+        self.openfolder_video_button = QtGui.QPushButton(self.video_panel)
+        self.openfolder_video_button.setStyleSheet(style_panel_foto)
+        self.openfolder_video_button.setIcon(QtGui.QIcon('image/folder_open.png'))
+        self.openfolder_video_button.setIconSize(QtCore.QSize(72,72))
+        self.openfolder_video_button.setGeometry(1250,400,72,72)
+
+        self.folder_dowladonVideo_button = QtGui.QPushButton(self.video_panel)
+        self.folder_dowladonVideo_button.setStyleSheet(style_panel_foto)
+        self.folder_dowladonVideo_button.setIcon(QtGui.QIcon('image/folder_dowladon.png'))
+        self.folder_dowladonVideo_button.setIconSize(QtCore.QSize(72,72))
+        self.folder_dowladonVideo_button.setGeometry(1250,490,72,72)
+
 
 
 
 
         #Cam panel  
         self.cam_panel = QtGui.QLabel(self)
-        #self.cam_panel.setVisible(False)
+        self.cam_panel.setVisible(False)
         self.cam_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
         self.cam_panel.setGeometry(243,53,1357,847)  
 
@@ -1063,11 +1076,15 @@ class QMain(QtGui.QMainWindow):
         self.connect_panel_button.setStyleSheet("QPushButton {background:#007AFF; border: 1px solid #007AFF; border-radius: 2px;outline: none; } QPushButton:hover {background:#007AFF;font-weight: bold;}")
         self.connect_panel_button.setGeometry(15,130,360,34)
 
+        self.check_label_ = QtGui.QLabel("Successful Connection",self.connect_db_panel)
+        self.check_label_.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; font:20px; color: green}")
+        self.check_label_.setGeometry(90,200,250,40)
+
         
 
         #Панель уведомлений
         self.been_panel = QtGui.QLabel(self)
-        #self.been_panel.setVisible(False)
+        self.been_panel.setVisible(False)
         self.been_panel.setStyleSheet("QLabel {background:#292E33; border: 2px solid #1F2327; border-radius: 5px; margin: 5px}")
         self.been_panel.setGeometry(1270,50,300,500)
 
@@ -1081,26 +1098,20 @@ class QMain(QtGui.QMainWindow):
         self.been_label_.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; font:20px; color: #6D6F72;}")
         self.been_label_.setGeometry(10,10,200,40)
 
-        listWidget = QtGui.QListWidget(self.been_panel)
-        listWidget.setStyleSheet("QListWidget {background:#292E33;border: 1px solid #292E33; font:16px}")
+        self.listWidget_u = QtGui.QListWidget(self.been_panel)
+        self.listWidget_u.setStyleSheet("QListWidget {background:#292E33;border: 1px solid #292E33; font:16px}")
 	
         #Resize width and height
-        listWidget.setGeometry(10,50,280,410)
-	
-        listWidget.addItem("16:05 | 17.05.2020 Andrey Kornienko\ndskadhkashdkashdkashdksagshdfks"); 
-        listWidget.addItem("Item 2");
-        listWidget.addItem("Item 3");
-        listWidget.addItem("Item 4");
-        
-
-        self.connect_panel_button = QtGui.QPushButton("Сlear Notifications",self.been_panel)
-        self.connect_panel_button.setStyleSheet("QPushButton {background:#007AFF; border: 1px solid #007AFF; border-radius: 2px;outline: none; } QPushButton:hover {background:#007AFF;font-weight: bold;}")
-        self.connect_panel_button.setGeometry(10,465,280,25) 
+        self.listWidget_u.setGeometry(10,50,280,410)
+	 
+        self.been_clear_button = QtGui.QPushButton("Сlear Notifications",self.been_panel)
+        self.been_clear_button.setStyleSheet("QPushButton {background:#007AFF; border: 1px solid #007AFF; border-radius: 2px;outline: none; } QPushButton:hover {background:#007AFF;font-weight: bold;}")
+        self.been_clear_button.setGeometry(10,465,280,25) 
 
 
         #Панель сообщений
         self.message_fun_panel = QtGui.QLabel(self)
-        #self.message_fun_panel.setVisible(False)
+        self.message_fun_panel.setVisible(False)
         self.message_fun_panel.setStyleSheet("QLabel {background:#292E33; border: 2px solid #1F2327; border-radius: 5px; margin: 5px}")
         self.message_fun_panel.setGeometry(775,50,500,400)
 
@@ -1114,21 +1125,19 @@ class QMain(QtGui.QMainWindow):
         self.message_label_.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; font:20px; color: #6D6F72;}")
         self.message_label_.setGeometry(10,10,100,40)   
 
-        listWidget = QtGui.QListWidget(self.message_fun_panel)
-        listWidget.setStyleSheet("QListWidget {background:#292E33;border: 1px solid #292E33; font:17px;}")
+        self.listWidget = QtGui.QListWidget(self.message_fun_panel)
+        self.listWidget.setStyleSheet("QListWidget {background:#292E33;border: 1px solid #292E33; font:17px;}")
 	
         #Resize width and height
-        listWidget.setGeometry(10,50,480,305)
+        self.listWidget.setGeometry(10,50,480,305)
 	
-        listWidget.addItem("16:05 | 17.05.2020 Andrey Kornienko\ndskadhkashdkashdkashdksagshdfks"); 
-        listWidget.addItem("Item 2");
-        listWidget.addItem("Item 3");
-        listWidget.addItem("Item 4");
+        
         
 
-        self.connect_panel_button = QtGui.QPushButton("Clear Message",self.message_fun_panel)
-        self.connect_panel_button.setStyleSheet("QPushButton {background:#007AFF; border: 1px solid #007AFF; border-radius: 2px;outline: none; } QPushButton:hover {background:#007AFF;font-weight: bold;}")
-        self.connect_panel_button.setGeometry(10,360,480,30)
+        self.message_clear_button = QtGui.QPushButton("Clear Message",self.message_fun_panel)
+        self.message_clear_button.setStyleSheet("QPushButton {background:#007AFF; border: 1px solid #007AFF; border-radius: 2px;outline: none; } QPushButton:hover {background:#007AFF;font-weight: bold;}")
+        self.message_clear_button.setGeometry(10,360,480,30)
+
 
 app = QtGui.QApplication(sys.argv)
 qb = QMain()

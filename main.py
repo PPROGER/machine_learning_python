@@ -1,5 +1,6 @@
 import sys
 import os
+import time
 import shutil
 from PIL import Image
 import random
@@ -253,10 +254,12 @@ def Registration_face():
 
 def load_main_forms():
     cur = con.cursor()
+    Message_Load()
     for row in cur.execute('SELECT Name,Firstname FROM user WHERE id = ? and id = ?',(id_code,id_code)):
         main_forms.FIO_label.setText(str(row[0]) + " " + str(row[1]))
     con.commit()
     Load_cam_panel()
+    Uvedomlenie_Load()
     
     
 
@@ -517,7 +520,12 @@ def Microfon_assistant():
 # Метод обнаружение обьктов на видео
 def Video_detection():
     if(main_forms.video_modelEdit.text() != "" and main_forms.video_inputEdit.text() != "" and main_forms.video_outEdit.text() != "" and main_forms.frames_per_secondEdit.text() != ""):
+        main_forms.object_list_video.setPlainText("[INFO] The process of work of a neural network for recognition of objects has begun!!!")
+        time.sleep(1)
         Detection_object_video(main_forms.video_modelEdit.text(),main_forms.video_inputEdit.text(),main_forms.video_outEdit.text(), main_forms.frames_per_secondEdit.text())
+        main_forms.object_list_video.setPlainText("[INFO] Successfully completed the process of work of a neural network for object recognition!!!")
+    else:
+        main_forms.object_list_video.setPlainText("[WARNING] Fill in all the fields!!!")
 
 # Метод для открытие панели для входящих писем
 def Message_function():
@@ -588,6 +596,54 @@ def File_open_s_cam4():
     filenamecam4 = QtGui.QFileDialog.getOpenFileName(main_forms,'Open File', '/')
     main_forms.path_modelEdit.setText(str(filenamecam4))
 
+# Открытие каталогу с файлами с проектом
+def OpenFolder_Video():
+    QtGui.QFileDialog.getExistingDirectory(main_forms,'Open Folder','/home/pproger/Desktop/machine_learning_python/video_obcject') 
+
+#Сохрание видео файлов на робочий стол 
+def Folder_DowladonVideo_button():
+    if(main_forms.foto_imageEdit.text() != "" and main_forms.foto_image_outEdit.text() != ""):
+        os.system("mkdir /home/pproger/Desktop/Copy_Video_detection")
+        shutil.copy2(main_forms.video_inputEdit.text(), r'/home/pproger/Desktop/Copy_Video_detection/video_input_copy.mp4')
+        shutil.copy2(main_forms.video_outEdit.text(), r'/home/pproger/Desktop/Copy_Video_detection/video_output_copy.avi')
+        QtGui.QFileDialog.getExistingDirectory(main_forms,'Open copy file','/home/pproger/Desktop/Copy_Video_detection')
+
+#Загрузка уведомлений с бд
+def Uvedomlenie_Load():
+    for texts, Data_time in con.execute("SELECT texts, Data_time FROM uvedomlenie WHERE id_user = ? and id_user = ?",(id_code,id_code)):
+        main_forms.listWidget_u.addItem(str(Data_time) + "\n" + str(texts))   
+   
+    con.commit()
+
+#Загрузка уведомлений с бд
+def Message_Load():
+    for texts, Data_time in con.execute("SELECT texts, Date_time FROM message_admin WHERE id_user = ? and id_user = ?",(id_code,id_code)):
+        main_forms.listWidget.addItem(str(Data_time) + "\n" + str(texts))   
+   
+    con.commit()
+
+# Удаление уведомлений 
+def Been_clear():
+    cur = con.cursor()
+    cur.execute("DELETE FROM uvedomlenie ")
+    con.commit()
+    main_forms.listWidget_u.clear()
+
+# Удаление сообшений с панели
+def Message_clear():
+    cur = con.cursor()
+    cur.execute("DELETE FROM message_admin  ")
+    con.commit()
+    main_forms.listWidget.clear()
+
+# Конект с бд
+def Connect_db_check():
+    if(con):
+        main_forms.check_label_.setText("Successful Connection")
+    else:
+        main_forms.check_label_.setText("No Connection")
+
+
 #Основная программа 
 app = QtGui.QApplication(sys.argv)
 load_form = QLoad()
@@ -645,6 +701,11 @@ main_forms.file_open_button_cam1.clicked.connect(File_open_s_cam1)
 main_forms.file_open_button_cam2.clicked.connect(File_open_s_cam2)
 main_forms.file_open_button_cam3.clicked.connect(File_open_s_cam3)
 main_forms.file_open_button_cam4.clicked.connect(File_open_s_cam4)
+main_forms.openfolder_video_button.clicked.connect(OpenFolder_Video)
+main_forms.folder_dowladonVideo_button.clicked.connect(Folder_DowladonVideo_button)
+main_forms.been_clear_button.clicked.connect(Been_clear)
+main_forms.message_clear_button.clicked.connect(Message_clear)
+main_forms.connect_panel_button.clicked.connect(Connect_db_check)
 
 
 load_form.show()
