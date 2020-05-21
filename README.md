@@ -1,4 +1,4 @@
-h1 Laboratory detection
+<h1> Laboratory detection
 <hr>
 h2 Installation:
 h4 Минимум работает на Python 3.5. Вы можете установить его из pip:
