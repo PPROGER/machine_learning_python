@@ -127,6 +127,11 @@ class QMain(QtGui.QMainWindow):
         lineedit.setAlignment(QtCore.Qt.AlignCenter)
 
         
+        self.micro_function_button = QtGui.QPushButton(panel)
+        self.micro_function_button.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;outline: none;} QPushButton:hover {background:#1F2327;}")
+        self.micro_function_button.setIcon(QtGui.QIcon('image/micro_v.png'))
+        self.micro_function_button.setIconSize(QtCore.QSize(35,30))
+        self.micro_function_button.setGeometry(945,13,40,40)
 
 
         self.message_function_button = QtGui.QPushButton(panel)
@@ -295,7 +300,7 @@ class QMain(QtGui.QMainWindow):
         self.db_panel.setVisible(False)
         self.db_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; border-radius: 5px; padding-left: 10px; margin: 5px}")
         self.db_panel.setGeometry(243,53,1357,847)
-
+        
         #Login panel DB
         self.panel_loning_db = QtGui.QLabel(self.db_panel)
         #self.panel_loning_db.setVisible(False)
@@ -348,6 +353,8 @@ class QMain(QtGui.QMainWindow):
         self.db_panel_function.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
         self.db_panel_function.setGeometry(243,53,1357,847)
 
+        db_style_css = ["QLabel {background:#292E33; border: 1px solid #292E33; color: #6D6F72; font: 25px;}", "QLineEdit {background:#222528;color:#FBFBFC; font: 16px; border: 2px solid #222528; font: 20px; }"]
+
         self.label_datatime = QtGui.QLabel("03/23/21",self.db_panel_function)
         self.label_datatime.setStyleSheet("QLabel {background:#292E33; color: white; font: 25px; border: 1px solid #696969}")
         self.label_datatime.setGeometry(1180,10,170,50)
@@ -370,16 +377,16 @@ class QMain(QtGui.QMainWindow):
 
         #Поиск в таблице user
         label_znach = QtGui.QLabel("Enter value:",self.table_user_panel)
-        label_znach.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; color: white; font: 25px;}")
+        label_znach.setStyleSheet(db_style_css[0])
         label_znach.setGeometry(725,20,200,50)
 
         self.poiskEdit = QtGui.QLineEdit(self.table_user_panel)
-        self.poiskEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
+        self.poiskEdit.setStyleSheet(db_style_css[1])
         self.poiskEdit.setGeometry(770,90,450,35)
         self.poiskEdit.setAlignment(QtCore.Qt.AlignCenter)
 
         self.poisk_button = QtGui.QPushButton('Search', self.table_user_panel)
-        self.poisk_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;}")
+        self.poisk_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;} QPushButton:hover {background:#076CDA;font-weight: bold;}")
         self.poisk_button.setGeometry(1150,150,160,50)
 
 
@@ -391,44 +398,44 @@ class QMain(QtGui.QMainWindow):
 
         #Добавление данных в таблицу user
         label_name = QtGui.QLabel("Name:",self.table_user_panel)
-        label_name.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; color: white; font: 25px;}")
+        label_name.setStyleSheet(db_style_css[0])
         label_name.setGeometry(725,250,150,50)
 
         self.nameEdit = QtGui.QLineEdit(self.table_user_panel)
-        self.nameEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
+        self.nameEdit.setStyleSheet(db_style_css[1])
         self.nameEdit.setGeometry(880,258,300,30)
         self.nameEdit.setAlignment(QtCore.Qt.AlignCenter)
 
 
         label_lastname = QtGui.QLabel("Lastname:",self.table_user_panel)
-        label_lastname.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; color: white; font: 25px;}")
+        label_lastname.setStyleSheet(db_style_css[0])
         label_lastname.setGeometry(725,310,150,50)
 
         self.lastnameEdit = QtGui.QLineEdit(self.table_user_panel)
-        self.lastnameEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
+        self.lastnameEdit.setStyleSheet(db_style_css[1])
         self.lastnameEdit.setGeometry(880,318,300,30)
         self.lastnameEdit.setAlignment(QtCore.Qt.AlignCenter)
 
         label_gmail = QtGui.QLabel("Gmail:",self.table_user_panel)
-        label_gmail.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; color: white; font: 25px;}")
+        label_gmail.setStyleSheet(db_style_css[0])
         label_gmail.setGeometry(725,370,150,50)
 
         self.gmailEdit = QtGui.QLineEdit(self.table_user_panel)
-        self.gmailEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
+        self.gmailEdit.setStyleSheet(db_style_css[1])
         self.gmailEdit.setGeometry(880,378,300,30)
         self.gmailEdit.setAlignment(QtCore.Qt.AlignCenter)
 
         label_password = QtGui.QLabel("Password:",self.table_user_panel)
-        label_password.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; color: white; font: 25px;}")
+        label_password.setStyleSheet(db_style_css[0])
         label_password.setGeometry(725,430,150,50)
 
         self.passEdit = QtGui.QLineEdit(self.table_user_panel)
-        self.passEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
+        self.passEdit.setStyleSheet(db_style_css[1])
         self.passEdit.setGeometry(880,438,300,30)
         self.passEdit.setAlignment(QtCore.Qt.AlignCenter)
 
         self.add_button = QtGui.QPushButton('Add data', self.table_user_panel)
-        self.add_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;}")
+        self.add_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;} QPushButton:hover {background:#076CDA;font-weight: bold;}")
         self.add_button.setGeometry(1150,500,160,50)
 
 
@@ -440,16 +447,16 @@ class QMain(QtGui.QMainWindow):
 
         #Удаление с таблицы user
         label_znach_del = QtGui.QLabel("Enter value:",self.table_user_panel)
-        label_znach_del.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; color: white; font: 25px;}")
+        label_znach_del.setStyleSheet(db_style_css[0])
         label_znach_del.setGeometry(725,600,170,50)
 
         self.delEdit = QtGui.QLineEdit(self.table_user_panel)
-        self.delEdit.setStyleSheet("QLineEdit {color:orange; font: 16px; border: 2px solid gray; }")
+        self.delEdit.setStyleSheet(db_style_css[1])
         self.delEdit.setGeometry(900,608,350,35)
         self.delEdit.setAlignment(QtCore.Qt.AlignCenter)
 
         self.del_button = QtGui.QPushButton('Delete', self.table_user_panel)
-        self.del_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;}")
+        self.del_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;} QPushButton:hover {background:#076CDA;font-weight: bold;}")
         self.del_button.setGeometry(1150,670,160,50)
 
         #Панель для таблицы messager
@@ -658,22 +665,35 @@ class QMain(QtGui.QMainWindow):
         self.video_detection_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;outline: none; } QPushButton:hover {background:#076CDA;font-weight: bold;}")
         self.video_detection_button.setGeometry(760,260,550,50)
 
-        self.Label_graph = QtGui.QLabel(self.video_panel)
-        self.Label_graph.setGeometry(30,360,1150,460)
 
+        label_foto_model = QtGui.QLabel("Neural Network Process:",self.video_panel)
+        label_foto_model.setStyleSheet(foto_style_css[0])
+        label_foto_model.setGeometry(10,330,350,50)
 
-        self.graph_video_button = QtGui.QPushButton(self.video_panel)
-        self.graph_video_button.setStyleSheet(style_panel_foto)
-        self.graph_video_button.setIcon(QtGui.QIcon('image/folder_open.png'))
-        self.graph_video_button.setIconSize(QtCore.QSize(72,72))
-        self.graph_video_button.setGeometry(1220,370,72,72)
+        
+        self.object_list_video = QtGui.QPlainTextEdit(self.video_panel)
+        self.object_list_video.setStyleSheet("QPlainTextEdit {background:#222528;color:#FBFBFC; border: 2px solid #222528; font: 20px}")
+        self.object_list_video.setGeometry(30,400,1208,420)
+
+        self.openfolder_video_button = QtGui.QPushButton(self.video_panel)
+        self.openfolder_video_button.setStyleSheet(style_panel_foto)
+        self.openfolder_video_button.setIcon(QtGui.QIcon('image/folder_open.png'))
+        self.openfolder_video_button.setIconSize(QtCore.QSize(72,72))
+        self.openfolder_video_button.setGeometry(1250,400,72,72)
+
+        self.folder_dowladonVideo_button = QtGui.QPushButton(self.video_panel)
+        self.folder_dowladonVideo_button.setStyleSheet(style_panel_foto)
+        self.folder_dowladonVideo_button.setIcon(QtGui.QIcon('image/folder_dowladon.png'))
+        self.folder_dowladonVideo_button.setIconSize(QtCore.QSize(72,72))
+        self.folder_dowladonVideo_button.setGeometry(1250,490,72,72)
+
 
 
 
 
         #Cam panel  
         self.cam_panel = QtGui.QLabel(self)
-        #self.cam_panel.setVisible(False)
+        self.cam_panel.setVisible(False)
         self.cam_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
         self.cam_panel.setGeometry(243,53,1357,847)  
 
@@ -882,7 +902,7 @@ class QMain(QtGui.QMainWindow):
 
         #Plagins panel  
         self.Plagins_panel = QtGui.QLabel(self)
-        self.Plagins_panel.setVisible(False)
+        #self.Plagins_panel.setVisible(False)
         self.Plagins_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
         self.Plagins_panel.setGeometry(243,53,1357,847)
 
@@ -896,11 +916,11 @@ class QMain(QtGui.QMainWindow):
         
         
         #Сам поиск 
-        lineedit_plagin = QtGui.QLineEdit(self.Plagins_panel)
-        lineedit_plagin.setCompleter(completer_plag)
-        lineedit_plagin.setStyleSheet("QLineEdit {background:#222528; border-radius: 10px; font: 18px;}")
-        lineedit_plagin.setGeometry(27,30,1300,45)
-        lineedit_plagin.setAlignment(QtCore.Qt.AlignCenter)
+        self.lineedit_plagin = QtGui.QLineEdit(self.Plagins_panel)
+        self.lineedit_plagin.setCompleter(completer_plag)
+        self.lineedit_plagin.setStyleSheet("QLineEdit {background:#222528; border-radius: 10px; font: 18px;}")
+        self.lineedit_plagin.setGeometry(27,30,1300,45)
+        self.lineedit_plagin.setAlignment(QtCore.Qt.AlignCenter)
 
         self.scrollArea = QtGui.QScrollArea(self.Plagins_panel)
         self.scrollArea.setWidgetResizable(True)
@@ -994,6 +1014,35 @@ class QMain(QtGui.QMainWindow):
 
 
 
+        #Плагин удаления не нужных элементов с фото
+        self.plagins_function_foto_del = QtGui.QLabel(self.scrollAreaWidgetContents)
+        self.plagins_function_foto_del.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 2px;} QLabel:hover {border: 4px solid #1F2327;}")
+        self.plagins_function_foto_del.setMinimumHeight(100)
+
+       
+
+        self.verticalLayoutScroll.addWidget(self.plagins_function_foto_del)
+
+        image_plugins_foto_del = QtGui.QLabel(self.plagins_function_foto_del)
+        pixmap4 = QtGui.QPixmap('image/foto_del_im.png')
+        image_plugins_foto_del.setPixmap(pixmap4)
+        image_plugins_foto_del.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33;}")
+        image_plugins_foto_del.setGeometry(5,5,95,90)
+
+        
+        text_plugin_label_foto_del = QtGui.QLabel('Automatic removal of unnecessary elements from the photo.',self.plagins_function_foto_del)
+        text_plugin_label_foto_del.setStyleSheet(plugin_style_css[0])
+        text_plugin_label_foto_del.setGeometry(120,5,900,90)
+
+        self.plugins_foto_del = QtGui.QPushButton('Add plugin',self.plagins_function_foto_del)
+        self.plugins_foto_del.setStyleSheet(style_button)
+        self.plugins_foto_del.setIcon(QtGui.QIcon('image/add_plugin.png'))
+        self.plugins_foto_del.setIconSize(QtCore.QSize(30,30))
+        self.plugins_foto_del.setGeometry(1050,20,200,60)
+
+
+
+
         self.plagins_function1 = QtGui.QLabel(self.scrollAreaWidgetContents)
         self.plagins_function1.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 2px;} QLabel:hover {border: 4px solid #1F2327;}")
         self.plagins_function1.setMinimumHeight(1000)
@@ -1063,11 +1112,15 @@ class QMain(QtGui.QMainWindow):
         self.connect_panel_button.setStyleSheet("QPushButton {background:#007AFF; border: 1px solid #007AFF; border-radius: 2px;outline: none; } QPushButton:hover {background:#007AFF;font-weight: bold;}")
         self.connect_panel_button.setGeometry(15,130,360,34)
 
+        self.check_label_ = QtGui.QLabel("Successful Connection",self.connect_db_panel)
+        self.check_label_.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; font:20px; color: green}")
+        self.check_label_.setGeometry(90,200,250,40)
+
         
 
         #Панель уведомлений
         self.been_panel = QtGui.QLabel(self)
-        #self.been_panel.setVisible(False)
+        self.been_panel.setVisible(False)
         self.been_panel.setStyleSheet("QLabel {background:#292E33; border: 2px solid #1F2327; border-radius: 5px; margin: 5px}")
         self.been_panel.setGeometry(1270,50,300,500)
 
@@ -1081,26 +1134,20 @@ class QMain(QtGui.QMainWindow):
         self.been_label_.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; font:20px; color: #6D6F72;}")
         self.been_label_.setGeometry(10,10,200,40)
 
-        listWidget = QtGui.QListWidget(self.been_panel)
-        listWidget.setStyleSheet("QListWidget {background:#292E33;border: 1px solid #292E33; font:16px}")
+        self.listWidget_u = QtGui.QListWidget(self.been_panel)
+        self.listWidget_u.setStyleSheet("QListWidget {background:#292E33;border: 1px solid #292E33; font:16px}")
 	
         #Resize width and height
-        listWidget.setGeometry(10,50,280,410)
-	
-        listWidget.addItem("16:05 | 17.05.2020 Andrey Kornienko\ndskadhkashdkashdkashdksagshdfks"); 
-        listWidget.addItem("Item 2");
-        listWidget.addItem("Item 3");
-        listWidget.addItem("Item 4");
-        
-
-        self.connect_panel_button = QtGui.QPushButton("Сlear Notifications",self.been_panel)
-        self.connect_panel_button.setStyleSheet("QPushButton {background:#007AFF; border: 1px solid #007AFF; border-radius: 2px;outline: none; } QPushButton:hover {background:#007AFF;font-weight: bold;}")
-        self.connect_panel_button.setGeometry(10,465,280,25) 
+        self.listWidget_u.setGeometry(10,50,280,410)
+	 
+        self.been_clear_button = QtGui.QPushButton("Сlear Notifications",self.been_panel)
+        self.been_clear_button.setStyleSheet("QPushButton {background:#007AFF; border: 1px solid #007AFF; border-radius: 2px;outline: none; } QPushButton:hover {background:#007AFF;font-weight: bold;}")
+        self.been_clear_button.setGeometry(10,465,280,25) 
 
 
         #Панель сообщений
         self.message_fun_panel = QtGui.QLabel(self)
-        #self.message_fun_panel.setVisible(False)
+        self.message_fun_panel.setVisible(False)
         self.message_fun_panel.setStyleSheet("QLabel {background:#292E33; border: 2px solid #1F2327; border-radius: 5px; margin: 5px}")
         self.message_fun_panel.setGeometry(775,50,500,400)
 
@@ -1114,28 +1161,25 @@ class QMain(QtGui.QMainWindow):
         self.message_label_.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; font:20px; color: #6D6F72;}")
         self.message_label_.setGeometry(10,10,100,40)   
 
-        listWidget = QtGui.QListWidget(self.message_fun_panel)
-        listWidget.setStyleSheet("QListWidget {background:#292E33;border: 1px solid #292E33; font:17px;}")
+        self.listWidget = QtGui.QListWidget(self.message_fun_panel)
+        self.listWidget.setStyleSheet("QListWidget {background:#292E33;border: 1px solid #292E33; font:17px;}")
 	
         #Resize width and height
-        listWidget.setGeometry(10,50,480,305)
+        self.listWidget.setGeometry(10,50,480,305)
 	
-        listWidget.addItem("16:05 | 17.05.2020 Andrey Kornienko\ndskadhkashdkashdkashdksagshdfks"); 
-        listWidget.addItem("Item 2");
-        listWidget.addItem("Item 3");
-        listWidget.addItem("Item 4");
+        
         
 
-        self.connect_panel_button = QtGui.QPushButton("Clear Message",self.message_fun_panel)
-        self.connect_panel_button.setStyleSheet("QPushButton {background:#007AFF; border: 1px solid #007AFF; border-radius: 2px;outline: none; } QPushButton:hover {background:#007AFF;font-weight: bold;}")
-        self.connect_panel_button.setGeometry(10,360,480,30)
-
+        self.message_clear_button = QtGui.QPushButton("Clear Message",self.message_fun_panel)
+        self.message_clear_button.setStyleSheet("QPushButton {background:#007AFF; border: 1px solid #007AFF; border-radius: 2px;outline: none; } QPushButton:hover {background:#007AFF;font-weight: bold;}")
+        self.message_clear_button.setGeometry(10,360,480,30)
+"""
 app = QtGui.QApplication(sys.argv)
 qb = QMain()
 
 qb.show()
 sys.exit(app.exec_())
-
+"""
 
 
 
