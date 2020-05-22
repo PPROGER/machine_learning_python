@@ -685,7 +685,19 @@ class QMain(QtGui.QMainWindow):
         self.folder_dowladonVideo_button.setStyleSheet(style_panel_foto)
         self.folder_dowladonVideo_button.setIcon(QtGui.QIcon('image/folder_dowladon.png'))
         self.folder_dowladonVideo_button.setIconSize(QtCore.QSize(72,72))
-        self.folder_dowladonVideo_button.setGeometry(1250,490,72,72)
+        self.folder_dowladonVideo_button.setGeometry(1250,485,72,72)
+
+        self.open_video_button_input = QtGui.QPushButton(self.video_panel)
+        self.open_video_button_input.setStyleSheet(style_panel_foto)
+        self.open_video_button_input.setIcon(QtGui.QIcon('image/open_video_output.png'))
+        self.open_video_button_input.setIconSize(QtCore.QSize(72,72))
+        self.open_video_button_input.setGeometry(1250,570,72,72)
+
+        self.open_video_button_output = QtGui.QPushButton(self.video_panel)
+        self.open_video_button_output.setStyleSheet(style_panel_foto)
+        self.open_video_button_output.setIcon(QtGui.QIcon('image/open_video_input.png'))
+        self.open_video_button_output.setIconSize(QtCore.QSize(72,72))
+        self.open_video_button_output.setGeometry(1250,655,72,72)
 
 
 
@@ -902,13 +914,13 @@ class QMain(QtGui.QMainWindow):
 
         #Plagins panel  
         self.Plagins_panel = QtGui.QLabel(self)
-        #self.Plagins_panel.setVisible(False)
+        self.Plagins_panel.setVisible(False)
         self.Plagins_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
         self.Plagins_panel.setGeometry(243,53,1357,847)
 
         #Cловарь для поиска плагина
         model_plag = QtGui.QStringListModel()
-        model_plag.setStringList(['Face ID', 'Face', 'in', 'my', 'dictionary'])
+        model_plag.setStringList(['Face ID', 'Face', 'fluorography', 'foto detection', 'video detection','removal of unnecessary objects from a photo', 'del','removal of excess objects','voice assistant','Voice','Assistant','with black and white photos in color','photos in color'])
 
         completer_plag = QtGui.QCompleter()
         completer_plag.setModel(model_plag)
@@ -949,7 +961,7 @@ class QMain(QtGui.QMainWindow):
         image_plugins_face.setGeometry(5,5,95,90)
 
         plugin_style_css = ["QLabel {background:#292E33; border: 1px solid #292E33; color: #6D6F72; font: 20px;}", "QLineEdit {background:#222528;color:#FBFBFC; font: 16px; border: 2px solid #222528; font: 20px; }"]
-        text_plugin_label_face = QtGui.QLabel('Face ID - a scanner of the three-dimensional shape of a person’s face. Used to identify a person',self.plagins_function_face)
+        text_plugin_label_face = QtGui.QLabel('Face ID - a scanner of the three-dimensional shape of a person’s face. Used to identify a person.',self.plagins_function_face)
         text_plugin_label_face.setStyleSheet(plugin_style_css[0])
         text_plugin_label_face.setGeometry(120,5,900,90)
 
@@ -1002,7 +1014,7 @@ class QMain(QtGui.QMainWindow):
         image_plugins_foto.setGeometry(5,5,95,90)
 
         
-        text_plugin_label_foto = QtGui.QLabel('Automatically convert a black and white photo into a color photo using a neural network',self.plagins_function_foto)
+        text_plugin_label_foto = QtGui.QLabel('Automatically convert a black and white photo into a color photo using a neural network.',self.plagins_function_foto)
         text_plugin_label_foto.setStyleSheet(plugin_style_css[0])
         text_plugin_label_foto.setGeometry(120,5,900,90)
 
@@ -1042,18 +1054,93 @@ class QMain(QtGui.QMainWindow):
 
 
 
+        #Плагин обнаружение обьктов на фото 
+        self.plagins_function_foto_detection = QtGui.QLabel(self.scrollAreaWidgetContents)
+        self.plagins_function_foto_detection.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 2px;} QLabel:hover {border: 4px solid #1F2327;}")
+        self.plagins_function_foto_detection.setMinimumHeight(100)
 
-        self.plagins_function1 = QtGui.QLabel(self.scrollAreaWidgetContents)
-        self.plagins_function1.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 2px;} QLabel:hover {border: 4px solid #1F2327;}")
-        self.plagins_function1.setMinimumHeight(1000)
+       
+
+        self.verticalLayoutScroll.addWidget(self.plagins_function_foto_detection)
+
+        image_plugins_foto_detection = QtGui.QLabel(self.plagins_function_foto_detection)
+        pixmap5 = QtGui.QPixmap('image/plagin_foto_detection.png')
+        image_plugins_foto_detection.setPixmap(pixmap5)
+        image_plugins_foto_detection.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33;}")
+        image_plugins_foto_detection.setGeometry(5,5,95,90)
+
         
-        self.verticalLayoutScroll.addWidget(self.plagins_function1)
+        text_plugin_label_foto_detection = QtGui.QLabel('Detecting objects in a photo using a neural network.',self.plagins_function_foto_detection)
+        text_plugin_label_foto_detection.setStyleSheet(plugin_style_css[0])
+        text_plugin_label_foto_detection.setGeometry(120,5,900,90)
+
+        self.plugins_foto_detection = QtGui.QPushButton('Add plugin',self.plagins_function_foto_detection)
+        self.plugins_foto_detection.setStyleSheet(style_button)
+        self.plugins_foto_detection.setIcon(QtGui.QIcon('image/add_plugin.png'))
+        self.plugins_foto_detection.setIconSize(QtCore.QSize(30,30))
+        self.plugins_foto_detection.setGeometry(1050,20,200,60)
+
+
+        #Плагин обнаружение обьктов на видео
+        self.plagins_function_video_detection = QtGui.QLabel(self.scrollAreaWidgetContents)
+        self.plagins_function_video_detection.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 2px;} QLabel:hover {border: 4px solid #1F2327;}")
+        self.plagins_function_video_detection.setMinimumHeight(100)
+
+       
+
+        self.verticalLayoutScroll.addWidget(self.plagins_function_video_detection)
+
+        image_plugins_video_detection = QtGui.QLabel(self.plagins_function_video_detection)
+        pixmap6 = QtGui.QPixmap('image/plugin_video_detection.png')
+        image_plugins_video_detection.setPixmap(pixmap6)
+        image_plugins_video_detection.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33;}")
+        image_plugins_video_detection.setGeometry(5,5,95,90)
+
+        
+        text_plugin_label_video_detection = QtGui.QLabel('Detecting objects in a video using a neural network.',self.plagins_function_video_detection)
+        text_plugin_label_video_detection.setStyleSheet(plugin_style_css[0])
+        text_plugin_label_video_detection.setGeometry(120,5,900,90)
+
+        self.plugins_video_detection = QtGui.QPushButton('Add plugin',self.plagins_function_video_detection)
+        self.plugins_video_detection.setStyleSheet(style_button)
+        self.plugins_video_detection.setIcon(QtGui.QIcon('image/add_plugin.png'))
+        self.plugins_video_detection.setIconSize(QtCore.QSize(30,30))
+        self.plugins_video_detection.setGeometry(1050,20,200,60)
+
+
+        #Плагин голосовой асистент
+        self.plagins_function_voice = QtGui.QLabel(self.scrollAreaWidgetContents)
+        self.plagins_function_voice.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 2px;} QLabel:hover {border: 4px solid #1F2327;}")
+        self.plagins_function_voice.setMinimumHeight(100)
+
+       
+
+        self.verticalLayoutScroll.addWidget(self.plagins_function_voice)
+
+        image_plugins_voice = QtGui.QLabel(self.plagins_function_voice)
+        pixmap7 = QtGui.QPixmap('image/plugin_micro.png')
+        image_plugins_voice.setPixmap(pixmap7)
+        image_plugins_voice.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33;}")
+        image_plugins_voice.setGeometry(5,5,95,90)
+
+        
+        text_plugin_label_voice = QtGui.QLabel('Voice assistant for computer control.',self.plagins_function_voice)
+        text_plugin_label_voice.setStyleSheet(plugin_style_css[0])
+        text_plugin_label_voice.setGeometry(120,5,900,90)
+
+        self.plugins_voice = QtGui.QPushButton('Add plugin',self.plagins_function_voice)
+        self.plugins_voice.setStyleSheet(style_button)
+        self.plugins_voice.setIcon(QtGui.QIcon('image/add_plugin.png'))
+        self.plugins_voice.setIconSize(QtCore.QSize(30,30))
+        self.plugins_voice.setGeometry(1050,20,200,60)
+
+
 
         
 
         #Voise Assistant panel  
         self.voise_assistant_panel = QtGui.QLabel(self)
-        self.voise_assistant_panel.setVisible(False)
+        #self.voise_assistant_panel.setVisible(False)
         self.voise_assistant_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; border-radius: 5px;  margin: 5px}")
         self.voise_assistant_panel.setGeometry(243,53,1357,847)
 
@@ -1173,6 +1260,7 @@ class QMain(QtGui.QMainWindow):
         self.message_clear_button = QtGui.QPushButton("Clear Message",self.message_fun_panel)
         self.message_clear_button.setStyleSheet("QPushButton {background:#007AFF; border: 1px solid #007AFF; border-radius: 2px;outline: none; } QPushButton:hover {background:#007AFF;font-weight: bold;}")
         self.message_clear_button.setGeometry(10,360,480,30)
+
 """
 app = QtGui.QApplication(sys.argv)
 qb = QMain()

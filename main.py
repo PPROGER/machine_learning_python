@@ -11,6 +11,8 @@ from skimage import io
 from scipy.spatial import distance
 from datetime import datetime
 import numpy
+import speech_recognition as sr
+import platform
 
 
 
@@ -20,7 +22,6 @@ from main_forms import QMain
 from face_id.cam import Cam
 from face_id.face_detector import Face_detector
 from face_id.cam_registartion import Cam_registration
-from voice_assistant.speech_ai import Speech_AI
 from load_form import QLoad
 from FacialRecognitionProject.face_dataset import Face_datasets
 from FacialRecognitionProject.face_training import Face_trainings
@@ -33,6 +34,7 @@ from VoiceCommands.voice_commands import listen
     
 id_code = 0
 button_check = [True, True, True]
+assistent_check = True
 #Поле ID пользователя
 def log_avtorization():
     log_number = False
@@ -513,10 +515,29 @@ def Connect_function():
 
 # Метод для голосового асистента
 def Microfon_assistant():
-    main_forms.assistant_list.setPlainText("Минутку тишины, пожалуйста...\n")
-    ai = Speech_AI()
-    ai.work()
-    #main_forms.object_list_foto.setPlainText(str(asa))
+    global assistent_check
+    if(assistent_check == True):
+        os.system("echo «Привет я голосовой ассистент Таня! Что вам угодно?» | RHVoice-test -p anna")
+        assistent_check = False
+    elif(assistent_check == False):
+        os.system("echo «Что вам угодно?» | RHVoice-test -p anna")
+    main_forms.assistant_list.appendPlainText("Что вам угодно?")
+    cmd = listen()
+    if(cmd == "кто твой разработчик"):
+        os.system("echo «Мой разработчик программист, он просил меня сердечно его имя и фамилию не называть!» | RHVoice-test -p anna")
+        main_forms.assistant_list.appendPlainText("Мой разработчик программист, он просил меня сердечно имя и фамилию не называть!")
+    elif(cmd == "сколько время"):
+        os.system("echo «Cейчас "+str(datetime.strftime(datetime.now(), "%H:%M:%S"))+"» | RHVoice-test -p anna")
+    elif(cmd == "справка по программе" or cmd == "справка"):
+        os.system("echo «Эта программа создана для для обнаружения обьектов на камере, фото и видео материалах» | RHVoice-test -p anna")
+        main_forms.assistant_list.appendPlainText("Эта программа создана для для обнаружения обьектов на камере, фото и видео материалах")
+    elif(cmd == "какая операционная система" or cmd == "какая ос" or cmd == "что за ос"):
+        os.system("echo «Операционная система "+str(platform.system())+"» | RHVoice-test -p anna")
+        main_forms.assistant_list.appendPlainText("Операционная система "+str(platform.system()))    
+    elif(cmd == "пока"):
+        os.system("echo «Всего доброго!» | RHVoice-test -p anna") 
+    else:
+        os.system("echo «Не поняла повторите команду» | RHVoice-test -p anna")
 
 # Метод обнаружение обьктов на видео
 def Video_detection():
@@ -644,6 +665,7 @@ def Connect_db_check():
     else:
         main_forms.check_label_.setText("No Connection")
 
+
 # Сохранение плагина Face_id
 def Plugins_face():
     shutil.copy2(r'/home/pproger/Desktop/machine_learning_python/plugins/Face_id.zip', r'/home/pproger/Desktop/Face_id.zip')
@@ -664,10 +686,26 @@ def Plugins_foto_del():
     shutil.copy2(r'/home/pproger/Desktop/machine_learning_python/plugins/opencv-inpainting.zip', r'/home/pproger/Desktop/opencv-inpainting.zip')
     QtGui.QMessageBox.about(QtGui.QWidget(),"Message","Successfully saved to the desktop!")
 
+# Плагин для обнаружения обьектов на фото
+def Plugins_foto_detection():
+    shutil.copy2(r'/home/pproger/Desktop/machine_learning_python/plugins/plagin_foto_detection.zip', r'/home/pproger/Desktop/plagin_foto_detection.zip')
+    QtGui.QMessageBox.about(QtGui.QWidget(),"Message","Successfully saved to the desktop!")
+
+# Плагин для обнаружения обьектов на видео
+def Plugins_Video_Detection():
+    shutil.copy2(r'/home/pproger/Desktop/machine_learning_python/plugins/plagin_video_detection.zip', r'/home/pproger/Desktop/plagin_video_detection.zip')
+    QtGui.QMessageBox.about(QtGui.QWidget(),"Message","Successfully saved to the desktop!")
+
+# Плагин голосовой ассистент
+def Plugins_voice():
+    shutil.copy2(r'/home/pproger/Desktop/machine_learning_python/plugins/voice_assistant.zip', r'/home/pproger/Desktop/voice_assistant.zip')
+    QtGui.QMessageBox.about(QtGui.QWidget(),"Message","Successfully saved to the desktop!")
+
 # Голосовые команды
 def Micro_function():
+    os.system("echo «Что сделать?» | RHVoice-test -p anna")
     cmd = listen()
-    if(cmd == "открой голосового ассистента"):
+    if(cmd == "открой голосового ассистента" or cmd == "открой ассистента" or cmd == "ассистент"):
         main_forms.voise_assistant_panel.setVisible(True)
         main_forms.Plagins_panel.setVisible(False)
         main_forms.main_panel.setVisible(False) 
@@ -676,7 +714,17 @@ def Micro_function():
         main_forms.video_panel.setVisible(False)
         main_forms.db_panel.setVisible(False)
         main_forms.db_panel_function.setVisible(False)
-        
+    else:
+        os.system("echo «Не поняла повторите команду» | RHVoice-test -p anna")
+# Открытие видео которое было загружено для обробки        
+def Open_Video_Input():
+    os.system("mpv " + str(main_forms.video_inputEdit.text()))
+
+# Открытие видео которое было после обработки нейронной сетью
+def Open_Video_Output():
+    os.system("mpv " + str(main_forms.video_outEdit.text()))
+
+
 
 #Основная программа 
 app = QtGui.QApplication(sys.argv)
@@ -744,7 +792,13 @@ main_forms.plugins_flugo.clicked.connect(Plugins_flugo)
 main_forms.plugins_foto.clicked.connect(Plugins_foto)
 main_forms.plugins_foto_del.clicked.connect(Plugins_foto_del)
 main_forms.plugins_face.clicked.connect(Plugins_face)
+main_forms.plugins_foto_detection.clicked.connect(Plugins_foto_detection)
+main_forms.plugins_video_detection.clicked.connect(Plugins_Video_Detection)
+main_forms.plugins_voice.clicked.connect(Plugins_voice)
 main_forms.micro_function_button.clicked.connect(Micro_function)
+main_forms.open_video_button_input.clicked.connect(Open_Video_Input)
+main_forms.open_video_button_output.clicked.connect(Open_Video_Output)
+
 
 load_form.show()
 Progress_load()

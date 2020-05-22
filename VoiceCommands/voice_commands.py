@@ -5,6 +5,7 @@ import os
 micro = sr.Microphone()
 r = sr.Recognizer()
 engine = pyttsx3.init()
+engine.setProperty('voice', 'ru')
 
 def talk(x):
     engine.say(x)
@@ -12,7 +13,6 @@ def talk(x):
     
     
 def listen():
-    
     text = ''
     with micro as sourse:
         print('Я вас слушаю: ')
@@ -30,4 +30,5 @@ def cmd(text):
     if(text == 'создай папку на рабочем столе'):
         print('Hi')
         os.system("mkdir /home/pproger/Desktop/Copy_Video_detection")    
+
 
