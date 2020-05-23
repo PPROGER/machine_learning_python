@@ -203,6 +203,7 @@ def Log_func_db():
         main_forms.passwordEdit.setText("")
         DateTime()
         Load_data()
+        Load_data_object_db()
 
     else:
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message","please enter login and password") 
@@ -276,6 +277,7 @@ def Face_avtorization_db():
         main_forms.db_panel_function.setVisible(True)
         DateTime()
         Load_data()
+        Load_data_object_db()
     elif(float(evklid_znach) > 0.6):
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message","please try again or register through Face ID!")
 
@@ -321,6 +323,7 @@ def Search_user():
             main_forms.table_widget.setItem(row, 3, QtGui.QTableWidgetItem(Gmail))
             main_forms.table_widget.setItem(row, 4, QtGui.QTableWidgetItem(Password))
         con.commit()
+        main_forms.poiskEdit.setText("")
     else:
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message", "enter value!")
 
@@ -352,7 +355,67 @@ def Delete_user():
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message","please enter value")
     con.commit()
 
+# Функционал для таблицы object
+def Load_data_object_db():
+    for id_, nazva, text_object in con.execute("SELECT id, nazva_image, object FROM foto_log"):
+        row = main_forms.table_widget_object.rowCount()
+        main_forms.table_widget_object.setRowCount(row + 1)
 
+        main_forms.table_widget_object.setItem(row, 0, QtGui.QTableWidgetItem(str(id_)))
+        main_forms.table_widget_object.setItem(row, 1, QtGui.QTableWidgetItem(nazva))
+        main_forms.table_widget_object.setItem(row, 2, QtGui.QTableWidgetItem(text_object))
+    con.commit()
+
+#Функция удаление строк с таблицы на форме
+def Delete_row_table_object():
+
+    main_forms.table_widget_object.clearContents()
+    main_forms.table_widget_object.setRowCount(0)
+    
+
+
+def Search_table_object():
+    if(main_forms.poisk_objectEdit.text() != ""):
+        Delete_row_table_object()
+        for id_, nazva, text_object in con.execute("SELECT id, nazva_image, object FROM foto_log WHERE id = ? or nazva_image = ? or object = ?",(main_forms.poisk_objectEdit.text(),main_forms.poisk_objectEdit.text(),main_forms.poisk_objectEdit.text())):
+            row = main_forms.table_widget_object.rowCount()
+            main_forms.table_widget_object.setRowCount(row + 1)
+
+            main_forms.table_widget_object.setItem(row, 0, QtGui.QTableWidgetItem(str(id_)))
+            main_forms.table_widget_object.setItem(row, 1, QtGui.QTableWidgetItem(nazva))
+            main_forms.table_widget_object.setItem(row, 2, QtGui.QTableWidgetItem(text_object))
+        con.commit()
+        main_forms.poisk_objectEdit.setText("")
+    else:
+        QtGui.QMessageBox.about(QtGui.QWidget(),"Message", "enter value!")
+
+
+def Add_teble_object():
+    if(main_forms.imageObjectEdit.text() !="" and main_forms.object_textEdit.text() != ""):
+        cur = con.cursor()
+        cur.execute('INSERT INTO foto_log (id,nazva_image,object) VALUES (?,?,?)',(random.randint(1111,9999),main_forms.imageObjectEdit.text(),main_forms.object_textEdit.text()))
+        QtGui.QMessageBox.about(QtGui.QWidget(),"Message","You have successfully\nregistration!")
+        main_forms.imageObjectEdit.setText("")
+        main_forms.object_textEdit.setText("")
+        Delete_row_table_object()
+        Load_data_object_db()
+    else:
+        QtGui.QMessageBox.about(QtGui.QWidget(),"Message","please enter data")
+
+    con.commit()
+
+def Delete_table_object():
+    if(main_forms.del_object_textEdit.text() != ""):
+        cur = con.cursor()
+        cur.execute("DELETE FROM foto_log WHERE id = ? or nazva_image = ? or object = ?",(main_forms.del_object_textEdit.text(),main_forms.del_object_textEdit.text(),main_forms.del_object_textEdit.text()))
+        QtGui.QMessageBox.about(QtGui.QWidget(),"Message","You have successfully\delete!")
+        main_forms.del_object_textEdit.setText("")
+        Delete_row_table_object()
+        Load_data_object_db()
+        main_forms.del_object_textEdit.setText("")
+    else:
+        QtGui.QMessageBox.about(QtGui.QWidget(),"Message","please enter value")
+    con.commit()
 
 def Progress_load():
     completed = 0
@@ -525,19 +588,23 @@ def Microfon_assistant():
     cmd = listen()
     if(cmd == "кто твой разработчик"):
         os.system("echo «Мой разработчик программист, он просил меня сердечно его имя и фамилию не называть!» | RHVoice-test -p anna")
-        main_forms.assistant_list.appendPlainText("Мой разработчик программист, он просил меня сердечно имя и фамилию не называть!")
-    elif(cmd == "сколько время"):
+        main_forms.assistant_list.appendPlainText("Мой разработчик программист, он просил меня сердечно его имя и фамилию не называть!")
+    elif(cmd == "сколько время" or cmd == "время"):
         os.system("echo «Cейчас "+str(datetime.strftime(datetime.now(), "%H:%M:%S"))+"» | RHVoice-test -p anna")
     elif(cmd == "справка по программе" or cmd == "справка"):
-        os.system("echo «Эта программа создана для для обнаружения обьектов на камере, фото и видео материалах» | RHVoice-test -p anna")
-        main_forms.assistant_list.appendPlainText("Эта программа создана для для обнаружения обьектов на камере, фото и видео материалах")
-    elif(cmd == "какая операционная система" or cmd == "какая ос" or cmd == "что за ос"):
+        os.system("echo «Эта программа создана для обнаружения обьектов на камере, фото и видео материалах» | RHVoice-test -p anna")
+        main_forms.assistant_list.appendPlainText("Эта программа создана для обнаружения обьектов на камере, фото и видео материалах")
+    elif(cmd == "какая операционная система" or cmd == "какая ос" or cmd == "что за ос" or cmd == "операционная система"):
         os.system("echo «Операционная система "+str(platform.system())+"» | RHVoice-test -p anna")
         main_forms.assistant_list.appendPlainText("Операционная система "+str(platform.system()))    
     elif(cmd == "пока"):
-        os.system("echo «Всего доброго!» | RHVoice-test -p anna") 
+        os.system("echo «Всего доброго!» | RHVoice-test -p anna")
+    elif(cmd == "как тебя зовут" or "твое имя"):
+        os.system("echo «Мое имя Татьяна но для вас можно Таня» | RHVoice-test -p anna")
+        main_forms.assistant_list.appendPlainText("Вы сказали " + str(cmd) )
     else:
         os.system("echo «Не поняла повторите команду» | RHVoice-test -p anna")
+        main_forms.assistant_list.appendPlainText("Вы сказали: " + str(cmd) )
 
 # Метод обнаружение обьктов на видео
 def Video_detection():
@@ -706,14 +773,19 @@ def Micro_function():
     os.system("echo «Что сделать?» | RHVoice-test -p anna")
     cmd = listen()
     if(cmd == "открой голосового ассистента" or cmd == "открой ассистента" or cmd == "ассистент"):
-        main_forms.voise_assistant_panel.setVisible(True)
-        main_forms.Plagins_panel.setVisible(False)
-        main_forms.main_panel.setVisible(False) 
-        main_forms.cam_panel.setVisible(False)
-        main_forms.foto_panel.setVisible(False)
-        main_forms.video_panel.setVisible(False)
-        main_forms.db_panel.setVisible(False)
-        main_forms.db_panel_function.setVisible(False)
+        Voise_assistant()
+    elif(cmd == "открой панель фото" or cmd == "панель фото"):
+        Foto_function()
+    elif(cmd == "открой панель видео" or cmd == "панель видео"):
+        Vidoe_function()
+    elif(cmd == "открой панель камера" or cmd == "панель камера"):
+        Cam_function()
+    elif(cmd == "открой панель база данных" or cmd == "панель база данных"):
+        Db_function()
+    elif(cmd == "открой панель плагин" or cmd == "панель плагин"):
+        Plugins_function()
+    elif(cmd == "что ты умеешь" or cmd == "твои команды"):
+        os.system("echo «Открой голосового ассистента, открой панель фото, открой панель видео, открой панель камера, открой панель база данных, открой панель плагин» | RHVoice-test -p anna")   
     else:
         os.system("echo «Не поняла повторите команду» | RHVoice-test -p anna")
 # Открытие видео которое было загружено для обробки        
@@ -798,7 +870,9 @@ main_forms.plugins_voice.clicked.connect(Plugins_voice)
 main_forms.micro_function_button.clicked.connect(Micro_function)
 main_forms.open_video_button_input.clicked.connect(Open_Video_Input)
 main_forms.open_video_button_output.clicked.connect(Open_Video_Output)
-
+main_forms.poisk_object_button.clicked.connect(Search_table_object)
+main_forms.add_objectText_button.clicked.connect(Add_teble_object)
+main_forms.del_objectTextbutton.clicked.connect(Delete_table_object)
 
 load_form.show()
 Progress_load()

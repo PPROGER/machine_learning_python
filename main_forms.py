@@ -459,11 +459,91 @@ class QMain(QtGui.QMainWindow):
         self.del_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;} QPushButton:hover {background:#076CDA;font-weight: bold;}")
         self.del_button.setGeometry(1150,670,160,50)
 
-        #Панель для таблицы messager
-        self.table_messager_panel = QtGui.QLabel()
-        #self.table_messager_panel.setVisible(False)
-        self.table_messager_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; border-radius: 5px; padding-left: 10px; margin: 5px}")
-        self.table_messager_panel.setGeometry(0,0,1200,780)
+        #Панель для таблицы object
+        self.table_object_panel = QtGui.QLabel()
+        #self.table_object_panel.setVisible(False)
+        self.table_object_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; border-radius: 5px; padding-left: 10px; margin: 5px}")
+        self.table_object_panel.setGeometry(0,0,1200,780)
+
+        #Таблица object
+        self.table_widget_object = QtGui.QTableWidget(self.table_object_panel)
+        self.table_widget_object.setGeometry(10,10,700,725)
+        self.table_widget_object.setStyleSheet("QTableWidget {}")
+
+        labels_column_mes = ['ID','Image', 'Objects after recognition']
+
+        self.table_widget_object.setColumnCount(len(labels_column_mes))
+        self.table_widget_object.setHorizontalHeaderLabels(labels_column_mes)
+
+        #Поиск в таблице object
+        label_znach_o = QtGui.QLabel("Enter value:",self.table_object_panel)
+        label_znach_o.setStyleSheet(db_style_css[0])
+        label_znach_o.setGeometry(725,20,200,50)
+
+        self.poisk_objectEdit = QtGui.QLineEdit(self.table_object_panel)
+        self.poisk_objectEdit.setStyleSheet(db_style_css[1])
+        self.poisk_objectEdit.setGeometry(770,90,450,35)
+        self.poisk_objectEdit.setAlignment(QtCore.Qt.AlignCenter)
+
+        self.poisk_object_button = QtGui.QPushButton('Search', self.table_object_panel)
+        self.poisk_object_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;} QPushButton:hover {background:#076CDA;font-weight: bold;}")
+        self.poisk_object_button.setGeometry(1150,150,160,50)
+
+
+        label_image_o = QtGui.QLabel(self.table_object_panel)
+        pixmap_o = QtGui.QPixmap('image/line.png')
+        label_image_o.setPixmap(pixmap_o)
+        label_image_o.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33;}")
+        label_image_o.setGeometry(715,200,600,50)
+
+
+        #Добавление данных в таблицу object
+        label_imaje_o = QtGui.QLabel("Image:",self.table_object_panel)
+        label_imaje_o.setStyleSheet(db_style_css[0])
+        label_imaje_o.setGeometry(725,250,150,50)
+
+        self.imageObjectEdit = QtGui.QLineEdit(self.table_object_panel)
+        self.imageObjectEdit.setStyleSheet(db_style_css[1])
+        self.imageObjectEdit.setGeometry(880,258,300,30)
+        self.imageObjectEdit.setAlignment(QtCore.Qt.AlignCenter)
+
+
+        label_text_o = QtGui.QLabel("Text:",self.table_object_panel)
+        label_text_o.setStyleSheet(db_style_css[0])
+        label_text_o.setGeometry(725,310,150,50)
+
+        self.object_textEdit = QtGui.QLineEdit(self.table_object_panel)
+        self.object_textEdit.setStyleSheet(db_style_css[1])
+        self.object_textEdit.setGeometry(880,318,300,30)
+        self.object_textEdit.setAlignment(QtCore.Qt.AlignCenter)
+
+
+        self.add_objectText_button = QtGui.QPushButton('Add data', self.table_object_panel)
+        self.add_objectText_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;} QPushButton:hover {background:#076CDA;font-weight: bold;}")
+        self.add_objectText_button.setGeometry(1150,380,160,50)
+
+
+        label_image1_o = QtGui.QLabel(self.table_object_panel)
+        pixmap1_o = QtGui.QPixmap('image/line.png')
+        label_image1_o.setPixmap(pixmap1_o)
+        label_image1_o.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33;}")
+        label_image1_o.setGeometry(715,430,600,50)
+
+
+        #Удаление с таблицы object
+        label_znach_del_o = QtGui.QLabel("Enter value:",self.table_object_panel)
+        label_znach_del_o.setStyleSheet(db_style_css[0])
+        label_znach_del_o.setGeometry(725,500,170,50)
+
+        self.del_object_textEdit = QtGui.QLineEdit(self.table_object_panel)
+        self.del_object_textEdit.setStyleSheet(db_style_css[1])
+        self.del_object_textEdit.setGeometry(900,508,350,35)
+        self.del_object_textEdit.setAlignment(QtCore.Qt.AlignCenter)
+
+        self.del_objectTextbutton = QtGui.QPushButton('Delete', self.table_object_panel)
+        self.del_objectTextbutton.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;} QPushButton:hover {background:#076CDA;font-weight: bold;}")
+        self.del_objectTextbutton.setGeometry(1150,570,160,50)
+
 
 
 
@@ -471,7 +551,7 @@ class QMain(QtGui.QMainWindow):
         self.tab = QtGui.QTabWidget(self.db_panel_function)
         self.tab.setGeometry(10,50,1339,780)
         self.tab.addTab(self.table_user_panel,'User')
-        self.tab.addTab(self.table_messager_panel,'Message')
+        self.tab.addTab(self.table_object_panel,'Objects from the photo')
 
 
 
@@ -1140,7 +1220,7 @@ class QMain(QtGui.QMainWindow):
 
         #Voise Assistant panel  
         self.voise_assistant_panel = QtGui.QLabel(self)
-        #self.voise_assistant_panel.setVisible(False)
+        self.voise_assistant_panel.setVisible(False)
         self.voise_assistant_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; border-radius: 5px;  margin: 5px}")
         self.voise_assistant_panel.setGeometry(243,53,1357,847)
 
