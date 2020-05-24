@@ -128,6 +128,7 @@ def Cam_function():
     main_forms.db_panel_function.setVisible(False)
     main_forms.Plagins_panel.setVisible(False)
     main_forms.voise_assistant_panel.setVisible(False)
+    main_forms.doc_panel.setVisible(False)
     Load_cam_panel()  
 
 
@@ -139,7 +140,8 @@ def Vidoe_function():
     main_forms.main_panel.setVisible(False)
     main_forms.db_panel_function.setVisible(False)
     main_forms.Plagins_panel.setVisible(False)
-    main_forms.voise_assistant_panel.setVisible(False) 
+    main_forms.voise_assistant_panel.setVisible(False)
+    main_forms.doc_panel.setVisible(False) 
 
 def Foto_function():
     main_forms.foto_panel.setVisible(True)
@@ -150,6 +152,7 @@ def Foto_function():
     main_forms.db_panel_function.setVisible(False)
     main_forms.Plagins_panel.setVisible(False)
     main_forms.voise_assistant_panel.setVisible(False)
+    main_forms.doc_panel.setVisible(False)
     
 
 def Db_function():
@@ -159,7 +162,8 @@ def Db_function():
     main_forms.video_panel.setVisible(False)
     main_forms.main_panel.setVisible(False)
     main_forms.Plagins_panel.setVisible(False)
-    main_forms.voise_assistant_panel.setVisible(False) 
+    main_forms.voise_assistant_panel.setVisible(False)
+    main_forms.doc_panel.setVisible(False) 
 
 def Settings_function():
     main_forms.main_panel.setVisible(True) 
@@ -170,6 +174,7 @@ def Settings_function():
     main_forms.db_panel_function.setVisible(False)
     main_forms.Plagins_panel.setVisible(False)
     main_forms.voise_assistant_panel.setVisible(False)
+    main_forms.doc_panel.setVisible(False)
      
 def Plugins_function():
     main_forms.Plagins_panel.setVisible(True)
@@ -180,6 +185,7 @@ def Plugins_function():
     main_forms.db_panel.setVisible(False)
     main_forms.db_panel_function.setVisible(False)
     main_forms.voise_assistant_panel.setVisible(False)
+    main_forms.doc_panel.setVisible(False)
 
 def Voise_assistant():
     
@@ -191,6 +197,19 @@ def Voise_assistant():
     main_forms.video_panel.setVisible(False)
     main_forms.db_panel.setVisible(False)
     main_forms.db_panel_function.setVisible(False)
+    main_forms.doc_panel.setVisible(False)
+
+def Help_panel():
+    main_forms.doc_panel.setVisible(True)
+    main_forms.voise_assistant_panel.setVisible(False)
+    main_forms.Plagins_panel.setVisible(False)
+    main_forms.main_panel.setVisible(False) 
+    main_forms.cam_panel.setVisible(False)
+    main_forms.foto_panel.setVisible(False)
+    main_forms.video_panel.setVisible(False)
+    main_forms.db_panel.setVisible(False)
+    main_forms.db_panel_function.setVisible(False)
+
 
 
 def Log_func_db():
@@ -617,7 +636,7 @@ def Video_detection():
         main_forms.object_list_video.setPlainText("[WARNING] Fill in all the fields!!!")
 
 # Метод для открытие панели для входящих писем
-def Message_function():
+def Message_function_s():
     main_forms.message_fun_panel.setVisible(True)
     main_forms.been_panel.setVisible(False)
 
@@ -796,7 +815,36 @@ def Open_Video_Input():
 def Open_Video_Output():
     os.system("mpv " + str(main_forms.video_outEdit.text()))
 
-
+# Функция для поиска в приложении
+def Search_Function():
+    if(main_forms.lineedit.text() != ""):
+        if(main_forms.lineedit.text() == "Face ID" or main_forms.lineedit.text() == "face" or main_forms.lineedit.text() == "registration Face ID"):
+            Settings_function()
+            main_forms.lineedit.setText("")
+        elif(main_forms.lineedit.text() == "Foto" or main_forms.lineedit.text() == "foto"):
+            Foto_function()
+            main_forms.lineedit.setText("")
+        elif(main_forms.lineedit.text() == "Video" or main_forms.lineedit.text() == "video"):
+            Vidoe_function()
+            main_forms.lineedit.setText("")
+        elif(main_forms.lineedit.text() == "Cam" or main_forms.lineedit.text() == "cam"):
+            Cam_function()
+            main_forms.lineedit.setText("")
+        elif(main_forms.lineedit.text() == "settings"):
+            Settings_function()
+            main_forms.lineedit.setText("")
+        elif(main_forms.lineedit.text() == "db"):
+            Db_function()
+            main_forms.lineedit.setText("")
+        elif(main_forms.lineedit.text() == "help"):
+            Help_panel()
+            main_forms.lineedit.setText("")
+        elif(main_forms.lineedit.text() == "voice assistant"):
+            Voise_assistant()
+            main_forms.lineedit.setText("")
+    else:
+        QtGui.QMessageBox.about(QtGui.QWidget(),"Message","Enter value!")
+    
 
 #Основная программа 
 app = QtGui.QApplication(sys.argv)
@@ -815,6 +863,7 @@ main_forms.video_button.clicked.connect(Vidoe_function)
 main_forms.foto_button.clicked.connect(Foto_function)
 main_forms.db_button.clicked.connect(Db_function)
 main_forms.settings_button.clicked.connect(Settings_function)
+main_forms.help.clicked.connect(Help_panel)
 main_forms.log_button.clicked.connect(Log_func_db)
 main_forms.tema_button.clicked.connect(Tema_Function)
 main_forms.db_faceid_button.clicked.connect(DB_faceid_button)
@@ -840,7 +889,7 @@ main_forms.connect_function_button.clicked.connect(Connect_function)
 main_forms.plugins.clicked.connect(Plugins_function)
 main_forms.microfon_function_button.clicked.connect(Microfon_assistant)
 main_forms.video_detection_button.clicked.connect(Video_detection)
-main_forms.message_function_button.clicked.connect(Message_function)
+main_forms.message_function_button.clicked.connect(Message_function_s)
 main_forms.bell_function_button.clicked.connect(Bell_function)
 main_forms.exit_been_button.clicked.connect(Exit_Been)
 main_forms.exit_message_fun_button.clicked.connect(Exit_message_fun)
@@ -873,6 +922,8 @@ main_forms.open_video_button_output.clicked.connect(Open_Video_Output)
 main_forms.poisk_object_button.clicked.connect(Search_table_object)
 main_forms.add_objectText_button.clicked.connect(Add_teble_object)
 main_forms.del_objectTextbutton.clicked.connect(Delete_table_object)
+main_forms.search_function_button.clicked.connect(Search_Function)
+
 
 load_form.show()
 Progress_load()

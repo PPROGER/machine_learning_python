@@ -109,7 +109,7 @@ class QMain(QtGui.QMainWindow):
         
         #Cловарь для поиска
         model = QtGui.QStringListModel()
-        model.setStringList(['Face ID', 'Face', 'in', 'my', 'dictionary'])
+        model.setStringList(['Face ID', 'face', 'Foto', 'foto', 'Video','video','Cam','cam','settings','db','help','registration Face ID','voice assistant'])
 
         completer = QtGui.QCompleter()
         completer.setModel(model)
@@ -120,11 +120,11 @@ class QMain(QtGui.QMainWindow):
         self.search_function_button.setGeometry(530,13.7,100,34)
 
         #Сам поиск 
-        lineedit = QtGui.QLineEdit(panel)
-        lineedit.setCompleter(completer)
-        lineedit.setStyleSheet("QLineEdit {background:#222528; border-radius: 2px; font: 18px;}")
-        lineedit.setGeometry(30,13,500,35)
-        lineedit.setAlignment(QtCore.Qt.AlignCenter)
+        self.lineedit = QtGui.QLineEdit(panel)
+        self.lineedit.setCompleter(completer)
+        self.lineedit.setStyleSheet("QLineEdit {background:#222528; border-radius: 2px; font: 18px;}")
+        self.lineedit.setGeometry(30,13,500,35)
+        self.lineedit.setAlignment(QtCore.Qt.AlignCenter)
 
         
         self.micro_function_button = QtGui.QPushButton(panel)
@@ -625,7 +625,7 @@ class QMain(QtGui.QMainWindow):
 
         self.object_list_foto_1 = QtGui.QPlainTextEdit(panel_foto_detection)
         self.object_list_foto_1.setStyleSheet("QPlainTextEdit {background:#222528;color:#FBFBFC; border: 2px solid #222528; font: 20px}")
-        self.object_list_foto_1.setGeometry(10,350,1208,390)
+        self.object_list_foto_1.setGeometry(20,350,1208,390)
         #self.object_list_foto.setPlainText(":13298123")
 
         style_panel_foto = "QPushButton {background:#292E33; border: 1px solid #292E33;outline: none;} QPushButton:hover {background:#222528;}"
@@ -666,8 +666,7 @@ class QMain(QtGui.QMainWindow):
         # items
         tool_box.addItem(panel_foto_detection,
                          'Detection Object to Foto')
-        tool_box.addItem(QtGui.QPlainTextEdit('Text 2'),
-                         'Page 2')
+        
        
         
         vlayout = QtGui.QVBoxLayout(self.foto_panel)
@@ -1239,7 +1238,19 @@ class QMain(QtGui.QMainWindow):
         self.assistant_list.setGeometry(77,50,1200,590)
 
 
+        #Документация панель
+        self.doc_panel = QtGui.QLabel(self)
+        #self.doc_panel.setVisible(False)
+        self.doc_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; border-radius: 5px;  margin: 5px}")
+        self.doc_panel.setGeometry(243,53,1357,847)
 
+        label_dox_label = QtGui.QLabel('Documentation from the program "Laboratory Detection"',self.doc_panel)
+        label_dox_label.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; color: #6D6F72; font: 30px;}")
+        label_dox_label.setGeometry(20,10,900,40)
+
+        label_dox_label = QtGui.QLabel('Function "CAM":\n      A function with the help of which it is possible to create a database of objects, which consists of photographs, after which it is possible to train\nour neural network and recognize our objects through the camera."',self.doc_panel)
+        label_dox_label.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; color: #6D6F72; font: 20px;}")
+        label_dox_label.setGeometry(20,50,1300,90)
 
 
         #Панель конекта с базой данных
@@ -1341,13 +1352,13 @@ class QMain(QtGui.QMainWindow):
         self.message_clear_button.setStyleSheet("QPushButton {background:#007AFF; border: 1px solid #007AFF; border-radius: 2px;outline: none; } QPushButton:hover {background:#007AFF;font-weight: bold;}")
         self.message_clear_button.setGeometry(10,360,480,30)
 
-"""
+
 app = QtGui.QApplication(sys.argv)
 qb = QMain()
 
 qb.show()
 sys.exit(app.exec_())
-"""
+
 
 
 
