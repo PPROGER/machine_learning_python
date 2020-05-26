@@ -1160,7 +1160,7 @@ class QMain(QtGui.QMainWindow):
         self.plugins_foto_detection.setGeometry(1050,20,200,60)
 
 
-        #Плагин обнаружение обьктов на видео
+        #Плагин обнаружение обьектов на видео
         self.plagins_function_video_detection = QtGui.QLabel(self.scrollAreaWidgetContents)
         self.plagins_function_video_detection.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 2px;} QLabel:hover {border: 4px solid #1F2327;}")
         self.plagins_function_video_detection.setMinimumHeight(100)
@@ -1240,17 +1240,30 @@ class QMain(QtGui.QMainWindow):
 
         #Документация панель
         self.doc_panel = QtGui.QLabel(self)
-        #self.doc_panel.setVisible(False)
+        self.doc_panel.setVisible(False)
         self.doc_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; border-radius: 5px;  margin: 5px}")
         self.doc_panel.setGeometry(243,53,1357,847)
 
         label_dox_label = QtGui.QLabel('Documentation from the program "Laboratory Detection"',self.doc_panel)
-        label_dox_label.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; color: #6D6F72; font: 30px;}")
-        label_dox_label.setGeometry(20,10,900,40)
+        label_dox_label.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; color: white; font: 30px;}")
+        label_dox_label.setGeometry(20,10,900,50)
 
-        label_dox_label = QtGui.QLabel('Function "CAM":\n      A function with the help of which it is possible to create a database of objects, which consists of photographs, after which it is possible to train\nour neural network and recognize our objects through the camera."',self.doc_panel)
-        label_dox_label.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; color: #6D6F72; font: 20px;}")
-        label_dox_label.setGeometry(20,50,1300,90)
+        self.github_function_button = QtGui.QPushButton(self.doc_panel)
+        self.github_function_button.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;outline: none; }QPushButton:hover {background:#1F2327;}")
+        self.github_function_button.setIcon(QtGui.QIcon('image/github.png'))
+        self.github_function_button.setIconSize(QtCore.QSize(50,50))
+        self.github_function_button.setGeometry(1270,13,60,60)
+
+
+        self.documetation_list = QtGui.QPlainTextEdit(self.doc_panel)
+        self.documetation_list.setStyleSheet("QPlainTextEdit {background:#1F2327; color:#6D6F72; border: 2px solid #1F2327; border-radius: 5px; font: 20px}")
+        self.documetation_list.setGeometry(77,100,1200,690)
+        self.documetation_list.setReadOnly(True)
+        self.documetation_list.appendPlainText("Function 'CAM':\n      A function with the help of which it is possible to create a database of objects, which consists of photographs, after which it is possible to train our neural network and recognize our objects through the camera.")
+        self.documetation_list.appendPlainText("Function 'Foto':\n      This function makes it possible to recognize objects, display them on a photograph and then separately display them on a form.")
+        self.documetation_list.appendPlainText("Function 'Video':\n      This function makes it possible to recognize objects, display them on video and then separately display them on the form.")
+        self.documetation_list.appendPlainText("Function 'Voice Assistant':\n      A virtual assistant is a software agent that can perform tasks for the user based on information entered by the user, data on his location, as well as information received from various Internet resources.")
+
 
 
         #Панель конекта с базой данных
@@ -1353,11 +1366,6 @@ class QMain(QtGui.QMainWindow):
         self.message_clear_button.setGeometry(10,360,480,30)
 
 
-app = QtGui.QApplication(sys.argv)
-qb = QMain()
-
-qb.show()
-sys.exit(app.exec_())
 
 
 

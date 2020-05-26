@@ -815,6 +815,9 @@ def Open_Video_Input():
 def Open_Video_Output():
     os.system("mpv " + str(main_forms.video_outEdit.text()))
 
+def Github_open():
+    os.system("firefox https://github.com/PPROGER/machine_learning_python")
+
 # Функция для поиска в приложении
 def Search_Function():
     if(main_forms.lineedit.text() != ""):
@@ -923,7 +926,7 @@ main_forms.poisk_object_button.clicked.connect(Search_table_object)
 main_forms.add_objectText_button.clicked.connect(Add_teble_object)
 main_forms.del_objectTextbutton.clicked.connect(Delete_table_object)
 main_forms.search_function_button.clicked.connect(Search_Function)
-
+main_forms.github_function_button.clicked.connect(Github_open)
 
 load_form.show()
 Progress_load()
