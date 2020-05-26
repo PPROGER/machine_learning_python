@@ -1,6 +1,6 @@
 <h1> Laboratory detection</h1>
 <hr>
-![Laboratory detection](/home/pproger/Desktop/det_lab.png)
+![Laboratory detection](https://github.com/PPROGER/machine_learning_python/blob/master/image/maket1.jpg)
 <hr>
 <h2> Installation:</h2>
 <h4> Minimum runs on Python 3.5. You can install it from  pip:</h4>
