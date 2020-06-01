@@ -66,7 +66,9 @@ def faceid_avtorization():
     evklid_znach = Face_detector()
     if(float(evklid_znach) < 0.6):
         #QtGui.QMessageBox.about(QtGui.QWidget(),"Message","You have successfully\nlogged in!")
-        Load_cam_panel()
+        global id_code
+        id_code = 4345;
+        load_main_forms()
         main_forms.show()
         qb.close()
     elif(float(evklid_znach) > 0.6):
@@ -454,8 +456,8 @@ def Face_dataset():
 
 #Тренировка распознования 
 def Face_training():
-    if(main_forms.path_trainingEdit.text() != "" and main_forms.modelEdit.text() != ""):
-        Face_trainings(main_forms.path_trainingEdit.text(), main_forms.modelEdit.text())
+    if(main_forms.path_trainingEdits.text() != "" and main_forms.modelEdits.text() != ""):
+        Face_trainings(main_forms.path_trainingEdits.text(), main_forms.modelEdits.text())
 
 #Распознование лица
 def Face_recognition():
@@ -595,35 +597,49 @@ def Exit_panel_connect_db():
 def Connect_function():
     main_forms.connect_db_panel.setVisible(True)
 
+def Load_command_voice():
+    list_vopros = []
+    list_otvet = []
+    for vopros,otvet in con.execute("SELECT vopros, otvet FROM voice_assistant"):
+        list_vopros.append(str(vopros))
+        list_otvet.append(str(otvet))
+    return list_vopros, list_otvet      
+
+def voice_vopros():
+    text_voprosa, text_otveta = Load_command_voice()
+    otvet_bool = True
+    os.system("echo «Говорите» | RHVoice-test -p anna")
+    comand_text_vopros = listen()
+    if(comand_text_vopros == "сколько время" or comand_text_vopros == "время"):
+        os.system("echo «Cейчас "+str(datetime.strftime(datetime.now(), "%H:%M:%S"))+"» | RHVoice-test -p anna")
+    elif(comand_text_vopros == "какая операционная система" or comand_text_vopros == "какая ос" or comand_text_vopros== "что за ос" or comand_text_vopros == "операционная система"):
+        os.system("echo «Операционная система "+str(platform.system())+"» | RHVoice-test -p anna")
+        main_forms.assistant_list.appendPlainText("Операционная система "+str(platform.system()))
+    else:
+        for i in range(len(text_voprosa)):
+            if(text_voprosa[i] == comand_text_vopros):
+                os.system("echo "+text_otveta[i]+" | RHVoice-test -p anna")
+                otvet_bool = False
+                main_forms.assistant_list.appendPlainText("Вы сказали: " + str(comand_text_vopros) + "?\n    Ответ: " +str(text_otveta[i]))
+        if(otvet_bool == True):
+            os.system("echo «Не знаю, может подскажешь?» | RHVoice-test -p anna")
+            comand_text_otvet = listen()
+            cur = con.cursor()
+            cur.execute('INSERT INTO voice_assistant (vopros, otvet) VALUES (?,?)',(str(comand_text_vopros),str(comand_text_otvet)))
+            con.commit()
+            os.system("echo «Запомнила» | RHVoice-test -p anna")
+            text_voprosa, text_otveta = Load_command_voice()
+            voice_vopros()
+
 # Метод для голосового асистента
 def Microfon_assistant():
     global assistent_check
     if(assistent_check == True):
         os.system("echo «Привет я голосовой ассистент Таня! Что вам угодно?» | RHVoice-test -p anna")
         assistent_check = False
-    elif(assistent_check == False):
-        os.system("echo «Что вам угодно?» | RHVoice-test -p anna")
-    main_forms.assistant_list.appendPlainText("Что вам угодно?")
-    cmd = listen()
-    if(cmd == "кто твой разработчик"):
-        os.system("echo «Мой разработчик программист, он просил меня сердечно его имя и фамилию не называть!» | RHVoice-test -p anna")
-        main_forms.assistant_list.appendPlainText("Мой разработчик программист, он просил меня сердечно его имя и фамилию не называть!")
-    elif(cmd == "сколько время" or cmd == "время"):
-        os.system("echo «Cейчас "+str(datetime.strftime(datetime.now(), "%H:%M:%S"))+"» | RHVoice-test -p anna")
-    elif(cmd == "справка по программе" or cmd == "справка"):
-        os.system("echo «Эта программа создана для обнаружения обьектов на камере, фото и видео материалах» | RHVoice-test -p anna")
-        main_forms.assistant_list.appendPlainText("Эта программа создана для обнаружения обьектов на камере, фото и видео материалах")
-    elif(cmd == "какая операционная система" or cmd == "какая ос" or cmd == "что за ос" or cmd == "операционная система"):
-        os.system("echo «Операционная система "+str(platform.system())+"» | RHVoice-test -p anna")
-        main_forms.assistant_list.appendPlainText("Операционная система "+str(platform.system()))    
-    elif(cmd == "пока"):
-        os.system("echo «Всего доброго!» | RHVoice-test -p anna")
-    elif(cmd == "как тебя зовут" or "твое имя"):
-        os.system("echo «Мое имя Татьяна но для вас можно Таня» | RHVoice-test -p anna")
-        main_forms.assistant_list.appendPlainText("Вы сказали " + str(cmd) )
-    else:
-        os.system("echo «Не поняла повторите команду» | RHVoice-test -p anna")
-        main_forms.assistant_list.appendPlainText("Вы сказали: " + str(cmd) )
+    voice_vopros()
+     
+    
 
 # Метод обнаружение обьктов на видео
 def Video_detection():
@@ -791,22 +807,30 @@ def Plugins_voice():
 def Micro_function():
     os.system("echo «Что сделать?» | RHVoice-test -p anna")
     cmd = listen()
-    if(cmd == "открой голосового ассистента" or cmd == "открой ассистента" or cmd == "ассистент"):
+    if(cmd == "открой голосового ассистента" or cmd == "открой ассистента" or cmd == "ассистент" or cmd == "голосового ассистента"):
         Voise_assistant()
+        os.system("echo «Хорошо» | RHVoice-test -p anna")
     elif(cmd == "открой панель фото" or cmd == "панель фото"):
         Foto_function()
+        os.system("echo «Хорошо» | RHVoice-test -p anna")
     elif(cmd == "открой панель видео" or cmd == "панель видео"):
         Vidoe_function()
+        os.system("echo «Хорошо» | RHVoice-test -p anna")
     elif(cmd == "открой панель камера" or cmd == "панель камера"):
         Cam_function()
+        os.system("echo «Хорошо» | RHVoice-test -p anna")
     elif(cmd == "открой панель база данных" or cmd == "панель база данных"):
         Db_function()
-    elif(cmd == "открой панель плагин" or cmd == "панель плагин"):
+        os.system("echo «Хорошо» | RHVoice-test -p anna")
+    elif(cmd == "открой панель plugin" or cmd == "панель плагин"):
         Plugins_function()
+        os.system("echo «Хорошо» | RHVoice-test -p anna")
     elif(cmd == "что ты умеешь" or cmd == "твои команды"):
-        os.system("echo «Открой голосового ассистента, открой панель фото, открой панель видео, открой панель камера, открой панель база данных, открой панель плагин» | RHVoice-test -p anna")   
+        os.system("echo «Открой голосового ассистента, открой панель фото, открой панель видео, открой панель камера, открой панель база данных, открой панель плагин» | RHVoice-test -p anna")
+    elif(cmd == "закрой главное окно"):
+        Logout_forms()
     else:
-        os.system("echo «Не поняла повторите команду» | RHVoice-test -p anna")
+        os.system("echo «Не поняла повторите команду, вы сказали "+ cmd +"» | RHVoice-test -p anna")
 # Открытие видео которое было загружено для обробки        
 def Open_Video_Input():
     os.system("mpv " + str(main_forms.video_inputEdit.text()))
@@ -847,7 +871,7 @@ def Search_Function():
             main_forms.lineedit.setText("")
     else:
         QtGui.QMessageBox.about(QtGui.QWidget(),"Message","Enter value!")
-    
+
 
 #Основная программа 
 app = QtGui.QApplication(sys.argv)

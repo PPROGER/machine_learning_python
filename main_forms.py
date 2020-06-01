@@ -784,7 +784,7 @@ class QMain(QtGui.QMainWindow):
 
         #Cam panel  
         self.cam_panel = QtGui.QLabel(self)
-        self.cam_panel.setVisible(False)
+        #self.cam_panel.setVisible(False)
         self.cam_panel.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 5px; padding-left: 10px; margin: 5px}")
         self.cam_panel.setGeometry(243,53,1357,847)  
 
@@ -877,11 +877,11 @@ class QMain(QtGui.QMainWindow):
         label_path_training.setStyleSheet(str_style_css[0])
         label_path_training.setGeometry(10,290,237,50)
 
-        self.path_trainingEdit = QtGui.QLineEdit(self.cam_panel)
-        self.path_trainingEdit.setStyleSheet(str_style_css[1])
-        self.path_trainingEdit.setGeometry(200,298,790,35)
-        self.path_trainingEdit.setAlignment(QtCore.Qt.AlignCenter)
-        self.path_trainingEdit.setText("/home/pproger/Desktop/machine_learning_python/FacialRecognitionProject/dataset")
+        self.path_trainingEdits = QtGui.QLineEdit(self.cam_panel)
+        self.path_trainingEdits.setStyleSheet(str_style_css[1])
+        self.path_trainingEdits.setGeometry(200,298,790,35)
+        self.path_trainingEdits.setAlignment(QtCore.Qt.AlignCenter)
+        self.path_trainingEdits.setText("/home/pproger/Desktop/machine_learning_python/FacialRecognitionProject/dataset")
 
         self.file_open_button_cam2 = QtGui.QPushButton(self.cam_panel)
         self.file_open_button_cam2.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;outline: none;} QPushButton:hover {background:#1F2327;}")
@@ -893,11 +893,11 @@ class QMain(QtGui.QMainWindow):
         label_model.setStyleSheet(str_style_css[0])
         label_model.setGeometry(10,370,260,50)
 
-        self.modelEdit = QtGui.QLineEdit(self.cam_panel)
-        self.modelEdit.setStyleSheet(str_style_css[1])
-        self.modelEdit.setGeometry(280,378,710,35)
-        self.modelEdit.setAlignment(QtCore.Qt.AlignCenter)
-        self.modelEdit.setText("/home/pproger/Desktop/machine_learning_python/FacialRecognitionProject/trainer/trainer.yml")
+        self.modelEdits = QtGui.QLineEdit(self.cam_panel)
+        self.modelEdits.setStyleSheet(str_style_css[1])
+        self.modelEdits.setGeometry(280,378,710,35)
+        self.modelEdits.setAlignment(QtCore.Qt.AlignCenter)
+        self.modelEdits.setText("/home/pproger/Desktop/machine_learning_python/FacialRecognitionProject/trainer/trainer.yml")
 
         self.file_open_button_cam3 = QtGui.QPushButton(self.cam_panel)
         self.file_open_button_cam3.setStyleSheet("QPushButton {background:#292E33; border: 1px solid #292E33;outline: none;} QPushButton:hover {background:#1F2327;}")
@@ -946,7 +946,7 @@ class QMain(QtGui.QMainWindow):
         self.object_number_recognitionEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.object_number_recognitionEdit.setText("1")
 
-        self.Face_recognition_button = QtGui.QPushButton('Face training', self.cam_panel)
+        self.Face_recognition_button = QtGui.QPushButton('Face recognition', self.cam_panel)
         self.Face_recognition_button.setStyleSheet("QPushButton {background:#076CDA; border-radius: 5px; border: 2px solid #076CDA; font: 20px;outline: none; } QPushButton:hover {background:#076CDA;font-weight: bold;}")
         self.Face_recognition_button.setGeometry(500,720,540,50)
 
@@ -1364,7 +1364,6 @@ class QMain(QtGui.QMainWindow):
         self.message_clear_button = QtGui.QPushButton("Clear Message",self.message_fun_panel)
         self.message_clear_button.setStyleSheet("QPushButton {background:#007AFF; border: 1px solid #007AFF; border-radius: 2px;outline: none; } QPushButton:hover {background:#007AFF;font-weight: bold;}")
         self.message_clear_button.setGeometry(10,360,480,30)
-
 
 
 
