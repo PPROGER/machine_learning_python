@@ -18,11 +18,7 @@ class QMain(QtGui.QMainWindow):
         self.setStatusBar(self.statusBar)
 
        
-
        
-
-        
-        
 
         menu = QtGui.QLabel(self)
         menu.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33; border-radius: 5px; padding-left: 10px; margin: 5px}")
@@ -781,7 +777,6 @@ class QMain(QtGui.QMainWindow):
 
 
 
-
         #Cam panel  
         self.cam_panel = QtGui.QLabel(self)
         #self.cam_panel.setVisible(False)
@@ -1214,6 +1209,33 @@ class QMain(QtGui.QMainWindow):
         self.plugins_voice.setGeometry(1050,20,200,60)
 
 
+        #Плагин дистанция при пандемии
+        self.plagins_function_pandemic = QtGui.QLabel(self.scrollAreaWidgetContents)
+        self.plagins_function_pandemic.setStyleSheet("QLabel {background:#292E33; border: 1px solid #1F2327; border-radius: 2px;} QLabel:hover {border: 4px solid #1F2327;}")
+        self.plagins_function_pandemic.setMinimumHeight(100)
+
+       
+
+        self.verticalLayoutScroll.addWidget(self.plagins_function_pandemic)
+
+        image_plugins_pandemic = QtGui.QLabel(self.plagins_function_pandemic)
+        pixmap8 = QtGui.QPixmap('image/people_virus.png')
+        image_plugins_pandemic.setPixmap(pixmap8)
+        image_plugins_pandemic.setStyleSheet("QLabel {background:#292E33; border: 1px solid #292E33;}")
+        image_plugins_pandemic.setGeometry(5,5,95,90)
+
+        
+        text_plugin_label_pandemic = QtGui.QLabel('Distance control during a pandemic such as corona, covid19.',self.plagins_function_pandemic)
+        text_plugin_label_pandemic.setStyleSheet(plugin_style_css[0])
+        text_plugin_label_pandemic.setGeometry(120,5,900,90)
+
+        self.plugins_pandemic = QtGui.QPushButton('Add plugin',self.plagins_function_pandemic)
+        self.plugins_pandemic.setStyleSheet(style_button)
+        self.plugins_pandemic.setIcon(QtGui.QIcon('image/add_plugin.png'))
+        self.plugins_pandemic.setIconSize(QtCore.QSize(30,30))
+        self.plugins_pandemic.setGeometry(1050,20,200,60)
+
+
 
         
 
@@ -1364,8 +1386,6 @@ class QMain(QtGui.QMainWindow):
         self.message_clear_button = QtGui.QPushButton("Clear Message",self.message_fun_panel)
         self.message_clear_button.setStyleSheet("QPushButton {background:#007AFF; border: 1px solid #007AFF; border-radius: 2px;outline: none; } QPushButton:hover {background:#007AFF;font-weight: bold;}")
         self.message_clear_button.setGeometry(10,360,480,30)
-
-
 
 
 

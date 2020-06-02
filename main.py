@@ -131,6 +131,7 @@ def Cam_function():
     main_forms.Plagins_panel.setVisible(False)
     main_forms.voise_assistant_panel.setVisible(False)
     main_forms.doc_panel.setVisible(False)
+    
     Load_cam_panel()  
 
 
@@ -143,7 +144,8 @@ def Vidoe_function():
     main_forms.db_panel_function.setVisible(False)
     main_forms.Plagins_panel.setVisible(False)
     main_forms.voise_assistant_panel.setVisible(False)
-    main_forms.doc_panel.setVisible(False) 
+    main_forms.doc_panel.setVisible(False)
+    
 
 def Foto_function():
     main_forms.foto_panel.setVisible(True)
@@ -155,6 +157,7 @@ def Foto_function():
     main_forms.Plagins_panel.setVisible(False)
     main_forms.voise_assistant_panel.setVisible(False)
     main_forms.doc_panel.setVisible(False)
+   
     
 
 def Db_function():
@@ -165,7 +168,8 @@ def Db_function():
     main_forms.main_panel.setVisible(False)
     main_forms.Plagins_panel.setVisible(False)
     main_forms.voise_assistant_panel.setVisible(False)
-    main_forms.doc_panel.setVisible(False) 
+    main_forms.doc_panel.setVisible(False)
+    
 
 def Settings_function():
     main_forms.main_panel.setVisible(True) 
@@ -177,6 +181,7 @@ def Settings_function():
     main_forms.Plagins_panel.setVisible(False)
     main_forms.voise_assistant_panel.setVisible(False)
     main_forms.doc_panel.setVisible(False)
+   
      
 def Plugins_function():
     main_forms.Plagins_panel.setVisible(True)
@@ -188,6 +193,7 @@ def Plugins_function():
     main_forms.db_panel_function.setVisible(False)
     main_forms.voise_assistant_panel.setVisible(False)
     main_forms.doc_panel.setVisible(False)
+   
 
 def Voise_assistant():
     
@@ -200,6 +206,7 @@ def Voise_assistant():
     main_forms.db_panel.setVisible(False)
     main_forms.db_panel_function.setVisible(False)
     main_forms.doc_panel.setVisible(False)
+ 
 
 def Help_panel():
     main_forms.doc_panel.setVisible(True)
@@ -211,7 +218,7 @@ def Help_panel():
     main_forms.video_panel.setVisible(False)
     main_forms.db_panel.setVisible(False)
     main_forms.db_panel_function.setVisible(False)
-
+    
 
 
 def Log_func_db():
@@ -803,6 +810,11 @@ def Plugins_voice():
     shutil.copy2(r'/home/pproger/Desktop/machine_learning_python/plugins/voice_assistant.zip', r'/home/pproger/Desktop/voice_assistant.zip')
     QtGui.QMessageBox.about(QtGui.QWidget(),"Message","Successfully saved to the desktop!")
 
+# Плагин контроля дистанции между людьми
+def Plugins_pandemic():
+    shutil.copy2(r'/home/pproger/Desktop/machine_learning_python/plugins/social-distance-detector.zip', r'/home/pproger/Desktop/social-distance-detector.zip')
+    QtGui.QMessageBox.about(QtGui.QWidget(),"Message","Successfully saved to the desktop!")
+
 # Голосовые команды
 def Micro_function():
     os.system("echo «Что сделать?» | RHVoice-test -p anna")
@@ -822,13 +834,16 @@ def Micro_function():
     elif(cmd == "открой панель база данных" or cmd == "панель база данных"):
         Db_function()
         os.system("echo «Хорошо» | RHVoice-test -p anna")
-    elif(cmd == "открой панель plugin" or cmd == "панель плагин"):
+    elif(cmd == "открой панель плагин" or cmd == "панель плагин"):
         Plugins_function()
         os.system("echo «Хорошо» | RHVoice-test -p anna")
     elif(cmd == "что ты умеешь" or cmd == "твои команды"):
         os.system("echo «Открой голосового ассистента, открой панель фото, открой панель видео, открой панель камера, открой панель база данных, открой панель плагин» | RHVoice-test -p anna")
     elif(cmd == "закрой главное окно"):
         Logout_forms()
+    elif(cmd == "открой панель настройки"):
+        Settings_function()
+        os.system("echo «Хорошо» | RHVoice-test -p anna")
     else:
         os.system("echo «Не поняла повторите команду, вы сказали "+ cmd +"» | RHVoice-test -p anna")
 # Открытие видео которое было загружено для обробки        
@@ -943,6 +958,7 @@ main_forms.plugins_face.clicked.connect(Plugins_face)
 main_forms.plugins_foto_detection.clicked.connect(Plugins_foto_detection)
 main_forms.plugins_video_detection.clicked.connect(Plugins_Video_Detection)
 main_forms.plugins_voice.clicked.connect(Plugins_voice)
+main_forms.plugins_pandemic.clicked.connect(Plugins_pandemic)
 main_forms.micro_function_button.clicked.connect(Micro_function)
 main_forms.open_video_button_input.clicked.connect(Open_Video_Input)
 main_forms.open_video_button_output.clicked.connect(Open_Video_Output)
@@ -951,6 +967,7 @@ main_forms.add_objectText_button.clicked.connect(Add_teble_object)
 main_forms.del_objectTextbutton.clicked.connect(Delete_table_object)
 main_forms.search_function_button.clicked.connect(Search_Function)
 main_forms.github_function_button.clicked.connect(Github_open)
+
 
 load_form.show()
 Progress_load()
